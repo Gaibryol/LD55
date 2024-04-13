@@ -42,6 +42,7 @@ public class AudioSystem : MonoBehaviour
 		eventBrokerComponent.Subscribe<AudioEvents.ChangeSFXVolume>(ChangeSFXVolumeHandler);
 		eventBrokerComponent.Subscribe<AudioEvents.PlayTemporaryMusic>(PlayTemporaryMusicHandler);
 		eventBrokerComponent.Subscribe<AudioEvents.StopTemporaryMusic>(StopTemporaryMusicHandler);
+		eventBrokerComponent.Subscribe<AudioEvents.GetSongLength>(GetSongLengthHandler);
 
 		float musicLevel = PlayerPrefs.GetFloat(Constants.Audio.MusicVolumePP, Constants.Audio.DefaultMusicVolume);
 		float sfxLevel = PlayerPrefs.GetFloat(Constants.Audio.SFXVolumePP, Constants.Audio.DefaultSFXVolume);
@@ -60,6 +61,7 @@ public class AudioSystem : MonoBehaviour
 		eventBrokerComponent.Unsubscribe<AudioEvents.ChangeSFXVolume>(ChangeSFXVolumeHandler);
 		eventBrokerComponent.Unsubscribe<AudioEvents.PlayTemporaryMusic>(PlayTemporaryMusicHandler);
 		eventBrokerComponent.Unsubscribe<AudioEvents.StopTemporaryMusic>(StopTemporaryMusicHandler);
+		eventBrokerComponent.Unsubscribe<AudioEvents.GetSongLength>(GetSongLengthHandler);
 	}
 
 	private void ChangeMusicVolumeHandler(BrokerEvent<AudioEvents.ChangeMusicVolume> inEvent)
@@ -112,6 +114,18 @@ public class AudioSystem : MonoBehaviour
 	private void StopTemporaryMusicHandler(BrokerEvent<AudioEvents.StopTemporaryMusic> inEvent)
 	{
 		StartCoroutine(FadeToSong(oldMusic, oldTime));
+	}
+
+	private void GetSongLengthHandler(BrokerEvent<AudioEvents.GetSongLength> inEvent)
+	{
+		if (music.ContainsKey(inEvent.Payload.Title))
+		{
+			inEvent.Payload.ProcessData.DynamicInvoke(music[inEvent.Payload.Title]);
+		}
+		else
+		{
+			Debug.LogError("Cannot find music named " + inEvent.Payload.Title);
+		}
 	}
 
 	private void PlayMusic(string song, float time = 0f)

@@ -48,6 +48,7 @@ public class Enemy : MonoBehaviour
 			{
 				spawned = false;
 				gameObject.SetActive(false);
+				eventBroker.Publish(this, new ScoreEvents.Miss());
 			}
 		}
 	}
