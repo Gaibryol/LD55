@@ -5,9 +5,7 @@ public partial class Constants
 	{
 		public enum Song
 		{
-			TestSong1,
-			TestSong2,
-			TestSong3
+			Song1,
 		}
 
 		public const float TimeToSweetSpot = 3f;

@@ -23,10 +23,15 @@ public class EnemyManager : MonoBehaviour
 
 	private readonly EventBrokerComponent eventBroker = new EventBrokerComponent();
 
+	private float playerVisualLatency;
+	private float playerInputLatency;
+
 	// Start is called before the first frame update
 	private void Start()
     {
 		startTime = 0d;
+		playerVisualLatency = 0f;
+		playerInputLatency = 0f;
 
 		enemies = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
 		foreach (GameObject enemy in enemies)
@@ -34,23 +39,18 @@ public class EnemyManager : MonoBehaviour
 			enemy.SetActive(false);
 		}
 
-		eventBroker.Publish(this, new SongEvents.GetSongData(Constants.Songs.Song.TestSong1, (data) => song1Queues = data));
+		eventBroker.Publish(this, new SongEvents.GetSongData(Constants.Songs.Song.Song1, (data) => song1Queues = data));
 	}
 
 	private void PlaySongHandler(BrokerEvent<SongEvents.PlaySong> inEvent)
 	{
+		playerVisualLatency = PlayerPrefs.GetFloat(Constants.Game.PlayerVisualLatency);
+		playerInputLatency = PlayerPrefs.GetFloat(Constants.Game.PlayerInputLatency);
+
 		switch (inEvent.Payload.Song)
 		{
-			case Constants.Songs.Song.TestSong1:
+			case Constants.Songs.Song.Song1:
 				StartCoroutine(ParseSongData(song1Queues[0], song1Queues[1], song1Queues[2], song1Queues[3]));
-				break;
-
-			case Constants.Songs.Song.TestSong2:
-				StartCoroutine(ParseSongData(song2Queues[0], song2Queues[1], song2Queues[2], song2Queues[3]));
-				break;
-
-			case Constants.Songs.Song.TestSong3:
-				StartCoroutine(ParseSongData(song3Queues[0], song3Queues[1], song3Queues[2], song3Queues[3]));
 				break;
 		}
 
@@ -62,26 +62,23 @@ public class EnemyManager : MonoBehaviour
 		Enemy enemy = inEvent.Payload.Enemy.GetComponent<Enemy>();
 		double timeSinceSpawn = AudioSettings.dspTime - enemy.SpawnTime;
 
-		// Calculate difference and factor in player input calibrated latency
-		double difference = timeSinceSpawn - Constants.Songs.TimeToSweetSpot;
+		// Calculate difference and factor in player input latency
+		double difference = timeSinceSpawn - Constants.Songs.TimeToSweetSpot - playerInputLatency;
 		difference = (difference > 0) ? difference : difference * -1;
 
 		if (difference <= Constants.Songs.PerfectThreshold)
 		{
 			// Perfect
-			Debug.Log("Perfect");
 			eventBroker.Publish(this, new ScoreEvents.PerfectHit());
 		}
 		else if (difference <= Constants.Songs.OkThreshold)
 		{
 			// OK
-			Debug.Log("OK");
 			eventBroker.Publish(this, new ScoreEvents.OkayHit());
 		}
 		else if (difference <= Constants.Songs.BadThreshold)
 		{
 			// Bad
-			Debug.Log("Bad");
 			eventBroker.Publish(this, new ScoreEvents.BadHit());
 		}
 	}
@@ -89,24 +86,14 @@ public class EnemyManager : MonoBehaviour
 	private IEnumerator PlaySongAudio(Constants.Songs.Song song)
 	{
 		// Add delay and player visual calibrated latency
-		float delay = Constants.Songs.SongStartDelay + Constants.Songs.TimeToSweetSpot;
+		float delay = Constants.Songs.SongStartDelay + Constants.Songs.TimeToSweetSpot - playerVisualLatency;
 		yield return new WaitForSeconds(delay);
 
 		switch (song)
 		{
-			case Constants.Songs.Song.TestSong1:
+			case Constants.Songs.Song.Song1:
 				// Play song
-				//eventBroker.Publish(this, new AudioEvents.PlayMusic(Constants.Audio.Music.GameTheme));
-				break;
-
-			case Constants.Songs.Song.TestSong2:
-				// Play song
-				//eventBroker.Publish(this, new AudioEvents.PlayMusic(Constants.Audio.Music.GameTheme));
-				break;
-
-			case Constants.Songs.Song.TestSong3:
-				// Play song
-				//eventBroker.Publish(this, new AudioEvents.PlayMusic(Constants.Audio.Music.GameTheme));
+				eventBroker.Publish(this, new AudioEvents.PlayMusic(Constants.Audio.Music.Song1));
 				break;
 		}
 	}

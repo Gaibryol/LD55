@@ -74,11 +74,13 @@ public class Calibration : MonoBehaviour
     {
         visualCalibrationOffset = offset;
         PlayerPrefs.SetFloat(Constants.Game.PlayerVisualLatency, offset);
+		PlayerPrefs.Save();
     }
 
     public void UpdateInputOffset(float offset)
     {
         inputCalibrationOffset = offset;
         PlayerPrefs.SetFloat(Constants.Game.PlayerInputLatency, offset);
+		PlayerPrefs.Save();
     }
 }

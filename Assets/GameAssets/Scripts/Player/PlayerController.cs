@@ -37,37 +37,77 @@ public class PlayerController : MonoBehaviour
 
 	public void OnUp(InputAction.CallbackContext context)
 	{
-		Collider2D hit = Physics2D.OverlapCircle(upSweetSpot.position, Constants.Game.PlayerHitRadius);
-		if (hit != null)
+		// Find note furthest along path
+		Collider2D[] hits = Physics2D.OverlapCircleAll(upSweetSpot.position, Constants.Game.PlayerHitRadius);
+		if (hits.Length > 0)
 		{
-			hit.gameObject.GetComponent<Enemy>().Hit();
+			Collider2D furthest = hits[0];
+			foreach (Collider2D hit in hits)
+			{
+				if (hit.transform.position.y < furthest.transform.position.y)
+				{
+					furthest = hit;
+				}
+			}
+
+			furthest.GetComponent<Enemy>().Hit();
 		}
 	}
 
 	public void OnDown(InputAction.CallbackContext context)
 	{
-		Collider2D hit = Physics2D.OverlapCircle(downSweetSpot.position, Constants.Game.PlayerHitRadius);
-		if (hit != null)
+		// Find note furthest along path
+		Collider2D[] hits = Physics2D.OverlapCircleAll(downSweetSpot.position, Constants.Game.PlayerHitRadius);
+		if (hits.Length > 0)
 		{
-			hit.gameObject.GetComponent<Enemy>().Hit();
+			Collider2D furthest = hits[0];
+			foreach (Collider2D hit in hits)
+			{
+				if (hit.transform.position.y > furthest.transform.position.y)
+				{
+					furthest = hit;
+				}
+			}
+
+			furthest.GetComponent<Enemy>().Hit();
 		}
 	}
 
 	public void OnLeft(InputAction.CallbackContext context)
 	{
-		Collider2D hit = Physics2D.OverlapCircle(leftSweetSpot.position, Constants.Game.PlayerHitRadius);
-		if (hit != null)
+		// Find note furthest along path
+		Collider2D[] hits = Physics2D.OverlapCircleAll(leftSweetSpot.position, Constants.Game.PlayerHitRadius);
+		if (hits.Length > 0)
 		{
-			hit.gameObject.GetComponent<Enemy>().Hit();
+			Collider2D furthest = hits[0];
+			foreach (Collider2D hit in hits)
+			{
+				if (hit.transform.position.x > furthest.transform.position.x)
+				{
+					furthest = hit;
+				}
+			}
+
+			furthest.GetComponent<Enemy>().Hit();
 		}
 	}
 
 	public void OnRight(InputAction.CallbackContext context)
 	{
-		Collider2D hit = Physics2D.OverlapCircle(rightSweetSpot.position, Constants.Game.PlayerHitRadius);
-		if (hit != null)
+		// Find note furthest along path
+		Collider2D[] hits = Physics2D.OverlapCircleAll(rightSweetSpot.position, Constants.Game.PlayerHitRadius);
+		if (hits.Length > 0)
 		{
-			hit.gameObject.GetComponent<Enemy>().Hit();
+			Collider2D furthest = hits[0];
+			foreach (Collider2D hit in hits)
+			{
+				if (hit.transform.position.x < furthest.transform.position.x)
+				{
+					furthest = hit;
+				}
+			}
+
+			furthest.GetComponent<Enemy>().Hit();
 		}
 	}
 

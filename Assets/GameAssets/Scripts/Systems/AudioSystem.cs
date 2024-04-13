@@ -9,7 +9,7 @@ public class AudioSystem : MonoBehaviour
 	[SerializeField] private AudioSource musicSource;
 	[SerializeField] private AudioSource sfxSource;
 
-	[SerializeField, Header("Music")] private AudioClip gameTheme;
+	[SerializeField, Header("Music")] private AudioClip song1;
 	[SerializeField] private AudioClip mainMenuTheme;
 
 
@@ -29,7 +29,7 @@ public class AudioSystem : MonoBehaviour
 	private void Awake()
 	{
 		// Set up music and sfx dictionaries
-		music.Add(Constants.Audio.Music.GameTheme, gameTheme);
+		music.Add(Constants.Audio.Music.Song1, song1);
 		music.Add(Constants.Audio.Music.MainMenuTheme, mainMenuTheme);
 
 	}
@@ -120,7 +120,7 @@ public class AudioSystem : MonoBehaviour
 	{
 		if (music.ContainsKey(inEvent.Payload.Title))
 		{
-			inEvent.Payload.ProcessData.DynamicInvoke(music[inEvent.Payload.Title]);
+			inEvent.Payload.ProcessData.DynamicInvoke(music[inEvent.Payload.Title].length);
 		}
 		else
 		{

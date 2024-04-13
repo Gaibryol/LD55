@@ -2,11 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
 	[SerializeField, Header("Songs")] private MidiConverter midiConverter;
 	[SerializeField] private TextAsset song1;
+
+	[SerializeField, Header("UI")] private GameObject mainMenuPanel;
+	[SerializeField] private Button song1Button;
 
 	private List<Queue<float>> song1Queues;
 
@@ -22,6 +26,7 @@ public class GameManager : MonoBehaviour
 	{
 		eventBroker.Publish(this, new AudioEvents.GetSongLength(song.ToString(), (length) => { StartCoroutine(OnSongEnd(length)); }));
 		eventBroker.Publish(this, new SongEvents.PlaySong(song));
+		mainMenuPanel.SetActive(false);
 	}
 
 	private IEnumerator OnSongEnd(float length)
@@ -36,25 +41,23 @@ public class GameManager : MonoBehaviour
 	{
 		switch (inEvent.Payload.Song)
 		{
-			case Constants.Songs.Song.TestSong1:
+			case Constants.Songs.Song.Song1:
 				inEvent.Payload.ProcessData.DynamicInvoke(song1Queues);
 				break;
-
-			case Constants.Songs.Song.TestSong2:
-				break;
-
-			case Constants.Songs.Song.TestSong3:
-				break; 
 		}
 	}
 
 	private void OnEnable()
 	{
 		eventBroker.Subscribe<SongEvents.GetSongData>(GetSongDataHandler);
+
+		song1Button.onClick.AddListener(() => SelectSong(Constants.Songs.Song.Song1));
 	}
 
 	private void OnDisable()
 	{
 		eventBroker.Unsubscribe<SongEvents.GetSongData>(GetSongDataHandler);
+
+		song1Button.onClick.RemoveListener(() => SelectSong(Constants.Songs.Song.Song1));
 	}
 }

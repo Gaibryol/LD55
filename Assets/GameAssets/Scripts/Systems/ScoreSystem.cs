@@ -21,6 +21,7 @@ public class ScoreSystem : MonoBehaviour
 	private int miss;
 
 	//Text Showing Score & Combo
+	[SerializeField] private GameObject scoreUI;
 	[SerializeField] private TMP_Text scoreText;
 	[SerializeField] private TMP_Text comboText;
 	[SerializeField] private TMP_Text multiplierText;
@@ -41,17 +42,15 @@ public class ScoreSystem : MonoBehaviour
 		comboText.SetText(combo.ToString());
 		multiplierText.SetText(multiplier.ToString() + "x");
 
-		gameObject.SetActive(true);
+		scoreUI.SetActive(true);
 	}
 
 	//Event Listener When Song Ends
 	public void SongEnded(BrokerEvent<SongEvents.SongEnded> inEvent)
 	{
-		gameObject.SetActive(false);
+		scoreUI.SetActive(false);
 		eventBroker.Publish(this, new ScoreEvents.Final(score, CalculateAccuracy()));
-
 	}
-
 
 	private void PerfectHit(BrokerEvent<ScoreEvents.PerfectHit> inEvent)
 	{
