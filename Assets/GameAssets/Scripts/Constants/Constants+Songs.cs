@@ -10,6 +10,7 @@ public partial class Constants
 			TestSong3
 		}
 
-		public const float TimeToPlayer = 4f;
+		public const float TimeToPlayer = 3f;
+		public const float SongStartDelay = 3f;
 	}
 }
