@@ -5,6 +5,11 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+	[SerializeField, Header("Sweet Spots")] private Transform upSweetSpot;
+	[SerializeField] private Transform downSweetSpot;
+	[SerializeField] private Transform leftSweetSpot;
+	[SerializeField] private Transform rightSweetSpot;
+
 	private PlayerInputs playerInputs;
 	private InputAction up;
 	private InputAction down;
@@ -32,22 +37,38 @@ public class PlayerController : MonoBehaviour
 
 	public void OnUp(InputAction.CallbackContext context)
 	{
-		Debug.Log("Up");
+		Collider2D hit = Physics2D.OverlapCircle(upSweetSpot.position, Constants.Game.PlayerHitRadius);
+		if (hit != null)
+		{
+			hit.gameObject.GetComponent<Enemy>().Hit();
+		}
 	}
 
 	public void OnDown(InputAction.CallbackContext context)
 	{
-		Debug.Log("Down");
+		Collider2D hit = Physics2D.OverlapCircle(downSweetSpot.position, Constants.Game.PlayerHitRadius);
+		if (hit != null)
+		{
+			hit.gameObject.GetComponent<Enemy>().Hit();
+		}
 	}
 
 	public void OnLeft(InputAction.CallbackContext context)
 	{
-		Debug.Log("Left");
+		Collider2D hit = Physics2D.OverlapCircle(leftSweetSpot.position, Constants.Game.PlayerHitRadius);
+		if (hit != null)
+		{
+			hit.gameObject.GetComponent<Enemy>().Hit();
+		}
 	}
 
 	public void OnRight(InputAction.CallbackContext context)
 	{
-		Debug.Log("Right");
+		Collider2D hit = Physics2D.OverlapCircle(rightSweetSpot.position, Constants.Game.PlayerHitRadius);
+		if (hit != null)
+		{
+			hit.gameObject.GetComponent<Enemy>().Hit();
+		}
 	}
 
 	private void OnEnable()

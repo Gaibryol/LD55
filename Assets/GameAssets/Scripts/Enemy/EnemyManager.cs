@@ -61,28 +61,30 @@ public class EnemyManager : MonoBehaviour
 				StartCoroutine(ParseSongData(song3Queues[0], song3Queues[1], song3Queues[2], song3Queues[3]));
 				break;
 		}
+
+		StartCoroutine(PlaySongAudio(inEvent.Payload.Song));
 	}
 
 	private void HitNoteHandler(BrokerEvent<SongEvents.HitNote> inEvent)
 	{
-		float distance = 0;
-		switch (inEvent.Payload.Direction)
+		Enemy enemy = inEvent.Payload.Enemy.GetComponent<Enemy>();
+		double timeSinceSpawn = AudioSettings.dspTime - enemy.SpawnTime;
+		double difference = timeSinceSpawn - Constants.Songs.TimeToSweetSpot;
+
+		if (difference >= Constants.Songs.LateThresholdMin && difference <= Constants.Songs.LateThresholdMax)
 		{
-			case Constants.Game.Directions.Up:
-				distance = inEvent.Payload.Enemy.transform.position.y - upSweetSpot.position.y;
-				break;
-
-			case Constants.Game.Directions.Down:
-				distance = inEvent.Payload.Enemy.transform.position.y - upSweetSpot.position.y;
-				break;
-
-			case Constants.Game.Directions.Left:
-				distance = inEvent.Payload.Enemy.transform.position.x - upSweetSpot.position.x;
-				break;
-
-			case Constants.Game.Directions.Right:
-				distance = inEvent.Payload.Enemy.transform.position.x - upSweetSpot.position.x;
-				break;
+			// Late
+			Debug.Log("late");
+		}
+		else if (difference >= Constants.Songs.PerfectThresholdMin && difference <= Constants.Songs.PerfectThresholdMax)
+		{
+			// Perfect
+			Debug.Log("perfect");
+		}
+		else if (difference >= Constants.Songs.EarlyThresholdMin && difference <= Constants.Songs.EarlyThresholdMax)
+		{
+			// Early
+			Debug.Log("early");
 		}
 	}
 
@@ -90,7 +92,7 @@ public class EnemyManager : MonoBehaviour
 	{
 		// Add TimeToPlayer delay
 		yield return new WaitForSeconds(Constants.Songs.SongStartDelay);
-		yield return new WaitForSeconds(Constants.Songs.TimeToPlayer);
+		yield return new WaitForSeconds(Constants.Songs.TimeToSweetSpot);
 
 		switch (song)
 		{
@@ -116,7 +118,11 @@ public class EnemyManager : MonoBehaviour
 		yield return new WaitForSeconds(Constants.Songs.SongStartDelay);
 
 		startTime = AudioSettings.dspTime;
+
 		int totalNotes = upData.Count + downData.Count + leftData.Count + rightData.Count;
+
+		//Debug.Log("Up: " + upData.Count + " / Down: " + downData.Count + " / Left: " + leftData.Count + " / Right: " + rightData.Count);
+
 		int notesCounter = 0;
 		while (notesCounter != totalNotes)
 		{
@@ -128,42 +134,42 @@ public class EnemyManager : MonoBehaviour
 
 			//Debug.Log(AudioSettings.dspTime - startTime + ": " + nextUpNote + " / " + nextDownNote + " / " + nextLeftNote + " / " + nextRightNote);
 
-			if (nextUpNote > 0 && AudioSettings.dspTime - startTime >= nextUpNote)
+			if (nextUpNote >= 0 && AudioSettings.dspTime - startTime >= nextUpNote)
 			{
 				GameObject enemy = GetEnemy();
 				enemy.transform.position = upSpawnPosition.position;
 				enemy.SetActive(true);
-				enemy.GetComponent<Enemy>().Initialize(Constants.Game.Directions.Up, upSweetSpot.position);
+				enemy.GetComponent<Enemy>().Initialize(upSweetSpot.position + Constants.Game.UpExtraDistance, AudioSettings.dspTime);
 
 				upData.Dequeue();
 				totalNotes += 1;
 			}
-			if (nextDownNote > 0 && AudioSettings.dspTime - startTime >= nextDownNote)
+			if (nextDownNote >= 0 && AudioSettings.dspTime - startTime >= nextDownNote)
 			{
 				GameObject enemy = GetEnemy();
 				enemy.transform.position = downSpawnPosition.position;
 				enemy.SetActive(true);
-				enemy.GetComponent<Enemy>().Initialize(Constants.Game.Directions.Down, downSweetSpot.position);
+				enemy.GetComponent<Enemy>().Initialize(downSweetSpot.position + Constants.Game.DownExtraDistance, AudioSettings.dspTime);
 
 				downData.Dequeue();
 				totalNotes += 1;
 			}
-			if (nextLeftNote > 0 && AudioSettings.dspTime - startTime >= nextLeftNote)
+			if (nextLeftNote >= 0 && AudioSettings.dspTime - startTime >= nextLeftNote)
 			{
 				GameObject enemy = GetEnemy();
 				enemy.transform.position = leftSpawnPosition.position;
 				enemy.SetActive(true);
-				enemy.GetComponent<Enemy>().Initialize(Constants.Game.Directions.Left, leftSweetSpot.position);
+				enemy.GetComponent<Enemy>().Initialize(leftSweetSpot.position + Constants.Game.LeftExtraDistance, AudioSettings.dspTime);
 
 				leftData.Dequeue();
 				totalNotes += 1;
 			}
-			if (nextRightNote > 0 && AudioSettings.dspTime - startTime >= nextRightNote)
+			if (nextRightNote >= 0 && AudioSettings.dspTime - startTime >= nextRightNote)
 			{
 				GameObject enemy = GetEnemy();
 				enemy.transform.position = rightSpawnPosition.position;
 				enemy.SetActive(true);
-				enemy.GetComponent<Enemy>().Initialize(Constants.Game.Directions.Right, rightSweetSpot.position);
+				enemy.GetComponent<Enemy>().Initialize(rightSweetSpot.position + Constants.Game.RightExtraDistance, AudioSettings.dspTime);
 
 				rightData.Dequeue();
 				totalNotes += 1;

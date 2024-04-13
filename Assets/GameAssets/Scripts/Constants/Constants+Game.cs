@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public partial class Constants
 {
 	public class Game
@@ -9,5 +11,12 @@ public partial class Constants
 			Left,
 			Right
 		}
+
+		public const float PlayerHitRadius = 0.25f;
+
+		public static Vector3 UpExtraDistance = new Vector3(0, -0.5f, 0);
+		public static Vector3 DownExtraDistance = new Vector3(0, 0.5f, 0);
+		public static Vector3 LeftExtraDistance = new Vector3(0.5f, 0, 0);
+		public static Vector3 RightExtraDistance = new Vector3(-0.5f, 0, 0);
 	}
 }

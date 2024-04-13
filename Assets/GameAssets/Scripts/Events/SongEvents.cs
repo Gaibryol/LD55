@@ -18,13 +18,11 @@ public class SongEvents
 
 	public class HitNote
 	{
-		public HitNote(GameObject enemy, Constants.Game.Directions direction)
+		public HitNote(GameObject enemy)
 		{
 			Enemy = enemy;
-			Direction = direction;
 		}
 
 		public readonly GameObject Enemy;
-		public readonly Constants.Game.Directions Direction;
 	}
 }

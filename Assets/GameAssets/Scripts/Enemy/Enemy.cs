@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
 
 	private bool spawned;
 	private Vector3 target;
+	public double SpawnTime;
 
     private void Awake()
     {
@@ -19,29 +20,22 @@ public class Enemy : MonoBehaviour
 		spawned = false;
     }
 
-	public void Initialize(Constants.Game.Directions direction, Vector3 _target)
+	public void Initialize(Vector3 _target, double _spawnTime)
 	{
-		//switch (direction)
-		//{
-		//	case Constants.Game.Directions.Up:
-		//		anim.SetBool(Constants.Enemy.Animations.Up.Moving, true);
-		//		break;
-
-		//	case Constants.Game.Directions.Down:
-		//		anim.SetBool(Constants.Enemy.Animations.Down.Moving, true);
-		//		break;
-
-		//	case Constants.Game.Directions.Left:
-		//		anim.SetBool(Constants.Enemy.Animations.Left.Moving, true);
-		//		break;
-
-		//	case Constants.Game.Directions.Right:
-		//		anim.SetBool(Constants.Enemy.Animations.Right.Moving, true);
-		//		break;
-		//}
-
 		target = _target;
+		SpawnTime = _spawnTime;
 		spawned = true;
+	}
+
+	public void Hit()
+	{
+		// Stop movement and send logic for scoring
+		spawned = false;
+		eventBroker.Publish(this, new SongEvents.HitNote(gameObject));
+
+		// Play animation
+		// anim.SetBool("Hit", true);
+		gameObject.SetActive(false);
 	}
 
 	private void Update()
