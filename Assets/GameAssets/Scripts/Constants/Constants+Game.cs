@@ -12,7 +12,7 @@ public partial class Constants
 			Right
 		}
 
-		public const float PlayerHitRadius = 0.25f;
+		public const float PlayerHitRadius = 0.22f;
 
 		public static Vector3 UpExtraDistance = new Vector3(0, -0.5f, 0);
 		public static Vector3 DownExtraDistance = new Vector3(0, 0.5f, 0);

@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -69,22 +68,24 @@ public class EnemyManager : MonoBehaviour
 	{
 		Enemy enemy = inEvent.Payload.Enemy.GetComponent<Enemy>();
 		double timeSinceSpawn = AudioSettings.dspTime - enemy.SpawnTime;
-		double difference = timeSinceSpawn - Constants.Songs.TimeToSweetSpot;
 
-		if (difference >= Constants.Songs.LateThresholdMin && difference <= Constants.Songs.LateThresholdMax)
-		{
-			// Late
-			Debug.Log("late");
-		}
-		else if (difference >= Constants.Songs.PerfectThresholdMin && difference <= Constants.Songs.PerfectThresholdMax)
+		double difference = timeSinceSpawn - Constants.Songs.TimeToSweetSpot;
+		difference = (difference > 0) ? difference : difference * -1;
+
+		if (difference <= Constants.Songs.PerfectThreshold)
 		{
 			// Perfect
-			Debug.Log("perfect");
+			Debug.Log("Perfect");
 		}
-		else if (difference >= Constants.Songs.EarlyThresholdMin && difference <= Constants.Songs.EarlyThresholdMax)
+		else if (difference <= Constants.Songs.OkThreshold)
 		{
-			// Early
-			Debug.Log("early");
+			// OK
+			Debug.Log("OK");
+		}
+		else if (difference <= Constants.Songs.BadThreshold)
+		{
+			// Bad
+			Debug.Log("Bad");
 		}
 	}
 
