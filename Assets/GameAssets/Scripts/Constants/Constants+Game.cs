@@ -18,5 +18,9 @@ public partial class Constants
 		public static Vector3 DownExtraDistance = new Vector3(0, 0.5f, 0);
 		public static Vector3 LeftExtraDistance = new Vector3(0.5f, 0, 0);
 		public static Vector3 RightExtraDistance = new Vector3(-0.5f, 0, 0);
+
+		public static string PlayerVisualLatency = "PlayerVisualLatency";
+		public static string PlayerInputLatency = "PlayerInputLatency";
+
 	}
 }

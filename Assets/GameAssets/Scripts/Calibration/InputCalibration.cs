@@ -25,7 +25,7 @@ public class InputCalibration : MonoBehaviour
     public void ResetCalibration()
     {
         inputTimes.Clear();
-        Calibration.inputCalibrationOffset = 0;
+        Calibration.Instance.UpdateInputOffset(0);
         UpdateDelayText();
 
     }
@@ -55,7 +55,8 @@ public class InputCalibration : MonoBehaviour
         {
             inputTimes.RemoveAt(0);
         }
-        Calibration.inputCalibrationOffset = inputTimes.Average();
+        Calibration.Instance.UpdateInputOffset(inputTimes.Average());
+
         UpdateDelayText();
     }
 

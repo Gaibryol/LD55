@@ -34,6 +34,8 @@ public class Calibration : MonoBehaviour
     void Start()
     {
         secPerBeat = 60f / bpm;
+        UpdateVisualOffset(PlayerPrefs.GetFloat(Constants.Game.PlayerVisualLatency, 0f));
+        UpdateInputOffset(PlayerPrefs.GetFloat(Constants.Game.PlayerInputLatency, 0f));
 
         Invoke("StartTrack", 2f);
     }
@@ -61,5 +63,17 @@ public class Calibration : MonoBehaviour
         }
         loopPositionInBeats = calibrationPositionInBeats - completedLoops * beatsPerLoop;
         loopPositionInAnalog = loopPositionInBeats / beatsPerLoop;
+    }
+
+    public void UpdateVisualOffset(float offset)
+    {
+        visualCalibrationOffset = offset;
+        PlayerPrefs.SetFloat(Constants.Game.PlayerVisualLatency, offset);
+    }
+
+    public void UpdateInputOffset(float offset)
+    {
+        inputCalibrationOffset = offset;
+        PlayerPrefs.SetFloat(Constants.Game.PlayerInputLatency, offset);
     }
 }
