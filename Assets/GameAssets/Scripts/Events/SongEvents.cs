@@ -1,19 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class SongEvents
 {
     public class PlaySong
 	{
-		public PlaySong(Constants.Songs.Song song, Queue<string> songData)
+		public PlaySong(Constants.Songs.Song song)
 		{
 			Song = song;
-			SongData = songData;
 		}
 
 		public readonly Constants.Songs.Song Song;
-		public readonly Queue<string> SongData;
 	}
 
 	public class HitNote
@@ -24,5 +23,22 @@ public class SongEvents
 		}
 
 		public readonly GameObject Enemy;
+	}
+
+	public class GetSongData
+	{
+		public GetSongData(Constants.Songs.Song song, Action<List<Queue<float>>> processData)
+		{
+			Song = song;
+			ProcessData = processData;
+		}
+
+		public readonly Constants.Songs.Song Song;
+		public readonly Action<List<Queue<float>>> ProcessData;
+	}
+
+	public class SongEnded
+	{
+		public SongEnded() { }
 	}
 }

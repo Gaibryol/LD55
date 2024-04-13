@@ -16,9 +16,6 @@ public class EnemyManager : MonoBehaviour
 	[SerializeField] private Transform leftSweetSpot;
 	[SerializeField] private Transform rightSweetSpot;
 
-	[SerializeField, Header("Testing")] private MidiConverter midiConverter;
-	[SerializeField] private TextAsset testJson;
-
 	private List<Queue<float>> song1Queues;
 	private List<Queue<float>> song2Queues;
 	private List<Queue<float>> song3Queues;
@@ -37,11 +34,7 @@ public class EnemyManager : MonoBehaviour
 			enemy.SetActive(false);
 		}
 
-		midiConverter.JsonConvert(testJson, out Queue<float> leftQueue, out Queue<float> upQueue, out Queue<float> rightQueue, out Queue<float> downQueue);
-		song1Queues = new List<Queue<float>>() { upQueue, downQueue, leftQueue, rightQueue };
-
-		startTime = AudioSettings.dspTime;
-		StartCoroutine(ParseSongData(song1Queues[0], song1Queues[1], song1Queues[2], song1Queues[3]));
+		eventBroker.Publish(this, new SongEvents.GetSongData(Constants.Songs.Song.TestSong1, (data) => song1Queues = data));
 	}
 
 	private void PlaySongHandler(BrokerEvent<SongEvents.PlaySong> inEvent)
@@ -69,6 +62,7 @@ public class EnemyManager : MonoBehaviour
 		Enemy enemy = inEvent.Payload.Enemy.GetComponent<Enemy>();
 		double timeSinceSpawn = AudioSettings.dspTime - enemy.SpawnTime;
 
+		// Calculate difference and factor in player input calibrated latency
 		double difference = timeSinceSpawn - Constants.Songs.TimeToSweetSpot;
 		difference = (difference > 0) ? difference : difference * -1;
 
@@ -76,24 +70,27 @@ public class EnemyManager : MonoBehaviour
 		{
 			// Perfect
 			Debug.Log("Perfect");
+			eventBroker.Publish(this, new ScoreEvents.PerfectHit());
 		}
 		else if (difference <= Constants.Songs.OkThreshold)
 		{
 			// OK
 			Debug.Log("OK");
+			eventBroker.Publish(this, new ScoreEvents.OkayHit());
 		}
 		else if (difference <= Constants.Songs.BadThreshold)
 		{
 			// Bad
 			Debug.Log("Bad");
+			eventBroker.Publish(this, new ScoreEvents.BadHit());
 		}
 	}
 
 	private IEnumerator PlaySongAudio(Constants.Songs.Song song)
 	{
-		// Add TimeToPlayer delay
-		yield return new WaitForSeconds(Constants.Songs.SongStartDelay);
-		yield return new WaitForSeconds(Constants.Songs.TimeToSweetSpot);
+		// Add delay and player visual calibrated latency
+		float delay = Constants.Songs.SongStartDelay + Constants.Songs.TimeToSweetSpot;
+		yield return new WaitForSeconds(delay);
 
 		switch (song)
 		{

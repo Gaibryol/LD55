@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class AudioEvents
@@ -59,5 +60,17 @@ public class AudioEvents
 		}
 
 		public readonly float NewVolume;
+	}
+
+	public class GetSongLength
+	{
+		public GetSongLength(string title, Action<float> processData)
+		{
+			Title = title;
+			ProcessData = processData;
+		}
+
+		public readonly string Title;
+		public readonly Action<float> ProcessData;
 	}
 }
