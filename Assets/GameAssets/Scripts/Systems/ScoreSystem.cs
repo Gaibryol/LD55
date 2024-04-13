@@ -25,16 +25,35 @@ public class ScoreSystem : MonoBehaviour
 	[SerializeField] private TMP_Text comboText;
 	[SerializeField] private TMP_Text multiplierText;
 
-    private void Start()
-    {
+
+	public void PlaySong(BrokerEvent<SongEvents.PlaySong> inEvent)
+	{
+		perfectHit = 0;
+		okayHit = 0;
+		badHit = 0;
+		miss = 0;
+
 		combo = 0;
 		score = 0;
 		multiplier = 1f;
-		CheckCombo();
-		AddScore(Constants.Game.PerfectHit);
-    }
 
-    private void PerfectHit(BrokerEvent<ScoreEvents.PerfectHit> inEvent)
+		scoreText.SetText(score.ToString());
+		comboText.SetText(combo.ToString());
+		multiplierText.SetText(multiplier.ToString() + "x");
+
+		gameObject.SetActive(true);
+	}
+
+	//Event Listener When Song Ends
+	public void SongEnded(BrokerEvent<SongEvents.SongEnded> inEvent)
+	{
+		gameObject.SetActive(false);
+		eventBroker.Publish(this, new ScoreEvents.Final(score, CalculateAccuracy()));
+
+	}
+
+
+	private void PerfectHit(BrokerEvent<ScoreEvents.PerfectHit> inEvent)
 	{
 		combo += 1;
 		perfectHit += 1;
@@ -87,36 +106,6 @@ public class ScoreSystem : MonoBehaviour
 		return accuracy;
     }
 
-	//Event Listener When Song Start
-	public void PlaySong(BrokerEvent<SongEvents.PlaySong>inEvent)
-	{
-		perfectHit = 0;
-		okayHit = 0;
-		badHit = 0;
-		miss = 0;
-
-		combo = 0;
-		score = 0;
-		multiplier = 1f;
-
-		scoreText.SetText(score.ToString());
-		comboText.SetText(combo.ToString());
-		multiplierText.SetText(multiplier.ToString() + "x");
-
-		scoreText.gameObject.SetActive(true);
-		comboText.gameObject.SetActive(true);
-		multiplierText.gameObject.SetActive(true);
-	}
-
-	//Event Listener When Song Ends
-	public void SongEnded(BrokerEvent<SongEvents.SongEnded> inEvent)
-    {
-		scoreText.gameObject.SetActive(false);
-		comboText.gameObject.SetActive(false);
-		multiplierText.gameObject.SetActive(false);
-		eventBroker.Publish(this, new ScoreEvents.Final(score, CalculateAccuracy()));
-
-	}
 
     private void OnEnable()
     {

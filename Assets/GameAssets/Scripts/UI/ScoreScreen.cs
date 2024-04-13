@@ -4,8 +4,6 @@ using TMPro;
 public class ScoreScreen : MonoBehaviour
 {
     private readonly EventBrokerComponent eventBroker = new EventBrokerComponent();
-
-    [SerializeField] private GameObject panel;
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private TMP_Text accuracyText;
     private string score;
@@ -17,7 +15,7 @@ public class ScoreScreen : MonoBehaviour
         accuracy = "Accuracy: " + inEvent.Payload.Accuracy.ToString() + "%";
         scoreText.SetText(score);
         accuracyText.SetText(accuracy);
-        panel.SetActive(true);
+        gameObject.SetActive(true);
         scoreText.gameObject.SetActive(true);
         accuracyText.gameObject.SetActive(true);
 
