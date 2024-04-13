@@ -88,8 +88,8 @@ public class ScoreSystem : MonoBehaviour
     }
 
 	//Event Listener When Song Start
-	public void StartSong()
-    {
+	public void PlaySong(BrokerEvent<SongEvents.PlaySong>inEvent)
+	{
 		perfectHit = 0;
 		okayHit = 0;
 		badHit = 0;
@@ -109,7 +109,7 @@ public class ScoreSystem : MonoBehaviour
 	}
 
 	//Event Listener When Song Ends
-	public void EndSong()
+	public void SongEnded(BrokerEvent<SongEvents.SongEnded> inEvent)
     {
 		scoreText.gameObject.SetActive(false);
 		comboText.gameObject.SetActive(false);
@@ -124,8 +124,8 @@ public class ScoreSystem : MonoBehaviour
 		eventBroker.Subscribe<ScoreEvents.OkayHit>(OkayHit);
 		eventBroker.Subscribe<ScoreEvents.BadHit>(BadHit);
 		eventBroker.Subscribe<ScoreEvents.Miss>(Miss);
-		//Need To Listen To End Of Song To Give Final Score;
-		//Need To Listen To How Many Notes The Song Has;
+		eventBroker.Subscribe<SongEvents.PlaySong>(PlaySong);
+		eventBroker.Subscribe<SongEvents.SongEnded>(SongEnded);
 
 	}
     private void OnDisable()
@@ -134,8 +134,8 @@ public class ScoreSystem : MonoBehaviour
 		eventBroker.Unsubscribe<ScoreEvents.OkayHit>(OkayHit);
 		eventBroker.Unsubscribe<ScoreEvents.BadHit>(BadHit);
 		eventBroker.Unsubscribe<ScoreEvents.Miss>(Miss);
-		//Need To Listen To End Of Song To Give Final Score;
-		//Need To Listen To How Many Notes The Song Has;
+		eventBroker.Unsubscribe<SongEvents.PlaySong>(PlaySong);
+		eventBroker.Unsubscribe<SongEvents.SongEnded>(SongEnded);
 
 	}
 }
