@@ -27,5 +27,8 @@ public partial class Constants
 		public static int OkayHit = 50;
 		public static int BadHit = 25;
 
+		public static int MissDamage = -20;
+		public static int PerfectHitHeal = 10;
+
 	}
 }
