@@ -57,7 +57,7 @@ public class Calibration : MonoBehaviour
         if (!audioSource.isPlaying) return;
 
 
-        calibrationPosition = (float)(AudioSettings.dspTime - dspCalibrationTime - firstBeatOffset + visualCalibrationOffset + inputCalibrationOffset);
+        calibrationPosition = (float)(AudioSettings.dspTime - dspCalibrationTime - firstBeatOffset + visualCalibrationOffset);
 
         calibrationPositionInBeats = calibrationPosition / secPerBeat;
         currentBeat = calibrationPositionInBeats % 4;
