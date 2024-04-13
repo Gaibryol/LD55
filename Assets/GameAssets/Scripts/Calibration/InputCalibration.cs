@@ -10,7 +10,6 @@ using TMPro;
 public class InputCalibration : MonoBehaviour
 {
     [SerializeField] private GameObject inputHitIndicatorPrefab;
-    [SerializeField] private CalibrationSyncedAnimation inputTracker;
     [SerializeField] private TMP_Text delayText;
     [SerializeField] private Image beatGraphic;
     private PlayerInputs inputs;
@@ -51,7 +50,7 @@ public class InputCalibration : MonoBehaviour
         timeFromBeat *= Calibration.Instance.secPerBeat;
 
         inputTimes.Add(timeFromBeat);
-        if (inputTimes.Count > 50)
+        if (inputTimes.Count > 20)
         {
             inputTimes.RemoveAt(0);
         }

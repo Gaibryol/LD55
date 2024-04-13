@@ -7,6 +7,7 @@ public class Calibration : MonoBehaviour
     public static Calibration Instance;
 
     [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip calibrationClip;
 
     [SerializeField] public float bpm;
     [SerializeField] public float secPerBeat;
@@ -37,14 +38,18 @@ public class Calibration : MonoBehaviour
         UpdateVisualOffset(PlayerPrefs.GetFloat(Constants.Game.PlayerVisualLatency, 0f));
         UpdateInputOffset(PlayerPrefs.GetFloat(Constants.Game.PlayerInputLatency, 0f));
 
-        Invoke("StartTrack", 2f);
     }
 
-    private void StartTrack()
+    public void StartCalibration()
     {
+        audioSource.clip = calibrationClip;
         dspCalibrationTime = (float)AudioSettings.dspTime;
-
         audioSource.Play();
+    }
+
+    public void StopCalibration()
+    {
+        audioSource.Stop();
     }
 
     void FixedUpdate()
