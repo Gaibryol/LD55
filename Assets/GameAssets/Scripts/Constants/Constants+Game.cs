@@ -12,7 +12,7 @@ public partial class Constants
 			Right
 		}
 
-		public const float PlayerHitRadius = 0.25f;
+		public const float PlayerHitRadius = 0.22f;
 
 		public static Vector3 UpExtraDistance = new Vector3(0, -0.5f, 0);
 		public static Vector3 DownExtraDistance = new Vector3(0, 0.5f, 0);
@@ -21,6 +21,11 @@ public partial class Constants
 
 		public static string PlayerVisualLatency = "PlayerVisualLatency";
 		public static string PlayerInputLatency = "PlayerInputLatency";
+
+		//Points for hits
+		public static int PerfectHit = 100;
+		public static int OkayHit = 50;
+		public static int BadHit = 25;
 
 	}
 }
