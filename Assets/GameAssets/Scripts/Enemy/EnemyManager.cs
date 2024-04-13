@@ -63,6 +63,29 @@ public class EnemyManager : MonoBehaviour
 		}
 	}
 
+	private void HitNoteHandler(BrokerEvent<SongEvents.HitNote> inEvent)
+	{
+		float distance = 0;
+		switch (inEvent.Payload.Direction)
+		{
+			case Constants.Game.Directions.Up:
+				distance = inEvent.Payload.Enemy.transform.position.y - upSweetSpot.position.y;
+				break;
+
+			case Constants.Game.Directions.Down:
+				distance = inEvent.Payload.Enemy.transform.position.y - upSweetSpot.position.y;
+				break;
+
+			case Constants.Game.Directions.Left:
+				distance = inEvent.Payload.Enemy.transform.position.x - upSweetSpot.position.x;
+				break;
+
+			case Constants.Game.Directions.Right:
+				distance = inEvent.Payload.Enemy.transform.position.x - upSweetSpot.position.x;
+				break;
+		}
+	}
+
 	private IEnumerator PlaySongAudio(Constants.Songs.Song song)
 	{
 		// Add TimeToPlayer delay
@@ -172,10 +195,12 @@ public class EnemyManager : MonoBehaviour
 	private void OnEnable()
 	{
 		eventBroker.Subscribe<SongEvents.PlaySong>(PlaySongHandler);
+		eventBroker.Subscribe<SongEvents.HitNote>(HitNoteHandler);
 	}
 
 	private void OnDisable()
 	{
 		eventBroker.Unsubscribe<SongEvents.PlaySong>(PlaySongHandler);
+		eventBroker.Unsubscribe<SongEvents.HitNote>(HitNoteHandler);
 	}
 }

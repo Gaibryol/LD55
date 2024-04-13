@@ -11654,6 +11654,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1817960306}
   - component: {fileID: 1817960305}
+  - component: {fileID: 1817960307}
   m_Layer: 0
   m_Name: EnemyManager
   m_TagString: Untagged
@@ -11699,6 +11700,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1817960307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817960304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4823a77f42fc759479cfe27dd1260c44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  start: {fileID: 0}
+  end: {fileID: 0}
 --- !u!1 &1846542375
 GameObject:
   m_ObjectHideFlags: 0
