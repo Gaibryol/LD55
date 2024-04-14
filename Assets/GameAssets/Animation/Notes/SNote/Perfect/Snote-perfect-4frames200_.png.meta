@@ -1,0 +1,289 @@
+fileFormatVersion: 2
+guid: 07a0f1090e5d24f24952ff9f37e754e6
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6896113226132535522
+    second: Snote-perfect-4frames200__0
+  - first:
+      213: 8451033113387175832
+    second: Snote-perfect-4frames200__1
+  - first:
+      213: -6299993891414197324
+    second: Snote-perfect-4frames200__2
+  - first:
+      213: 1196798655372464212
+    second: Snote-perfect-4frames200__3
+  - first:
+      213: -7223279408503086841
+    second: Snote-perfect-4frames200__4
+  - first:
+      213: -1064640749154634886
+    second: Snote-perfect-4frames200__5
+  - first:
+      213: -164506361871787516
+    second: Snote-perfect-4frames200__6
+  - first:
+      213: -543162473760181354
+    second: Snote-perfect-4frames200__7
+  - first:
+      213: -7743775987276069489
+    second: Snote-perfect-4frames200__8
+  - first:
+      213: 3330285976677438925
+    second: Snote-perfect-4frames200__9
+  - first:
+      213: 4265603006103574030
+    second: Snote-perfect-4frames200__10
+  - first:
+      213: 2472960680204616640
+    second: Snote-perfect-4frames200__11
+  - first:
+      213: -5511753555243884178
+    second: Snote-perfect-4frames200__12
+  - first:
+      213: 3644974307522518798
+    second: Snote-perfect-4frames200__13
+  - first:
+      213: 2693041152516799119
+    second: Snote-perfect-4frames200__14
+  - first:
+      213: -6568483398006370531
+    second: Snote-perfect-4frames200__15
+  - first:
+      213: 9145103892126732730
+    second: Snote-perfect-4frames200__16
+  - first:
+      213: -608792708646115569
+    second: Snote-perfect-4frames200__17
+  - first:
+      213: 5981677251850315942
+    second: Snote-perfect-4frames200__18
+  - first:
+      213: 6829474976925416854
+    second: Snote-perfect-4frames200__19
+  - first:
+      213: 35480680721660791
+    second: Snote-perfect-4frames200__20
+  - first:
+      213: 7379842854985348863
+    second: Snote-perfect-4frames200__21
+  - first:
+      213: 6890533290594155508
+    second: Snote-perfect-4frames200__22
+  - first:
+      213: -8804084729417390968
+    second: Snote-perfect-4frames200__23
+  - first:
+      213: 6509630247248460711
+    second: Snote-perfect-4frames200__24
+  - first:
+      213: 6849333186825370586
+    second: Snote-perfect-4frames200__25
+  - first:
+      213: -736128825133369138
+    second: Snote-perfect-4frames200__26
+  - first:
+      213: 7178288250979067089
+    second: Snote-perfect-4frames200__27
+  - first:
+      213: -4673596824310231105
+    second: Snote-perfect-4frames200__28
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Snote-perfect-4frames200__0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 202
+        height: 212
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e8b086217ae3bf50800000000000000
+      internalID: 6896113226132535522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Snote-perfect-4frames200__1
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 0
+        width: 202
+        height: 212
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89f818457d9184570800000000000000
+      internalID: 8451033113387175832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Snote-perfect-4frames200__2
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 0
+        width: 202
+        height: 212
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bb302f3fece198a0800000000000000
+      internalID: -6299993891414197324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Snote-perfect-4frames200__3
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 0
+        width: 202
+        height: 212
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45014214902eb9010800000000000000
+      internalID: 1196798655372464212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: fe85fd30386f540a9b2573955188404e
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Snote-perfect-4frames200__0: 6896113226132535522
+      Snote-perfect-4frames200__1: 8451033113387175832
+      Snote-perfect-4frames200__2: -6299993891414197324
+      Snote-perfect-4frames200__3: 1196798655372464212
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
