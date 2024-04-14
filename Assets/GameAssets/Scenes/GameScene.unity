@@ -21588,6 +21588,7 @@ MonoBehaviour:
   downSweetSpot: {fileID: 1739675621}
   leftSweetSpot: {fileID: 1858384237}
   rightSweetSpot: {fileID: 1360738426}
+  song1: {fileID: 8300000, guid: e8296e716fca84449acc3616ac53678a, type: 3}
 --- !u!1 &1952634882
 GameObject:
   m_ObjectHideFlags: 0

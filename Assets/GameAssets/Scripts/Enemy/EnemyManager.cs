@@ -26,12 +26,30 @@ public class EnemyManager : MonoBehaviour
 	private float playerVisualLatency;
 	private float playerInputLatency;
 
+	private float song1BPM = 132f;
+	private float beatsPerSec;
+	private float songPosition;
+	private float beatsPosition;
+	private float totalBeats;
+
+	private bool test = false;
+
+	[SerializeField] private AudioClip song1;
+
 	// Start is called before the first frame update
 	private void Start()
     {
 		startTime = 0d;
 		playerVisualLatency = 0f;
 		playerInputLatency = 0f;
+
+		beatsPerSec = song1BPM / 60f;
+
+		totalBeats = song1.length * beatsPerSec;
+		//Debug.Log("total beats: " + totalBeats);
+		//Debug.Log("len: " + song1.length);
+		//Debug.Log("beats per sec: " + beatsPerSec);
+		//Debug.Log("BPM: " + song1BPM);
 
 		enemies = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
 		foreach (GameObject enemy in enemies)
@@ -42,19 +60,30 @@ public class EnemyManager : MonoBehaviour
 		eventBroker.Publish(this, new SongEvents.GetSongData(Constants.Songs.Song.Song1, (data) => song1Queues = data));
 	}
 
+	private void Update()
+	{
+		songPosition = (float)(AudioSettings.dspTime - startTime);
+		beatsPosition = songPosition * beatsPerSec;
+	}
+
 	private void PlaySongHandler(BrokerEvent<SongEvents.PlaySong> inEvent)
 	{
 		playerVisualLatency = PlayerPrefs.GetFloat(Constants.Game.PlayerVisualLatency);
 		playerInputLatency = PlayerPrefs.GetFloat(Constants.Game.PlayerInputLatency);
 
+		startTime = AudioSettings.dspTime;
+
 		switch (inEvent.Payload.Song)
 		{
 			case Constants.Songs.Song.Song1:
-				StartCoroutine(ParseSongData(song1Queues[0], song1Queues[1], song1Queues[2], song1Queues[3]));
+				//StartCoroutine(ParseSongData(song1Queues[0], song1Queues[1], song1Queues[2], song1Queues[3]));
 				break;
 		}
 
 		StartCoroutine(PlaySongAudio(inEvent.Payload.Song));
+		eventBroker.Publish(this, new AudioEvents.PlayMusic(Constants.Audio.Music.Song1));
+		startTime = AudioSettings.dspTime;
+		test = true;
 	}
 
 	private void HitNoteHandler(BrokerEvent<SongEvents.HitNote> inEvent)
@@ -86,82 +115,138 @@ public class EnemyManager : MonoBehaviour
 	private IEnumerator PlaySongAudio(Constants.Songs.Song song)
 	{
 		// Add delay and player visual calibrated latency
-		float delay = Constants.Songs.SongStartDelay + Constants.Songs.TimeToSweetSpot - playerVisualLatency;
-		yield return new WaitForSeconds(delay);
+		//float delay = Constants.Songs.SongStartDelay + Constants.Songs.TimeToSweetSpot - playerVisualLatency;
+		//yield return new WaitForSeconds(delay);
 
-		switch (song)
-		{
-			case Constants.Songs.Song.Song1:
-				// Play song
-				eventBroker.Publish(this, new AudioEvents.PlayMusic(Constants.Audio.Music.Song1));
-				break;
-		}
+		//switch (song)
+		//{
+		//	case Constants.Songs.Song.Song1:
+		//		// Play song
+		//		eventBroker.Publish(this, new AudioEvents.PlayMusic(Constants.Audio.Music.Song1));
+		//		break;
+		//}
+
+		yield return null;
 	}
 
-	private IEnumerator ParseSongData(Queue<float> upData, Queue<float> downData, Queue<float> leftData, Queue<float> rightData)
+	private void FixedUpdate()
 	{
-		yield return new WaitForSeconds(Constants.Songs.SongStartDelay);
+		songPosition = (float)(AudioSettings.dspTime - startTime);
+		beatsPosition = songPosition * beatsPerSec;
 
-		startTime = AudioSettings.dspTime;
-
-		int totalNotes = upData.Count + downData.Count + leftData.Count + rightData.Count;
-
-		//Debug.Log("Up: " + upData.Count + " / Down: " + downData.Count + " / Left: " + leftData.Count + " / Right: " + rightData.Count);
-
-		int notesCounter = 0;
-		while (notesCounter != totalNotes)
+		if (test)
 		{
 			// Find the next note
-			float nextUpNote = upData.Count > 0 ? upData.Peek() : -1;
-			float nextDownNote = downData.Count > 0 ? downData.Peek() : -1;
-			float nextLeftNote = leftData.Count > 0 ? leftData.Peek() : -1;
-			float nextRightNote = rightData.Count > 0 ? rightData.Peek() : -1;
+			float nextUpNote = song1Queues[0].Count > 0 ? song1Queues[0].Peek() : -1;
+			float nextDownNote = song1Queues[1].Count > 0 ? song1Queues[1].Peek() : -1;
+			float nextLeftNote = song1Queues[2].Count > 0 ? song1Queues[2].Peek() : -1;
+			float nextRightNote = song1Queues[3].Count > 0 ? song1Queues[3].Peek() : -1;
+
+			float nextUpBeat = (nextUpNote / song1.length) * totalBeats;
+			float nextDownBeat = (nextDownNote / song1.length) * totalBeats;
+			float nextLeftBeat = (nextLeftNote / song1.length) * totalBeats;
+			float nextRightBeat = (nextRightNote / song1.length) * totalBeats;
 
 			//Debug.Log(AudioSettings.dspTime - startTime + ": " + nextUpNote + " / " + nextDownNote + " / " + nextLeftNote + " / " + nextRightNote);
-
-			if (nextUpNote >= 0 && AudioSettings.dspTime - startTime >= nextUpNote)
+			if (beatsPosition >= nextUpBeat - 3)
 			{
 				GameObject enemy = GetEnemy();
-				enemy.transform.position = upSpawnPosition.position;
+				float distance = beatsPerSec * (beatsPosition - nextUpBeat + 3);
+				Debug.Log("distance: " + distance);
+				enemy.transform.position = new Vector3(upSpawnPosition.position.x, upSpawnPosition.position.y + distance, upSpawnPosition.position.z);
 				enemy.SetActive(true);
-				enemy.GetComponent<Enemy>().Initialize(upSweetSpot.position + Constants.Game.UpExtraDistance, AudioSettings.dspTime);
+				enemy.GetComponent<Enemy>().Initialize(upSweetSpot.position + Constants.Game.UpExtraDistance, AudioSettings.dspTime, beatsPerSec);
 
-				upData.Dequeue();
-				totalNotes += 1;
+				song1Queues[0].Dequeue();
 			}
-			if (nextDownNote >= 0 && AudioSettings.dspTime - startTime >= nextDownNote)
+			if (beatsPosition >= nextDownBeat - 3)
 			{
 				GameObject enemy = GetEnemy();
-				enemy.transform.position = downSpawnPosition.position;
-				enemy.SetActive(true);
-				enemy.GetComponent<Enemy>().Initialize(downSweetSpot.position + Constants.Game.DownExtraDistance, AudioSettings.dspTime);
+				float distance = beatsPerSec * (beatsPosition - nextUpBeat + 3);
 
-				downData.Dequeue();
-				totalNotes += 1;
+				enemy.transform.position = new Vector3(downSpawnPosition.position.x, downSpawnPosition.position.y + distance, downSpawnPosition.position.z);
+				enemy.SetActive(true);
+				enemy.GetComponent<Enemy>().Initialize(downSweetSpot.position + Constants.Game.DownExtraDistance, AudioSettings.dspTime, beatsPerSec);
+
+				song1Queues[1].Dequeue();
 			}
-			if (nextLeftNote >= 0 && AudioSettings.dspTime - startTime >= nextLeftNote)
+			if (beatsPosition >= nextLeftBeat - 3)
 			{
 				GameObject enemy = GetEnemy();
-				enemy.transform.position = leftSpawnPosition.position;
-				enemy.SetActive(true);
-				enemy.GetComponent<Enemy>().Initialize(leftSweetSpot.position + Constants.Game.LeftExtraDistance, AudioSettings.dspTime);
+				float distance = beatsPerSec * (beatsPosition - nextLeftBeat + 3);
 
-				leftData.Dequeue();
-				totalNotes += 1;
+				enemy.transform.position = new Vector3(leftSpawnPosition.position.x + distance, leftSpawnPosition.position.y, leftSpawnPosition.position.z);
+				enemy.SetActive(true);
+				enemy.GetComponent<Enemy>().Initialize(leftSweetSpot.position + Constants.Game.LeftExtraDistance, AudioSettings.dspTime, beatsPerSec);
+
+				song1Queues[2].Dequeue();
 			}
-			if (nextRightNote >= 0 && AudioSettings.dspTime - startTime >= nextRightNote)
+			if (beatsPosition >= nextRightBeat - 3)
 			{
 				GameObject enemy = GetEnemy();
-				enemy.transform.position = rightSpawnPosition.position;
-				enemy.SetActive(true);
-				enemy.GetComponent<Enemy>().Initialize(rightSweetSpot.position + Constants.Game.RightExtraDistance, AudioSettings.dspTime);
+				float distance = beatsPerSec * (beatsPosition - nextRightBeat + 3);
 
-				rightData.Dequeue();
-				totalNotes += 1;
+				enemy.transform.position = new Vector3(rightSpawnPosition.position.x + distance, rightSpawnPosition.position.y, rightSpawnPosition.position.z);
+				enemy.SetActive(true);
+				enemy.GetComponent<Enemy>().Initialize(rightSweetSpot.position + Constants.Game.RightExtraDistance, AudioSettings.dspTime, beatsPerSec);
+
+				song1Queues[3].Dequeue();
 			}
-			yield return null;
 		}
+		
+		//if (beatsPosition <= nextDownBeat)
+		//{
+		//	GameObject enemy = GetEnemy();
+		//	float distance = beatsPerSec * (beatsPosition - nextDownBeat);
+		//	enemy.transform.position = new Vector3(downSpawnPosition.position.x, downSpawnPosition.position.y + distance, downSpawnPosition.position.z);
+		//	enemy.SetActive(true);
+		//	enemy.GetComponent<Enemy>().Initialize(downSweetSpot.position + Constants.Game.DownExtraDistance, AudioSettings.dspTime, beatsPerSec);
+
+		//	downData.Dequeue();
+		//	totalNotes += 1;
+		//}
+		//if (beatsPosition <= nextLeftBeat)
+		//{
+		//	GameObject enemy = GetEnemy();
+		//	float distance = beatsPerSec * (beatsPosition - nextLeftBeat);
+		//	enemy.transform.position = new Vector3(leftSpawnPosition.position.x + distance, leftSpawnPosition.position.y, leftSpawnPosition.position.z);
+		//	enemy.SetActive(true);
+		//	enemy.GetComponent<Enemy>().Initialize(leftSweetSpot.position + Constants.Game.LeftExtraDistance, AudioSettings.dspTime, beatsPerSec);
+
+		//	leftData.Dequeue();
+		//	totalNotes += 1;
+		//}
+		//if (beatsPosition <= nextRightBeat)
+		//{
+		//	GameObject enemy = GetEnemy();
+		//	float distance = beatsPerSec * (beatsPosition - nextRightBeat);
+		//	enemy.transform.position = new Vector3(rightSpawnPosition.position.x + distance, rightSpawnPosition.position.y, rightSpawnPosition.position.z);
+		//	enemy.SetActive(true);
+		//	enemy.GetComponent<Enemy>().Initialize(rightSweetSpot.position + Constants.Game.RightExtraDistance, AudioSettings.dspTime, beatsPerSec);
+
+		//	rightData.Dequeue();
+		//	totalNotes += 1;
+		//}
 	}
+
+	//private IEnumerator ParseSongData(Queue<float> upData, Queue<float> downData, Queue<float> leftData, Queue<float> rightData)
+	//{
+	//	//yield return new WaitForSeconds(Constants.Songs.SongStartDelay);
+
+	//	//startTime = AudioSettings.dspTime;
+
+	//	eventBroker.Publish(this, new AudioEvents.PlayMusic(Constants.Audio.Music.Song1));
+
+	//	startTime = AudioSettings.dspTime;
+	//	songPosition = (float)(AudioSettings.dspTime - startTime);
+	//	beatsPosition = songPosition / beatsPerSec;
+
+
+
+	//	//Debug.Log("Up: " + upData.Count + " / Down: " + downData.Count + " / Left: " + leftData.Count + " / Right: " + rightData.Count);
+
+		
+	//}
 
 	private GameObject GetEnemy()
 	{

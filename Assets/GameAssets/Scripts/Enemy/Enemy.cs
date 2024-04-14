@@ -13,6 +13,10 @@ public class Enemy : MonoBehaviour
 	private Vector3 target;
 	public double SpawnTime;
 
+	private float BPS;
+
+	private Vector3 direction;
+
     private void Awake()
     {
 		rbody = GetComponent<Rigidbody2D>();
@@ -20,11 +24,14 @@ public class Enemy : MonoBehaviour
 		spawned = false;
     }
 
-	public void Initialize(Vector3 _target, double _spawnTime)
+	public void Initialize(Vector3 _target, double _spawnTime, float bps)
 	{
 		target = _target;
 		SpawnTime = _spawnTime;
 		spawned = true;
+		BPS = bps;
+
+		direction = (target - transform.position).normalized;
 	}
 
 	public void Hit()
@@ -42,13 +49,48 @@ public class Enemy : MonoBehaviour
 	{
 		if (spawned)
 		{
-			transform.position = Vector2.MoveTowards(transform.position, target, 1f * Time.deltaTime);
+			transform.position = transform.position + direction * BPS * Time.deltaTime;
 
-			if (transform.position == target)
+			if (direction.x < 0)
 			{
-				spawned = false;
-				gameObject.SetActive(false);
-				eventBroker.Publish(this, new ScoreEvents.Miss());
+				// Right
+				if (transform.position.x <= target.x)
+				{
+					spawned = false;
+					eventBroker.Publish(this, new ScoreEvents.Miss());
+					gameObject.SetActive(false);
+				}
+			}
+			else if (direction.x > 0)
+			{
+				// Left
+				if (transform.position.x >= target.x)
+				{
+					spawned = false;
+					eventBroker.Publish(this, new ScoreEvents.Miss());
+					gameObject.SetActive(false);
+				}
+			}
+			else if (direction.y < 0)
+			{
+				// Up
+				if (transform.position.y <= target.y)
+				{
+					spawned = false;
+					eventBroker.Publish(this, new ScoreEvents.Miss());
+					gameObject.SetActive(false);
+				}
+
+			}
+			else if (direction.y > 0)
+			{
+				// Down
+				if (transform.position.y >= target.y)
+				{
+					spawned = false;
+					eventBroker.Publish(this, new ScoreEvents.Miss());
+					gameObject.SetActive(false);
+				}
 			}
 		}
 	}
