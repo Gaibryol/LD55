@@ -15,12 +15,14 @@ public class PlayerController : MonoBehaviour
 	private InputAction down;
 	private InputAction left;
 	private InputAction right;
+	private Animator animator;
 
 	private readonly EventBrokerComponent eventBroker = new EventBrokerComponent();
 
 	private void Awake()
 	{
 		playerInputs = new PlayerInputs();
+		animator = GetComponent<Animator>();
 	}
 
 	// Start is called before the first frame update
@@ -32,7 +34,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        
+
     }
 
 	public void OnUp(InputAction.CallbackContext context)
@@ -52,6 +54,7 @@ public class PlayerController : MonoBehaviour
 
 			furthest.GetComponent<Enemy>().Hit();
 		}
+		animator.SetBool("isPlaying", true);
 	}
 
 	public void OnDown(InputAction.CallbackContext context)
@@ -71,7 +74,8 @@ public class PlayerController : MonoBehaviour
 
 			furthest.GetComponent<Enemy>().Hit();
 		}
-	}
+        animator.SetBool("isPlaying", true);
+    }
 
 	public void OnLeft(InputAction.CallbackContext context)
 	{
@@ -90,7 +94,8 @@ public class PlayerController : MonoBehaviour
 
 			furthest.GetComponent<Enemy>().Hit();
 		}
-	}
+        animator.SetBool("isPlaying", true);
+    }
 
 	public void OnRight(InputAction.CallbackContext context)
 	{
@@ -109,7 +114,8 @@ public class PlayerController : MonoBehaviour
 
 			furthest.GetComponent<Enemy>().Hit();
 		}
-	}
+        animator.SetBool("isPlaying", true);
+    }
 
 	private void OnEnable()
 	{
