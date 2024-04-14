@@ -34,7 +34,7 @@ public class ScoreSystem : MonoBehaviour
 		badHit = 0;
 		miss = 0;
 
-		combo = 49;
+		combo = 0;
 		score = 0;
 		multiplier = 1f;
 
