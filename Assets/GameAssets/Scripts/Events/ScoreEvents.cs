@@ -27,10 +27,6 @@ public class ScoreEvents
         }
     }
 
-
-
-
-
     public class Final
     {
         public Final(int score, float accuracy)
@@ -42,6 +38,15 @@ public class ScoreEvents
         public readonly int Score;
         public readonly float Accuracy;
 
+    }
+
+    public class Ascended
+    {
+        public Ascended(bool ascend = false)
+        {
+            Ascend = ascend;
+        }
+        public readonly bool Ascend;
     }
 }
 
