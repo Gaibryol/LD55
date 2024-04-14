@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-	[SerializeField, Header("Sweet Spots")] private Transform upSweetSpot;
+  	[SerializeField, Header("Sweet Spots")] private Transform upSweetSpot;
 	[SerializeField] private Transform downSweetSpot;
 	[SerializeField] private Transform leftSweetSpot;
 	[SerializeField] private Transform rightSweetSpot;
@@ -74,10 +74,11 @@ public class PlayerController : MonoBehaviour
 
 			furthest.GetComponent<Enemy>().Hit();
 		}
+
         animator.SetBool("isPlaying", true);
     }
 
-	public void OnLeft(InputAction.CallbackContext context)
+    public void OnLeft(InputAction.CallbackContext context)
 	{
 		// Find note furthest along path
 		Collider2D[] hits = Physics2D.OverlapCircleAll(leftSweetSpot.position, Constants.Game.PlayerHitRadius);
@@ -94,10 +95,11 @@ public class PlayerController : MonoBehaviour
 
 			furthest.GetComponent<Enemy>().Hit();
 		}
+
         animator.SetBool("isPlaying", true);
     }
 
-	public void OnRight(InputAction.CallbackContext context)
+    public void OnRight(InputAction.CallbackContext context)
 	{
 		// Find note furthest along path
 		Collider2D[] hits = Physics2D.OverlapCircleAll(rightSweetSpot.position, Constants.Game.PlayerHitRadius);
@@ -114,10 +116,11 @@ public class PlayerController : MonoBehaviour
 
 			furthest.GetComponent<Enemy>().Hit();
 		}
+
         animator.SetBool("isPlaying", true);
     }
 
-	private void OnEnable()
+    private void OnEnable()
 	{
 		up = playerInputs.Player.Up;
 		up.performed += OnUp;
