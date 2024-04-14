@@ -77,7 +77,7 @@ public class AudioSystem : MonoBehaviour
 		sfxVolume = inEvent.Payload.NewVolume;
 		sfxSource.volume = sfxVolume;
 
-		PlayerPrefs.SetFloat(Constants.Audio.SFXVolumePP, musicVolume);
+		PlayerPrefs.SetFloat(Constants.Audio.SFXVolumePP, sfxVolume);
 	}
 
 	private void PlayMusicHandler(BrokerEvent<AudioEvents.PlayMusic> inEvent)
