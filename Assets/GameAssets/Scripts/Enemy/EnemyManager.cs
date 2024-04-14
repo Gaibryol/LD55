@@ -99,10 +99,10 @@ public class EnemyManager : MonoBehaviour
 			float nextLeftNote = hasLeftNote ? songLeftQueue.Peek() : -1;
 			float nextRightNote = hasRightNote ? songRightQueue.Peek() : -1;
 
-			float nextUpBeat = (nextUpNote / song1.length) * totalBeats;
-			float nextDownBeat = (nextDownNote / song1.length) * totalBeats;
-			float nextLeftBeat = (nextLeftNote / song1.length) * totalBeats;
-			float nextRightBeat = (nextRightNote / song1.length) * totalBeats;
+			float nextUpBeat = Mathf.Round((nextUpNote / song1.length) * totalBeats);
+			float nextDownBeat = Mathf.Round((nextDownNote / song1.length) * totalBeats);
+			float nextLeftBeat = Mathf.Round((nextLeftNote / song1.length) * totalBeats);
+			float nextRightBeat = Mathf.Round((nextRightNote / song1.length) * totalBeats);
 
 			float lookaheadBeats = beatsPerSec * 3f;
 			//Debug.Log(AudioSettings.dspTime - startTime + ": " + nextUpNote + " / " + nextDownNote + " / " + nextLeftNote + " / " + nextRightNote);
