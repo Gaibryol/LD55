@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour
 		splineAnimate.Container = pathToFollow;
 		splineAnimate.Restart(false);
 		splineAnimate.MaxSpeed = maxSpeed;
-		splineAnimate.StartOffset = beatOffset / pathToFollow.Spline.GetLength();
+		splineAnimate.NormalizedTime = beatOffset / pathToFollow.Spline.GetLength();
 		splineAnimate.Play();
 
 		direction = (target - transform.position).normalized;
@@ -56,6 +56,7 @@ public class Enemy : MonoBehaviour
 
 	private void FixedUpdate()
 	{
+		transform.rotation = Quaternion.identity;
 		if (spawned)
 		{
             if (splineAnimate.NormalizedTime == 1)
@@ -64,6 +65,12 @@ public class Enemy : MonoBehaviour
                 eventBroker.Publish(this, new ScoreEvents.Miss());
                 gameObject.SetActive(false);
             }
+			else if (!splineAnimate.IsPlaying)
+			{
+				Debug.Log("I'm not playing!");
+				splineAnimate.Play();
+
+			}
 			return;
 
             transform.position = transform.position + (direction * 3.4691f * Time.fixedDeltaTime);

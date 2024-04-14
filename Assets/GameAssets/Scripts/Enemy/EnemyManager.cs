@@ -78,7 +78,7 @@ public class EnemyManager : MonoBehaviour
 	private void FixedUpdate()
 	{
 		songPosition = (float)(AudioSettings.dspTime - startTime);
-		beatsPosition = (songPosition * beatsPerSec) + beatsPerSec;
+		beatsPosition = (songPosition * beatsPerSec) - beatsPerSec;
 
 		if (playing)
 		{
@@ -220,11 +220,7 @@ public class EnemyManager : MonoBehaviour
 			{
 				// Assign obj
 				GameObject obj = enemies[i];
-
 				// Move obj to back of the list so it should always iterate through non-active enemies first
-				enemies.RemoveAt(i);
-				enemies.Add(obj);
-
 				return obj;
 			}
 		}
