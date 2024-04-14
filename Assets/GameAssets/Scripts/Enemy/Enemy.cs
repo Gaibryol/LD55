@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Splines;
+using UnityEngine.U2D;
 
 public class Enemy : MonoBehaviour
 {
 	private Rigidbody2D rbody;
 	private Animator anim;
+	private SplineContainer spline;
+	[SerializeField] private SplineAnimate splineAnimate;
 
 	private readonly EventBrokerComponent eventBroker = new EventBrokerComponent();
 
@@ -21,15 +25,23 @@ public class Enemy : MonoBehaviour
     {
 		rbody = GetComponent<Rigidbody2D>();
 		anim = GetComponent<Animator>();
+		splineAnimate = GetComponent<SplineAnimate>();
 		spawned = false;
     }
 
-	public void Initialize(Vector3 _target, double _spawnTime, float bps)
+	public void Initialize(Vector3 _target, double _spawnTime, float bps, SplineContainer pathToFollow, float beatOffset)
 	{
+		Debug.Log(beatOffset);
+		
+
+
 		target = _target;
 		SpawnTime = _spawnTime;
 		spawned = true;
 		BPS = bps;
+		splineAnimate.Container = pathToFollow;
+		splineAnimate.StartOffset = beatOffset / pathToFollow.Spline.GetLength();
+        splineAnimate.Play();
 
 		direction = (target - transform.position).normalized;
 	}
@@ -49,7 +61,15 @@ public class Enemy : MonoBehaviour
 	{
 		if (spawned)
 		{
-			transform.position = transform.position + (direction * BPS * Time.fixedDeltaTime);
+            if (splineAnimate.NormalizedTime == 1)
+			{
+                spawned = false;
+                eventBroker.Publish(this, new ScoreEvents.Miss());
+                gameObject.SetActive(false);
+            }
+			return;
+
+            transform.position = transform.position + (direction * 3.4691f * Time.fixedDeltaTime);
 
 			if (direction.x < 0)
 			{

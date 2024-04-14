@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Splines;
+using UnityEngine.U2D;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -16,6 +18,12 @@ public class EnemyManager : MonoBehaviour
 	[SerializeField] private Transform downSweetSpot;
 	[SerializeField] private Transform leftSweetSpot;
 	[SerializeField] private Transform rightSweetSpot;
+
+	[SerializeField, Header("Spline")] private SplineContainer splineNorth;
+	[SerializeField] private SplineContainer splineSouth;
+	[SerializeField] private SplineContainer splineEast;
+	[SerializeField] private SplineContainer splineWest;
+	private float beatsAwayToSweetSpot = 10.40739f;
 
 	private List<Queue<float>> song1Queues;
 	private List<Queue<float>> song2Queues;
@@ -60,6 +68,12 @@ public class EnemyManager : MonoBehaviour
 		}
 
 		eventBroker.Publish(this, new SongEvents.GetSongData(Constants.Songs.Song.Song1, (data) => song1Queues = data));
+
+		
+		Debug.Log(splineEast.Spline.GetLength());
+		Debug.Log(splineWest.Spline.GetLength());
+		Debug.Log(splineNorth.Spline.GetLength());
+		Debug.Log(splineSouth.Spline.GetLength());
 	}
 
 	private void Update()
@@ -91,49 +105,49 @@ public class EnemyManager : MonoBehaviour
 			float nextLeftBeat = (nextLeftNote / song1.length) * totalBeats;
 			float nextRightBeat = (nextRightNote / song1.length) * totalBeats;
 
+			float lookaheadBeats = beatsPerSec * 3f;
 			//Debug.Log(AudioSettings.dspTime - startTime + ": " + nextUpNote + " / " + nextDownNote + " / " + nextLeftNote + " / " + nextRightNote);
-
-			if (hasUpNote && beatsPosition >= nextUpBeat - 2.2f)
+			if (hasUpNote && beatsPosition >= nextUpBeat - lookaheadBeats)
 			{
 				GameObject enemy = GetEnemy();
-				float distance = beatsPerSec * (songPosition - nextUpNote + 2.2f / beatsPerSec);
+				float distance = beatsPerSec * (songPosition - nextUpNote + lookaheadBeats / beatsPerSec);
 
-				enemy.transform.position = new Vector3(upSpawnPosition.position.x, upSpawnPosition.position.y - distance, upSpawnPosition.position.z);
+				//enemy.transform.position = new Vector3(upSpawnPosition.position.x, upSpawnPosition.position.y - distance, upSpawnPosition.position.z);
 				enemy.SetActive(true);
-				enemy.GetComponent<Enemy>().Initialize(upSweetSpot.position, beatsPosition, beatsPerSec);
+				enemy.GetComponent<Enemy>().Initialize(upSweetSpot.position, beatsPosition, beatsPerSec, splineNorth, distance);
 
 				songUpQueue.Dequeue();
 			}
-			if (hasDownNote && beatsPosition >= nextDownBeat - 2.2f)
+			if (hasDownNote && beatsPosition >= nextDownBeat - lookaheadBeats)
 			{
 				GameObject enemy = GetEnemy();
-				float distance = beatsPerSec * (songPosition - nextDownNote + 2.2f / beatsPerSec);
+				float distance = beatsPerSec * (songPosition - nextDownNote + lookaheadBeats / beatsPerSec);
 
-				enemy.transform.position = new Vector3(downSpawnPosition.position.x, downSpawnPosition.position.y + distance, downSpawnPosition.position.z);
+				//enemy.transform.position = new Vector3(downSpawnPosition.position.x, downSpawnPosition.position.y + distance, downSpawnPosition.position.z);
 				enemy.SetActive(true);
-				enemy.GetComponent<Enemy>().Initialize(downSweetSpot.position, beatsPosition, beatsPerSec);
+				enemy.GetComponent<Enemy>().Initialize(downSweetSpot.position, beatsPosition, beatsPerSec, splineSouth, distance);
 
 				songDownQueue.Dequeue();
 			}
-			if (hasLeftNote && beatsPosition >= nextLeftBeat - 2.2f)
+			if (hasLeftNote && beatsPosition >= nextLeftBeat - lookaheadBeats)
 			{
 				GameObject enemy = GetEnemy();
-				float distance = beatsPerSec * (songPosition - nextLeftNote + 2.2f / beatsPerSec);
+				float distance = beatsPerSec * (songPosition - nextLeftNote + lookaheadBeats / beatsPerSec);
 
-				enemy.transform.position = new Vector3(leftSpawnPosition.position.x + distance, leftSpawnPosition.position.y, leftSpawnPosition.position.z);
+				//enemy.transform.position = new Vector3(leftSpawnPosition.position.x + distance, leftSpawnPosition.position.y, leftSpawnPosition.position.z);
 				enemy.SetActive(true);
-				enemy.GetComponent<Enemy>().Initialize(leftSweetSpot.position, beatsPosition, beatsPerSec);
+				enemy.GetComponent<Enemy>().Initialize(leftSweetSpot.position, beatsPosition, beatsPerSec, splineWest, distance);
 
 				songLeftQueue.Dequeue();
 			}
-			if (hasRightNote && beatsPosition >= nextRightBeat - 2.2f)
+			if (hasRightNote && beatsPosition >= nextRightBeat - lookaheadBeats)
 			{
 				GameObject enemy = GetEnemy();
-				float distance = beatsPerSec * (songPosition - nextRightNote + 2.2f / beatsPerSec);
+				float distance = beatsPerSec * (songPosition - nextRightNote + lookaheadBeats / beatsPerSec);
 
-				enemy.transform.position = new Vector3(rightSpawnPosition.position.x - distance, rightSpawnPosition.position.y, rightSpawnPosition.position.z);
+				//enemy.transform.position = new Vector3(rightSpawnPosition.position.x - distance, rightSpawnPosition.position.y, rightSpawnPosition.position.z);
 				enemy.SetActive(true);
-				enemy.GetComponent<Enemy>().Initialize(rightSweetSpot.position, beatsPosition, beatsPerSec);
+				enemy.GetComponent<Enemy>().Initialize(rightSweetSpot.position, beatsPosition, beatsPerSec, splineEast, distance);
 
 				songRightQueue.Dequeue();
 			}
