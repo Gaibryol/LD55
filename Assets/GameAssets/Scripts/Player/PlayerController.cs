@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-	[SerializeField, Header("Sweet Spots")] private Transform upSweetSpot;
+  	[SerializeField, Header("Sweet Spots")] private Transform upSweetSpot;
 	[SerializeField] private Transform downSweetSpot;
 	[SerializeField] private Transform leftSweetSpot;
 	[SerializeField] private Transform rightSweetSpot;
@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        
+
     }
 
 	public void OnUp(InputAction.CallbackContext context)
@@ -54,7 +54,6 @@ public class PlayerController : MonoBehaviour
 
 			furthest.GetComponent<Enemy>().Hit();
 		}
-
 		animator.SetBool("isPlaying", true);
 	}
 
@@ -77,7 +76,6 @@ public class PlayerController : MonoBehaviour
 		}
 
         animator.SetBool("isPlaying", true);
-
     }
 
     public void OnLeft(InputAction.CallbackContext context)
@@ -99,7 +97,6 @@ public class PlayerController : MonoBehaviour
 		}
 
         animator.SetBool("isPlaying", true);
-
     }
 
     public void OnRight(InputAction.CallbackContext context)
@@ -121,7 +118,6 @@ public class PlayerController : MonoBehaviour
 		}
 
         animator.SetBool("isPlaying", true);
-
     }
 
     private void OnEnable()
