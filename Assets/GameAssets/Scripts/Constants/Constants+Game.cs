@@ -31,7 +31,7 @@ public partial class Constants
 		public static int MissDamage = -20;
 		public static int PerfectHitHeal = 10;
 
-		public static float BeatsAwayToSweetSpot = 10.40739f;
+		public static float MetersAwayToSweetSpot = 10.40739f;
 
 
     }
