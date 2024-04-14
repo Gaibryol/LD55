@@ -31,7 +31,7 @@ public class VolumeSettings : MonoBehaviour
 
     public void PlayMusic()
     {
-        eventBroker.Publish(this, new AudioEvents.PlayPause(Constants.Audio.Music.Song1, 1.5f));
+        eventBroker.Publish(this, new AudioEvents.PlayMusic(Constants.Audio.Music.Song1Cut));
     }
     public void PlaySFX()
     {
