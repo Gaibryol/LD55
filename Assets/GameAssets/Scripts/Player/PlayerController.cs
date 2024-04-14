@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
 		}
 
         animator.SetBool("isPlaying", true);
-    }
+	}
 
     public void OnLeft(InputAction.CallbackContext context)
 	{
@@ -98,7 +98,7 @@ public class PlayerController : MonoBehaviour
 		}
 
         animator.SetBool("isPlaying", true);
-    }
+	}
 
     public void OnRight(InputAction.CallbackContext context)
 	{
@@ -119,7 +119,7 @@ public class PlayerController : MonoBehaviour
 		}
 
         animator.SetBool("isPlaying", true);
-    }
+	}
 
     private void OnEnable()
 	{
