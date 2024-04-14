@@ -19,6 +19,7 @@ public class ScoreSystem : MonoBehaviour
 	private int okayHit;
 	private int badHit;
 	private int miss;
+	private int totalNotes;
 
 	//Text Showing Score & Combo
 	[SerializeField] private GameObject scoreUI;
@@ -86,6 +87,10 @@ public class ScoreSystem : MonoBehaviour
 		miss += 1;
 		CheckCombo();
 	}
+	private void TotalNotes(BrokerEvent<ScoreEvents.TotalNotes> inEvent)
+	{
+		totalNotes = inEvent.Payload.Amount;
+	}
 
 	private void AddScore(int Amount)
     {
@@ -111,7 +116,7 @@ public class ScoreSystem : MonoBehaviour
 	private float CalculateAccuracy()
     {
 		float accuracy;
-		accuracy = ((300f * perfectHit) + (200f * okayHit) + (100f * badHit)) / (300f * (perfectHit + okayHit + badHit + miss))*100;
+		accuracy = ((300f * perfectHit) + (200f * okayHit) + (100f * badHit)) / (300f * totalNotes)*100;
 		return accuracy;
     }
 
@@ -122,6 +127,7 @@ public class ScoreSystem : MonoBehaviour
 		eventBroker.Subscribe<ScoreEvents.OkayHit>(OkayHit);
 		eventBroker.Subscribe<ScoreEvents.BadHit>(BadHit);
 		eventBroker.Subscribe<ScoreEvents.Miss>(Miss);
+		eventBroker.Subscribe<ScoreEvents.TotalNotes>(TotalNotes);
 		eventBroker.Subscribe<SongEvents.PlaySong>(PlaySong);
 		eventBroker.Subscribe<SongEvents.SongEnded>(SongEnded);
 
@@ -132,8 +138,8 @@ public class ScoreSystem : MonoBehaviour
 		eventBroker.Unsubscribe<ScoreEvents.OkayHit>(OkayHit);
 		eventBroker.Unsubscribe<ScoreEvents.BadHit>(BadHit);
 		eventBroker.Unsubscribe<ScoreEvents.Miss>(Miss);
+		eventBroker.Unsubscribe<ScoreEvents.TotalNotes>(TotalNotes);
 		eventBroker.Unsubscribe<SongEvents.PlaySong>(PlaySong);
 		eventBroker.Unsubscribe<SongEvents.SongEnded>(SongEnded);
 
 	}
-}

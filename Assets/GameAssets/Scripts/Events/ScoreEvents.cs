@@ -26,6 +26,14 @@ public class ScoreEvents
 
         }
     }
+    public class TotalNotes
+    {
+        public TotalNotes(int amount)
+        {
+            Amount = amount;
+        }
+        public readonly int Amount;
+    }
 
     public class Final
     {
