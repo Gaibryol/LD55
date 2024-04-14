@@ -15,7 +15,7 @@ public class ScoreScreen : MonoBehaviour
     public void Final(BrokerEvent<ScoreEvents.Final> inEvent)
     {
         score = "Score: " + inEvent.Payload.Score.ToString();
-        accuracy = "Accuracy: " + inEvent.Payload.Accuracy.ToString() + "%";
+        accuracy = "Accuracy: " + inEvent.Payload.Accuracy.ToString("F2") + "%";
         scoreText.SetText(score);
         accuracyText.SetText(accuracy);
 

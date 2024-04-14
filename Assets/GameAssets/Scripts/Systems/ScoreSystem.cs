@@ -101,7 +101,7 @@ public class ScoreSystem : MonoBehaviour
 	private float CalculateAccuracy()
     {
 		float accuracy;
-		accuracy = ((300f * perfectHit) + (200f * okayHit) + (100f * badHit)) / (300f * (perfectHit + okayHit + badHit + miss));
+		accuracy = ((300f * perfectHit) + (200f * okayHit) + (100f * badHit)) / (300f * (perfectHit + okayHit + badHit + miss))*100;
 		return accuracy;
     }
 
