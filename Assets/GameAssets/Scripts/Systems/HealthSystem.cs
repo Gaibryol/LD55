@@ -6,8 +6,8 @@ public class HealthSystem : MonoBehaviour
     private readonly EventBrokerComponent eventBroker = new EventBrokerComponent();
     [SerializeField] private GameObject healthBar;
     [SerializeField] private Slider slider;
-    private float currentHealth  = 100f;
-    private float lerpSpeed = 0.25f;
+    private float currentHealth = 100f;
+    private float lerpSpeed = 0.5f;
     private float time;
     private bool lostGame;
 
@@ -39,6 +39,7 @@ public class HealthSystem : MonoBehaviour
 
     private void Update()
     {
+
         AnitmateHealthBar();
         if (currentHealth == 0 && !lostGame)
         {
@@ -50,7 +51,7 @@ public class HealthSystem : MonoBehaviour
     {
         float targetHealth = currentHealth;
         float startHealth = slider.value;
-        time += Time.deltaTime * lerpSpeed;
+        time += Time.fixedDeltaTime * lerpSpeed;
         slider.value = Mathf.Lerp(startHealth, targetHealth, time);
     }
 
