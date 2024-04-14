@@ -1,0 +1,779 @@
+fileFormatVersion: 2
+guid: f74d1b3e281bc984a836653d3ef5c84e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8171947873752507570
+    second: Ascended-playing-18frames200__0
+  - first:
+      213: -7028395031288531634
+    second: Ascended-playing-18frames200__1
+  - first:
+      213: 2853821838344330258
+    second: Ascended-playing-18frames200__2
+  - first:
+      213: 8688528584808893896
+    second: Ascended-playing-18frames200__3
+  - first:
+      213: 5869901757090720957
+    second: Ascended-playing-18frames200__4
+  - first:
+      213: -7476866625132043270
+    second: Ascended-playing-18frames200__5
+  - first:
+      213: 4893295762878682655
+    second: Ascended-playing-18frames200__6
+  - first:
+      213: -833329387576905132
+    second: Ascended-playing-18frames200__7
+  - first:
+      213: -3457178614592428167
+    second: Ascended-playing-18frames200__8
+  - first:
+      213: -6859632110206862427
+    second: Ascended-playing-18frames200__9
+  - first:
+      213: -7514666976245428433
+    second: Ascended-playing-18frames200__10
+  - first:
+      213: -6628846553373431797
+    second: Ascended-playing-18frames200__11
+  - first:
+      213: -8640159248184206752
+    second: Ascended-playing-18frames200__12
+  - first:
+      213: -1950761039750982186
+    second: Ascended-playing-18frames200__13
+  - first:
+      213: 5842011394991019273
+    second: Ascended-playing-18frames200__14
+  - first:
+      213: 7204486620499973051
+    second: Ascended-playing-18frames200__15
+  - first:
+      213: 3429177037648364934
+    second: Ascended-playing-18frames200__16
+  - first:
+      213: 548326765406767191
+    second: Ascended-playing-18frames200__17
+  - first:
+      213: -7929115963211122601
+    second: Ascended-playing-18frames200__18
+  - first:
+      213: 625939345826518079
+    second: Ascended-playing-18frames200__19
+  - first:
+      213: -1225065408288639474
+    second: Ascended-playing-18frames200__20
+  - first:
+      213: 7668883704124550736
+    second: Ascended-playing-18frames200__21
+  - first:
+      213: -3682931856212794437
+    second: Ascended-playing-18frames200__22
+  - first:
+      213: 5274848802922838788
+    second: Ascended-playing-18frames200__23
+  - first:
+      213: 1588317362142965589
+    second: Ascended-playing-18frames200__24
+  - first:
+      213: -6530737487484557919
+    second: Ascended-playing-18frames200__25
+  - first:
+      213: -5356787978713882867
+    second: Ascended-playing-18frames200__26
+  - first:
+      213: -507017920874323521
+    second: Ascended-playing-18frames200__27
+  - first:
+      213: -1196206327508788801
+    second: Ascended-playing-18frames200__28
+  - first:
+      213: -8952092794092062650
+    second: Ascended-playing-18frames200__29
+  - first:
+      213: 2227172049028906872
+    second: Ascended-playing-18frames200__30
+  - first:
+      213: -5940729968479421600
+    second: Ascended-playing-18frames200__31
+  - first:
+      213: -1494067779679528224
+    second: Ascended-playing-18frames200__32
+  - first:
+      213: 5909467978224824045
+    second: Ascended-playing-18frames200__33
+  - first:
+      213: -9136582885290584157
+    second: Ascended-playing-18frames200__34
+  - first:
+      213: -7007264119950902747
+    second: Ascended-playing-18frames200__35
+  - first:
+      213: 3820056004509385706
+    second: Ascended-playing-18frames200__36
+  - first:
+      213: -1830421207250878151
+    second: Ascended-playing-18frames200__37
+  - first:
+      213: 1203863511470553100
+    second: Ascended-playing-18frames200__38
+  - first:
+      213: -6522430529440963406
+    second: Ascended-playing-18frames200__39
+  - first:
+      213: -7068739670336788660
+    second: Ascended-playing-18frames200__40
+  - first:
+      213: -5923201904931625389
+    second: Ascended-playing-18frames200__41
+  - first:
+      213: 8201602323814650315
+    second: Ascended-playing-18frames200__42
+  - first:
+      213: -2398850813476297082
+    second: Ascended-playing-18frames200__43
+  - first:
+      213: 1489838094557363999
+    second: Ascended-playing-18frames200__44
+  - first:
+      213: 2605156501416060199
+    second: Ascended-playing-18frames200__45
+  - first:
+      213: -5580162544803538568
+    second: Ascended-playing-18frames200__46
+  - first:
+      213: -5077825541044994003
+    second: Ascended-playing-18frames200__47
+  - first:
+      213: -1132543539618317047
+    second: Ascended-playing-18frames200__48
+  - first:
+      213: 3217937361422763968
+    second: Ascended-playing-18frames200__49
+  - first:
+      213: 2085013246251022296
+    second: Ascended-playing-18frames200__50
+  - first:
+      213: 1969734941174975191
+    second: Ascended-playing-18frames200__51
+  - first:
+      213: 4299707426239404733
+    second: Ascended-playing-18frames200__52
+  - first:
+      213: -3736214555789617395
+    second: Ascended-playing-18frames200__53
+  - first:
+      213: -5387234935464167500
+    second: Ascended-playing-18frames200__54
+  - first:
+      213: 3769223328607428797
+    second: Ascended-playing-18frames200__55
+  - first:
+      213: -3673072292324147691
+    second: Ascended-playing-18frames200__56
+  - first:
+      213: -4726095758929993363
+    second: Ascended-playing-18frames200__57
+  - first:
+      213: 7422983996045397845
+    second: Ascended-playing-18frames200__58
+  - first:
+      213: -6759417597380487643
+    second: Ascended-playing-18frames200__59
+  - first:
+      213: -5765270832661704387
+    second: Ascended-playing-18frames200__60
+  - first:
+      213: -2605453538190162474
+    second: Ascended-playing-18frames200__61
+  - first:
+      213: -1100079384785563794
+    second: Ascended-playing-18frames200__62
+  - first:
+      213: 8751826095636790612
+    second: Ascended-playing-18frames200__63
+  - first:
+      213: 177440508328077960
+    second: Ascended-playing-18frames200__64
+  - first:
+      213: -164709157594958163
+    second: Ascended-playing-18frames200__65
+  - first:
+      213: 1937836640127641082
+    second: Ascended-playing-18frames200__66
+  - first:
+      213: 4049050177378143497
+    second: Ascended-playing-18frames200__67
+  - first:
+      213: -4030907967401979345
+    second: Ascended-playing-18frames200__68
+  - first:
+      213: -1754089152759138165
+    second: Ascended-playing-18frames200__69
+  - first:
+      213: -1808216754101520449
+    second: Ascended-playing-18frames200__70
+  - first:
+      213: -6176102552804100913
+    second: Ascended-playing-18frames200__71
+  - first:
+      213: 7309277748664166482
+    second: Ascended-playing-18frames200__72
+  - first:
+      213: -390506879082042591
+    second: Ascended-playing-18frames200__73
+  - first:
+      213: 2019071194574091938
+    second: Ascended-playing-18frames200__74
+  - first:
+      213: -6985403576880883227
+    second: Ascended-playing-18frames200__75
+  - first:
+      213: 7046703722223407047
+    second: Ascended-playing-18frames200__76
+  - first:
+      213: -1877820379385806770
+    second: Ascended-playing-18frames200__77
+  - first:
+      213: 7436539391547325154
+    second: Ascended-playing-18frames200__78
+  - first:
+      213: 9172171735848347458
+    second: Ascended-playing-18frames200__79
+  - first:
+      213: -7798549146050661482
+    second: Ascended-playing-18frames200__80
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 200
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Ascended-playing-18frames200__0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 274
+        height: 584
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4b19f5a4b8679e80800000000000000
+      internalID: -8171947873752507570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ascended-playing-18frames200__1
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 0
+        width: 274
+        height: 584
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e453de205ff167e90800000000000000
+      internalID: -7028395031288531634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ascended-playing-18frames200__2
+      rect:
+        serializedVersion: 2
+        x: 548
+        y: 0
+        width: 274
+        height: 584
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21c14ce77dfca9720800000000000000
+      internalID: 2853821838344330258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ascended-playing-18frames200__3
+      rect:
+        serializedVersion: 2
+        x: 822
+        y: 0
+        width: 274
+        height: 584
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cd8c5ec6bad39870800000000000000
+      internalID: 8688528584808893896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ascended-playing-18frames200__4
+      rect:
+        serializedVersion: 2
+        x: 1096
+        y: 0
+        width: 274
+        height: 584
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbc65d94c84167150800000000000000
+      internalID: 5869901757090720957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ascended-playing-18frames200__5
+      rect:
+        serializedVersion: 2
+        x: 1370
+        y: 0
+        width: 274
+        height: 584
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af3e7082b65dc3890800000000000000
+      internalID: -7476866625132043270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ascended-playing-18frames200__6
+      rect:
+        serializedVersion: 2
+        x: 1644
+        y: 0
+        width: 274
+        height: 584
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f16de4f029a78e340800000000000000
+      internalID: 4893295762878682655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ascended-playing-18frames200__7
+      rect:
+        serializedVersion: 2
+        x: 1918
+        y: 0
+        width: 274
+        height: 584
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 452b590565b6f64f0800000000000000
+      internalID: -833329387576905132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ascended-playing-18frames200__8
+      rect:
+        serializedVersion: 2
+        x: 2192
+        y: 0
+        width: 274
+        height: 584
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ec32bb0bc8008445966e8d06b32229b
+      internalID: -3457178614592428167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ascended-playing-18frames200__9
+      rect:
+        serializedVersion: 2
+        x: 2466
+        y: 0
+        width: 274
+        height: 584
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c53ba53d481404547bf8a64e5bdb6525
+      internalID: -6859632110206862427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ascended-playing-18frames200__10
+      rect:
+        serializedVersion: 2
+        x: 2740
+        y: 0
+        width: 274
+        height: 584
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f9efa65a3949d546944be867a1992f2
+      internalID: -7514666976245428433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ascended-playing-18frames200__11
+      rect:
+        serializedVersion: 2
+        x: 3014
+        y: 0
+        width: 274
+        height: 584
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fb5a578454f8364396d66b00af83f04
+      internalID: -6628846553373431797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ascended-playing-18frames200__12
+      rect:
+        serializedVersion: 2
+        x: 3288
+        y: 0
+        width: 274
+        height: 584
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abaa6cc5f5f19dc47bc8152f2d00151f
+      internalID: -8640159248184206752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ascended-playing-18frames200__13
+      rect:
+        serializedVersion: 2
+        x: 3562
+        y: 0
+        width: 274
+        height: 584
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a1d429e1a5e6f94197bba3841e681ea
+      internalID: -1950761039750982186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ascended-playing-18frames200__14
+      rect:
+        serializedVersion: 2
+        x: 3836
+        y: 0
+        width: 274
+        height: 584
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5933a588870c49e40bb9b64c4b150a23
+      internalID: 5842011394991019273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ascended-playing-18frames200__15
+      rect:
+        serializedVersion: 2
+        x: 4110
+        y: 0
+        width: 274
+        height: 584
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf4dd46c14c258e4189e9cb14b45dd22
+      internalID: 7204486620499973051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ascended-playing-18frames200__16
+      rect:
+        serializedVersion: 2
+        x: 4384
+        y: 0
+        width: 274
+        height: 584
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a829741897726d54f8a54242aa465e27
+      internalID: 968702322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ascended-playing-18frames200__17
+      rect:
+        serializedVersion: 2
+        x: 4658
+        y: 0
+        width: 274
+        height: 584
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8c28ee71f94d2c4397d17d2501c0421
+      internalID: 509705283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: b0b0d1cad299fa141bf48e7a563cb1ee
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Ascended-playing-18frames200__0: -8171947873752507570
+      Ascended-playing-18frames200__1: -7028395031288531634
+      Ascended-playing-18frames200__10: -7514666976245428433
+      Ascended-playing-18frames200__11: -6628846553373431797
+      Ascended-playing-18frames200__12: -8640159248184206752
+      Ascended-playing-18frames200__13: -1950761039750982186
+      Ascended-playing-18frames200__14: 5842011394991019273
+      Ascended-playing-18frames200__15: 7204486620499973051
+      Ascended-playing-18frames200__16: 968702322
+      Ascended-playing-18frames200__17: 509705283
+      Ascended-playing-18frames200__2: 2853821838344330258
+      Ascended-playing-18frames200__3: 8688528584808893896
+      Ascended-playing-18frames200__4: 5869901757090720957
+      Ascended-playing-18frames200__5: -7476866625132043270
+      Ascended-playing-18frames200__6: 4893295762878682655
+      Ascended-playing-18frames200__7: -833329387576905132
+      Ascended-playing-18frames200__8: -3457178614592428167
+      Ascended-playing-18frames200__9: -6859632110206862427
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

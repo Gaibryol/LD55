@@ -60,6 +60,7 @@ public class ScoreSystem : MonoBehaviour
 		AddScore(Constants.Game.PerfectHit);
 		if(combo == 50)
         {
+			Debug.Log("Hello");
 			eventBroker.Publish(this, new ScoreEvents.Ascended(true));
         }
 	}
@@ -77,6 +78,10 @@ public class ScoreSystem : MonoBehaviour
 	}
 	private void Miss(BrokerEvent<ScoreEvents.Miss> inEvent)
 	{
+		if (combo >= 50)
+		{
+			eventBroker.Publish(this, new ScoreEvents.Ascended(false));
+		}
 		combo = 0;
 		miss += 1;
 		CheckCombo();
@@ -107,7 +112,6 @@ public class ScoreSystem : MonoBehaviour
     {
 		float accuracy;
 		accuracy = ((300f * perfectHit) + (200f * okayHit) + (100f * badHit)) / (300f * (perfectHit + okayHit + badHit + miss))*100;
-		Debug.Log(perfectHit +","+ okayHit + "," + badHit + "," + miss);
 		return accuracy;
     }
 

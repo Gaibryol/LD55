@@ -15,6 +15,9 @@ public class PlayerController : MonoBehaviour
 	private InputAction down;
 	private InputAction left;
 	private InputAction right;
+
+	[SerializeField,Header("Animators")] Animator upperCircleAnimator;
+	[SerializeField] Animator lowerCircleAnimator;
 	private Animator animator;
 
 	private readonly EventBrokerComponent eventBroker = new EventBrokerComponent();
@@ -121,7 +124,28 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("isPlaying", true);
 	}
 
-    private void OnEnable()
+	private void Ascended(BrokerEvent<ScoreEvents.Ascended> inEvent)
+	{
+		bool ascended = inEvent.Payload.Ascend;
+		if (ascended)
+		{
+			animator.SetBool("Ascended",true);
+			upperCircleAnimator.SetBool("Ascended", true);
+			lowerCircleAnimator.SetBool("Ascended", true);
+		}
+		else if (!ascended)
+		{
+			animator.SetBool("Ascended", false);
+			upperCircleAnimator.SetBool("Ascended", false);
+			lowerCircleAnimator.SetBool("Ascended", false);
+		}
+		else
+		{
+			Debug.Log("Ascended Variable Is Null");
+		}
+	}
+
+	private void OnEnable()
 	{
 		up = playerInputs.Player.Up;
 		up.performed += OnUp;
@@ -138,6 +162,8 @@ public class PlayerController : MonoBehaviour
 		right = playerInputs.Player.Right;
 		right.performed += OnRight;
 		right.Enable();
+
+		eventBroker.Subscribe<ScoreEvents.Ascended>(Ascended);
 	}
 
 	private void OnDisable()
@@ -153,5 +179,7 @@ public class PlayerController : MonoBehaviour
 
 		right.performed -= OnRight;
 		right.Disable();
+
+		eventBroker.Unsubscribe<ScoreEvents.Ascended>(Ascended);
 	}
 }
