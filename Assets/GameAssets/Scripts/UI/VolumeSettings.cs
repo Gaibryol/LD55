@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class VolumeSettings : MonoBehaviour
 {
@@ -20,12 +21,20 @@ public class VolumeSettings : MonoBehaviour
     {
         float volume = musicSlider.value;
         eventBroker.Publish(this, new AudioEvents.ChangeMusicVolume(volume));
-        
+
     }
     public void SetSFXVolume()
     {
         float volume = sfxSlider.value;
         eventBroker.Publish(this, new AudioEvents.ChangeSFXVolume(volume));
+    }
 
+    public void PlayMusic()
+    {
+        eventBroker.Publish(this, new AudioEvents.PlayPause(Constants.Audio.Music.Song1, 1.5f));
+    }
+    public void PlaySFX()
+    {
+        eventBroker.Publish(this, new AudioEvents.PlaySFX(Constants.Audio.SFX.TestSound));
     }
 }

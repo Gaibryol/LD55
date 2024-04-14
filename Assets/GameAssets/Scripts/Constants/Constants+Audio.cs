@@ -22,7 +22,7 @@ public partial class Constants
 
 		public class SFX
 		{
-
+			public const string TestSound = "TestSound";
 		}
 	}
 }
