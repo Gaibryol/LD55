@@ -60,6 +60,7 @@ public class PlayerController : MonoBehaviour
 	public void OnDown(InputAction.CallbackContext context)
 	{
 		// Find note furthest along path
+		
 		Collider2D[] hits = Physics2D.OverlapCircleAll(downSweetSpot.position, Constants.Game.PlayerHitRadius);
 		if (hits.Length > 0)
 		{

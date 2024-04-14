@@ -23,7 +23,6 @@ public class EnemyManager : MonoBehaviour
 	[SerializeField] private SplineContainer splineSouth;
 	[SerializeField] private SplineContainer splineEast;
 	[SerializeField] private SplineContainer splineWest;
-	private float beatsAwayToSweetSpot = 10.40739f;
 
 	private List<Queue<float>> song1Queues;
 	private List<Queue<float>> song2Queues;
@@ -114,7 +113,7 @@ public class EnemyManager : MonoBehaviour
 
 				//enemy.transform.position = new Vector3(upSpawnPosition.position.x, upSpawnPosition.position.y - distance, upSpawnPosition.position.z);
 				enemy.SetActive(true);
-				enemy.GetComponent<Enemy>().Initialize(upSweetSpot.position, beatsPosition, beatsPerSec, splineNorth, distance);
+				enemy.GetComponent<Enemy>().Initialize(upSweetSpot.position, beatsPosition, lookaheadBeats, splineNorth, distance);
 
 				songUpQueue.Dequeue();
 			}
@@ -125,7 +124,7 @@ public class EnemyManager : MonoBehaviour
 
 				//enemy.transform.position = new Vector3(downSpawnPosition.position.x, downSpawnPosition.position.y + distance, downSpawnPosition.position.z);
 				enemy.SetActive(true);
-				enemy.GetComponent<Enemy>().Initialize(downSweetSpot.position, beatsPosition, beatsPerSec, splineSouth, distance);
+				enemy.GetComponent<Enemy>().Initialize(downSweetSpot.position, beatsPosition, lookaheadBeats, splineSouth, distance);
 
 				songDownQueue.Dequeue();
 			}
@@ -136,7 +135,7 @@ public class EnemyManager : MonoBehaviour
 
 				//enemy.transform.position = new Vector3(leftSpawnPosition.position.x + distance, leftSpawnPosition.position.y, leftSpawnPosition.position.z);
 				enemy.SetActive(true);
-				enemy.GetComponent<Enemy>().Initialize(leftSweetSpot.position, beatsPosition, beatsPerSec, splineWest, distance);
+				enemy.GetComponent<Enemy>().Initialize(leftSweetSpot.position, beatsPosition, lookaheadBeats, splineWest, distance);
 
 				songLeftQueue.Dequeue();
 			}
@@ -147,7 +146,7 @@ public class EnemyManager : MonoBehaviour
 
 				//enemy.transform.position = new Vector3(rightSpawnPosition.position.x - distance, rightSpawnPosition.position.y, rightSpawnPosition.position.z);
 				enemy.SetActive(true);
-				enemy.GetComponent<Enemy>().Initialize(rightSweetSpot.position, beatsPosition, beatsPerSec, splineEast, distance);
+				enemy.GetComponent<Enemy>().Initialize(rightSweetSpot.position, beatsPosition, lookaheadBeats, splineEast, distance);
 
 				songRightQueue.Dequeue();
 			}

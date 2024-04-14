@@ -58,6 +58,10 @@ public class ScoreSystem : MonoBehaviour
 		perfectHit += 1;
 		CheckCombo();
 		AddScore(Constants.Game.PerfectHit);
+		if(combo == 50)
+        {
+			eventBroker.Publish(this, new ScoreEvents.Ascended(true));
+        }
 	}
 	private void OkayHit(BrokerEvent<ScoreEvents.OkayHit> inEvent)
 	{
