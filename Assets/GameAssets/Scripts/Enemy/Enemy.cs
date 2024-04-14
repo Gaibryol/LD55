@@ -45,16 +45,16 @@ public class Enemy : MonoBehaviour
 		gameObject.SetActive(false);
 	}
 
-	private void Update()
+	private void FixedUpdate()
 	{
 		if (spawned)
 		{
-			transform.position = transform.position + direction * BPS * Time.deltaTime;
+			transform.position = transform.position + (direction * BPS * Time.fixedDeltaTime);
 
 			if (direction.x < 0)
 			{
 				// Right
-				if (transform.position.x <= target.x)
+				if (transform.position.x <= target.x + Constants.Game.RightExtraDistance)
 				{
 					spawned = false;
 					eventBroker.Publish(this, new ScoreEvents.Miss());
@@ -64,7 +64,7 @@ public class Enemy : MonoBehaviour
 			else if (direction.x > 0)
 			{
 				// Left
-				if (transform.position.x >= target.x)
+				if (transform.position.x >= target.x + Constants.Game.LeftExtraDistance)
 				{
 					spawned = false;
 					eventBroker.Publish(this, new ScoreEvents.Miss());
@@ -74,7 +74,7 @@ public class Enemy : MonoBehaviour
 			else if (direction.y < 0)
 			{
 				// Up
-				if (transform.position.y <= target.y)
+				if (transform.position.y <= target.y + Constants.Game.UpExtraDistance)
 				{
 					spawned = false;
 					eventBroker.Publish(this, new ScoreEvents.Miss());
@@ -85,7 +85,7 @@ public class Enemy : MonoBehaviour
 			else if (direction.y > 0)
 			{
 				// Down
-				if (transform.position.y >= target.y)
+				if (transform.position.y >= target.y + Constants.Game.DownExtraDistance)
 				{
 					spawned = false;
 					eventBroker.Publish(this, new ScoreEvents.Miss());

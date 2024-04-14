@@ -14,10 +14,10 @@ public partial class Constants
 
 		public const float PlayerHitRadius = 0.22f;
 
-		public static Vector3 UpExtraDistance = new Vector3(0, -0.5f, 0);
-		public static Vector3 DownExtraDistance = new Vector3(0, 0.5f, 0);
-		public static Vector3 LeftExtraDistance = new Vector3(0.5f, 0, 0);
-		public static Vector3 RightExtraDistance = new Vector3(-0.5f, 0, 0);
+		public const float UpExtraDistance = -0.5f;
+		public const float DownExtraDistance = 0.5f;
+		public const float LeftExtraDistance = 0.5f;
+		public const float RightExtraDistance = -0.5f;
 
 		public static string PlayerVisualLatency = "PlayerVisualLatency";
 		public static string PlayerInputLatency = "PlayerInputLatency";
