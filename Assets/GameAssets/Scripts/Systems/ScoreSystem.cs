@@ -43,7 +43,6 @@ public class ScoreSystem : MonoBehaviour
 		multiplierText.SetText(multiplier.ToString() + "x");
 
 		scoreUI.SetActive(true);
-		eventBroker.Publish(this, new ScoreEvents.PerfectHit());
 	}
 
 	//Event Listener When Song Ends
