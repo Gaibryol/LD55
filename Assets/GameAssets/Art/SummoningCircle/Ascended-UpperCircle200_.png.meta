@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 841128df7b0a3a5419f4c6e9d7251417
+guid: 4b03923c1d8176e41900a15a015e937e
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -132,7 +132,7 @@ TextureImporter:
         x: 0
         y: 0
         width: 948
-        height: 375
+        height: 410
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,10 +146,31 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Ascended-UpperCircle200__1
+      rect:
+        serializedVersion: 2
+        x: 948
+        y: 0
+        width: 948
+        height: 410
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6669660bb7392e446aeb9af3d0a8797f
+      internalID: -1442203002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: f5da751463ecb3945a4e70a88159d428
     internalID: 0
     vertices: []
     indices: 
@@ -158,6 +179,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Ascended-UpperCircle200__0: -4236040421310722248
+      Ascended-UpperCircle200__1: -1442203002
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

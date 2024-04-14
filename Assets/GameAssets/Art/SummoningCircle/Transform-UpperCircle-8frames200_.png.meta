@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 274f5ee362d97e44fbc45208d9cd9556
+guid: a84cbcea779c2064b8c23098b6c2ecfd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7598279461661424280
-    second: Transform-UpperCircle-8frames200%_0
+      213: 72071523918199990
+    second: Transform-UpperCircle-8frames200__0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,7 +126,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Transform-UpperCircle-8frames200%_0
+      name: Transform-UpperCircle-8frames200__0
       rect:
         serializedVersion: 2
         x: 0
@@ -140,14 +140,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8654687461d7d8690800000000000000
-      internalID: -7598279461661424280
+      spriteID: 6bcb09d4bac000100800000000000000
+      internalID: 72071523918199990
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Transform-UpperCircle-8frames200%_1
+      name: Transform-UpperCircle-8frames200__1
       rect:
         serializedVersion: 2
         x: 948
@@ -161,14 +161,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 732893c58f4f941458f40c3217326a80
-      internalID: -1574618725
+      spriteID: a5ba9c26b4cc6cf4388141fd73e2c754
+      internalID: 1225083257
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Transform-UpperCircle-8frames200%_2
+      name: Transform-UpperCircle-8frames200__2
       rect:
         serializedVersion: 2
         x: 1896
@@ -182,14 +182,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: caa0569b1c9669446a30188b60ccd6da
-      internalID: 1339915765
+      spriteID: 0f3f70a3062a76e47a7a349283b404a5
+      internalID: -420982029
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Transform-UpperCircle-8frames200%_3
+      name: Transform-UpperCircle-8frames200__3
       rect:
         serializedVersion: 2
         x: 2844
@@ -203,14 +203,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 57f0fed1d1eb76e47a7c4e47b33801de
-      internalID: 1732386468
+      spriteID: ed2a904ec44902f4abc596c1dbf8474b
+      internalID: 602958949
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Transform-UpperCircle-8frames200%_4
+      name: Transform-UpperCircle-8frames200__4
       rect:
         serializedVersion: 2
         x: 3792
@@ -224,14 +224,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a437ae1a82a440418922fce11775359
-      internalID: 792331914
+      spriteID: 43aa834885c180041b866a7864ece23d
+      internalID: -1055593569
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Transform-UpperCircle-8frames200%_5
+      name: Transform-UpperCircle-8frames200__5
       rect:
         serializedVersion: 2
         x: 4740
@@ -245,14 +245,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea739c88fa3ad6a48ab0c5e7e2d48afe
-      internalID: -2001691641
+      spriteID: ddb92d1c197d1da4e9e54b21d56735ba
+      internalID: -119119677
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Transform-UpperCircle-8frames200%_6
+      name: Transform-UpperCircle-8frames200__6
       rect:
         serializedVersion: 2
         x: 5688
@@ -266,14 +266,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c8cde10cfba731747babe33e0e9a6e2e
-      internalID: 1122293584
+      spriteID: f107c94494fe87742882b0eb6e784e3f
+      internalID: 1329807670
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Transform-UpperCircle-8frames200%_7
+      name: Transform-UpperCircle-8frames200__7
       rect:
         serializedVersion: 2
         x: 6636
@@ -287,8 +287,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 18984d426ffedbc46be782718e2e0015
-      internalID: -845835363
+      spriteID: f588af52b5c6bdf4c92181b4229535d3
+      internalID: -1276313018
       vertices: []
       indices: 
       edges: []
@@ -296,7 +296,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: eff4fa84e19e70f42919c20001451d15
+    spriteID: c5307f87c5470864db683dbec418591c
     internalID: 0
     vertices: []
     indices: 
@@ -304,14 +304,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Transform-UpperCircle-8frames200%_0: -7598279461661424280
-      Transform-UpperCircle-8frames200%_1: -1574618725
-      Transform-UpperCircle-8frames200%_2: 1339915765
-      Transform-UpperCircle-8frames200%_3: 1732386468
-      Transform-UpperCircle-8frames200%_4: 792331914
-      Transform-UpperCircle-8frames200%_5: -2001691641
-      Transform-UpperCircle-8frames200%_6: 1122293584
-      Transform-UpperCircle-8frames200%_7: -845835363
+      Transform-UpperCircle-8frames200__0: 72071523918199990
+      Transform-UpperCircle-8frames200__1: 1225083257
+      Transform-UpperCircle-8frames200__2: -420982029
+      Transform-UpperCircle-8frames200__3: 602958949
+      Transform-UpperCircle-8frames200__4: -1055593569
+      Transform-UpperCircle-8frames200__5: -119119677
+      Transform-UpperCircle-8frames200__6: 1329807670
+      Transform-UpperCircle-8frames200__7: -1276313018
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
