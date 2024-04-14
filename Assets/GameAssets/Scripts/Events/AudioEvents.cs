@@ -73,14 +73,4 @@ public class AudioEvents
 		public readonly string Title;
 		public readonly Action<float> ProcessData;
 	}
-	public class PlayPause
-    {
-		public PlayPause(string musicName, float lengthPlayed)
-        {
-			MusicName = musicName;
-			LengthPlayed = lengthPlayed;
-        }
-		public readonly string MusicName;
-		public readonly float LengthPlayed;
-	}
 }

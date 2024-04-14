@@ -18,6 +18,7 @@ public partial class Constants
 		{
 			public const string MainMenuTheme = "MainMenuTheme";
 			public const string Song1 = "Song1";
+			public const string Song1Cut = "Song1Cut";
 		}
 
 		public class SFX

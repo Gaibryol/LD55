@@ -10,7 +10,9 @@ public class AudioSystem : MonoBehaviour
 	[SerializeField] private AudioSource sfxSource;
 
 	[SerializeField, Header("Music")] private AudioClip song1;
+	[SerializeField] private AudioClip song1Cut;
 	[SerializeField] private AudioClip mainMenuTheme;
+
 
 
 	[SerializeField, Header("SFX")]private AudioClip testSound;
@@ -32,6 +34,7 @@ public class AudioSystem : MonoBehaviour
 	{
 		// Set up music and sfx dictionaries
 		music.Add(Constants.Audio.Music.Song1, song1);
+		music.Add(Constants.Audio.Music.Song1Cut, song1Cut);
 		music.Add(Constants.Audio.Music.MainMenuTheme, mainMenuTheme);
 		sfx.Add(Constants.Audio.SFX.TestSound, testSound);
 
@@ -46,7 +49,6 @@ public class AudioSystem : MonoBehaviour
 		eventBrokerComponent.Subscribe<AudioEvents.PlayTemporaryMusic>(PlayTemporaryMusicHandler);
 		eventBrokerComponent.Subscribe<AudioEvents.StopTemporaryMusic>(StopTemporaryMusicHandler);
 		eventBrokerComponent.Subscribe<AudioEvents.GetSongLength>(GetSongLengthHandler);
-		eventBrokerComponent.Subscribe<AudioEvents.PlayPause>(PlayPauseHandler);
 
 		float musicLevel = PlayerPrefs.GetFloat(Constants.Audio.MusicVolumePP, Constants.Audio.DefaultMusicVolume);
 		float sfxLevel = PlayerPrefs.GetFloat(Constants.Audio.SFXVolumePP, Constants.Audio.DefaultSFXVolume);
@@ -66,7 +68,6 @@ public class AudioSystem : MonoBehaviour
 		eventBrokerComponent.Unsubscribe<AudioEvents.PlayTemporaryMusic>(PlayTemporaryMusicHandler);
 		eventBrokerComponent.Unsubscribe<AudioEvents.StopTemporaryMusic>(StopTemporaryMusicHandler);
 		eventBrokerComponent.Unsubscribe<AudioEvents.GetSongLength>(GetSongLengthHandler);
-		eventBrokerComponent.Unsubscribe<AudioEvents.PlayPause>(PlayPauseHandler);
 	}
 
 	private void ChangeMusicVolumeHandler(BrokerEvent<AudioEvents.ChangeMusicVolume> inEvent)
@@ -132,11 +133,6 @@ public class AudioSystem : MonoBehaviour
 			Debug.LogError("Cannot find music named " + inEvent.Payload.Title);
 		}
 	}
-	private void PlayPauseHandler(BrokerEvent<AudioEvents.PlayPause> inEvent)
-	{
-		if (playPauseCo != null) StopCoroutine(playPauseCo);
-		playPauseCo = StartCoroutine(PlayPauseCoroutine(inEvent.Payload.MusicName, inEvent.Payload.LengthPlayed));
-	}
 
 	private void PlayMusic(string song, float time = 0f)
 	{
@@ -193,27 +189,6 @@ public class AudioSystem : MonoBehaviour
 		{
 			musicSource.volume += Constants.Audio.MusicFadeSpeed * Time.deltaTime;
 			yield return null;
-		}
-	}
-	private IEnumerator PlayPauseCoroutine(string song, float playLength)
-	{
-		bool loop = true;
-		while (loop)
-		{
-			if (music.ContainsKey(song))
-			{
-				musicSource.Stop();
-				musicSource.clip = music[song];
-				musicSource.loop = false;
-				musicSource.Play();
-			}
-			else
-			{
-				Debug.LogError("Cannot find music named " + song);
-			}
-			yield return new WaitForSeconds(playLength);
-			musicSource.Stop();
-			loop = false;
 		}
 	}
 }
