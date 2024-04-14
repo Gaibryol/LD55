@@ -29,20 +29,16 @@ public class Enemy : MonoBehaviour
 		spawned = false;
     }
 
-	public void Initialize(Vector3 _target, double _spawnTime, float lookaheadBeats, SplineContainer pathToFollow, float beatOffset)
+	public void Initialize(Vector3 _target, double _spawnTime, float maxSpeed, SplineContainer pathToFollow, float beatOffset)
 	{
-		Debug.Log(beatOffset);
-		
-
-
 		target = _target;
 		SpawnTime = _spawnTime;
 		spawned = true;
 		splineAnimate.Container = pathToFollow;
 		splineAnimate.Restart(false);
-		splineAnimate.MaxSpeed = Constants.Game.BeatsAwayToSweetSpot / lookaheadBeats;
+		splineAnimate.MaxSpeed = maxSpeed;
 		splineAnimate.StartOffset = beatOffset / pathToFollow.Spline.GetLength();
-        splineAnimate.Play();
+		splineAnimate.Play();
 
 		direction = (target - transform.position).normalized;
 	}

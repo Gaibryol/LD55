@@ -75,16 +75,10 @@ public class EnemyManager : MonoBehaviour
 		Debug.Log(splineSouth.Spline.GetLength());
 	}
 
-	private void Update()
-	{
-		songPosition = (float)(AudioSettings.dspTime - startTime);
-		beatsPosition = songPosition * beatsPerSec;
-	}
-
 	private void FixedUpdate()
 	{
 		songPosition = (float)(AudioSettings.dspTime - startTime);
-		beatsPosition = songPosition * beatsPerSec;
+		beatsPosition = (songPosition * beatsPerSec) + beatsPerSec;
 
 		if (playing)
 		{
@@ -99,21 +93,22 @@ public class EnemyManager : MonoBehaviour
 			float nextLeftNote = hasLeftNote ? songLeftQueue.Peek() : -1;
 			float nextRightNote = hasRightNote ? songRightQueue.Peek() : -1;
 
-			float nextUpBeat = Mathf.Round((nextUpNote / song1.length) * totalBeats);
-			float nextDownBeat = Mathf.Round((nextDownNote / song1.length) * totalBeats);
-			float nextLeftBeat = Mathf.Round((nextLeftNote / song1.length) * totalBeats);
-			float nextRightBeat = Mathf.Round((nextRightNote / song1.length) * totalBeats);
+			float nextUpBeat = (nextUpNote * beatsPerSec);
+			float nextDownBeat = (nextDownNote * beatsPerSec);
+			float nextLeftBeat = (nextLeftNote * beatsPerSec);
+			float nextRightBeat = (nextRightNote * beatsPerSec);
 
-			float lookaheadBeats = beatsPerSec * 3f;
+			float maxSpeed = Constants.Game.MetersAwayToSweetSpot / ((60 / song1BPM) * 8f);
+
+			float lookaheadBeats = 8f;
 			//Debug.Log(AudioSettings.dspTime - startTime + ": " + nextUpNote + " / " + nextDownNote + " / " + nextLeftNote + " / " + nextRightNote);
 			if (hasUpNote && beatsPosition >= nextUpBeat - lookaheadBeats)
 			{
 				GameObject enemy = GetEnemy();
 				float distance = beatsPerSec * (songPosition - nextUpNote + lookaheadBeats / beatsPerSec);
 
-				//enemy.transform.position = new Vector3(upSpawnPosition.position.x, upSpawnPosition.position.y - distance, upSpawnPosition.position.z);
 				enemy.SetActive(true);
-				enemy.GetComponent<Enemy>().Initialize(upSweetSpot.position, beatsPosition, lookaheadBeats, splineNorth, distance);
+				enemy.GetComponent<Enemy>().Initialize(upSweetSpot.position, beatsPosition, maxSpeed, splineNorth, distance);
 
 				songUpQueue.Dequeue();
 			}
@@ -122,9 +117,8 @@ public class EnemyManager : MonoBehaviour
 				GameObject enemy = GetEnemy();
 				float distance = beatsPerSec * (songPosition - nextDownNote + lookaheadBeats / beatsPerSec);
 
-				//enemy.transform.position = new Vector3(downSpawnPosition.position.x, downSpawnPosition.position.y + distance, downSpawnPosition.position.z);
 				enemy.SetActive(true);
-				enemy.GetComponent<Enemy>().Initialize(downSweetSpot.position, beatsPosition, lookaheadBeats, splineSouth, distance);
+				enemy.GetComponent<Enemy>().Initialize(downSweetSpot.position, beatsPosition, maxSpeed, splineSouth, distance);
 
 				songDownQueue.Dequeue();
 			}
@@ -133,9 +127,8 @@ public class EnemyManager : MonoBehaviour
 				GameObject enemy = GetEnemy();
 				float distance = beatsPerSec * (songPosition - nextLeftNote + lookaheadBeats / beatsPerSec);
 
-				//enemy.transform.position = new Vector3(leftSpawnPosition.position.x + distance, leftSpawnPosition.position.y, leftSpawnPosition.position.z);
 				enemy.SetActive(true);
-				enemy.GetComponent<Enemy>().Initialize(leftSweetSpot.position, beatsPosition, lookaheadBeats, splineWest, distance);
+				enemy.GetComponent<Enemy>().Initialize(leftSweetSpot.position, beatsPosition, maxSpeed, splineWest, distance);
 
 				songLeftQueue.Dequeue();
 			}
@@ -144,9 +137,8 @@ public class EnemyManager : MonoBehaviour
 				GameObject enemy = GetEnemy();
 				float distance = beatsPerSec * (songPosition - nextRightNote + lookaheadBeats / beatsPerSec);
 
-				//enemy.transform.position = new Vector3(rightSpawnPosition.position.x - distance, rightSpawnPosition.position.y, rightSpawnPosition.position.z);
 				enemy.SetActive(true);
-				enemy.GetComponent<Enemy>().Initialize(rightSweetSpot.position, beatsPosition, lookaheadBeats, splineEast, distance);
+				enemy.GetComponent<Enemy>().Initialize(rightSweetSpot.position, beatsPosition, maxSpeed, splineEast, distance);
 
 				songRightQueue.Dequeue();
 			}
