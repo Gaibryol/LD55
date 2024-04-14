@@ -151,9 +151,10 @@ public class EnemyManager : MonoBehaviour
 			if (beatsPosition >= nextUpBeat - 3)
 			{
 				GameObject enemy = GetEnemy();
-				float distance = beatsPerSec * (beatsPosition - nextUpBeat + 3);
+				// b = 
+				float distance = beatsPerSec * (songPosition - nextUpNote + 3/beatsPerSec);
 				Debug.Log("distance: " + distance);
-				enemy.transform.position = new Vector3(upSpawnPosition.position.x, upSpawnPosition.position.y + distance, upSpawnPosition.position.z);
+				enemy.transform.position = new Vector3(upSpawnPosition.position.x, upSpawnPosition.position.y - distance, upSpawnPosition.position.z);
 				enemy.SetActive(true);
 				enemy.GetComponent<Enemy>().Initialize(upSweetSpot.position + Constants.Game.UpExtraDistance, AudioSettings.dspTime, beatsPerSec);
 
@@ -162,9 +163,9 @@ public class EnemyManager : MonoBehaviour
 			if (beatsPosition >= nextDownBeat - 3)
 			{
 				GameObject enemy = GetEnemy();
-				float distance = beatsPerSec * (beatsPosition - nextUpBeat + 3);
+				float distance = beatsPerSec * (songPosition - nextDownNote + 3 / beatsPerSec);
 
-				enemy.transform.position = new Vector3(downSpawnPosition.position.x, downSpawnPosition.position.y + distance, downSpawnPosition.position.z);
+                enemy.transform.position = new Vector3(downSpawnPosition.position.x, downSpawnPosition.position.y + distance, downSpawnPosition.position.z);
 				enemy.SetActive(true);
 				enemy.GetComponent<Enemy>().Initialize(downSweetSpot.position + Constants.Game.DownExtraDistance, AudioSettings.dspTime, beatsPerSec);
 
@@ -173,9 +174,9 @@ public class EnemyManager : MonoBehaviour
 			if (beatsPosition >= nextLeftBeat - 3)
 			{
 				GameObject enemy = GetEnemy();
-				float distance = beatsPerSec * (beatsPosition - nextLeftBeat + 3);
+				float distance = beatsPerSec * (songPosition - nextLeftNote + 3 / beatsPerSec);
 
-				enemy.transform.position = new Vector3(leftSpawnPosition.position.x + distance, leftSpawnPosition.position.y, leftSpawnPosition.position.z);
+                enemy.transform.position = new Vector3(leftSpawnPosition.position.x + distance, leftSpawnPosition.position.y, leftSpawnPosition.position.z);
 				enemy.SetActive(true);
 				enemy.GetComponent<Enemy>().Initialize(leftSweetSpot.position + Constants.Game.LeftExtraDistance, AudioSettings.dspTime, beatsPerSec);
 
@@ -184,9 +185,9 @@ public class EnemyManager : MonoBehaviour
 			if (beatsPosition >= nextRightBeat - 3)
 			{
 				GameObject enemy = GetEnemy();
-				float distance = beatsPerSec * (beatsPosition - nextRightBeat + 3);
+				float distance = beatsPerSec * (songPosition - nextRightNote + 3/beatsPerSec);
 
-				enemy.transform.position = new Vector3(rightSpawnPosition.position.x + distance, rightSpawnPosition.position.y, rightSpawnPosition.position.z);
+				enemy.transform.position = new Vector3(rightSpawnPosition.position.x - distance, rightSpawnPosition.position.y, rightSpawnPosition.position.z);
 				enemy.SetActive(true);
 				enemy.GetComponent<Enemy>().Initialize(rightSweetSpot.position + Constants.Game.RightExtraDistance, AudioSettings.dspTime, beatsPerSec);
 
