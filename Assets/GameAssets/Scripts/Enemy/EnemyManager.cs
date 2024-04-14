@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,6 +34,11 @@ public class EnemyManager : MonoBehaviour
 	private float totalBeats;
 
 	private bool playing = false;
+
+	private Queue<float> songUpQueue;
+	private Queue<float> songDownQueue;
+	private Queue<float> songLeftQueue;
+	private Queue<float> songRightQueue;
 
 	[SerializeField] private AudioClip song1;
 
@@ -70,10 +76,15 @@ public class EnemyManager : MonoBehaviour
 		if (playing)
 		{
 			// Find the next note
-			float nextUpNote = song1Queues[0].Count > 0 ? song1Queues[0].Peek() : -1;
-			float nextDownNote = song1Queues[1].Count > 0 ? song1Queues[1].Peek() : -1;
-			float nextLeftNote = song1Queues[2].Count > 0 ? song1Queues[2].Peek() : -1;
-			float nextRightNote = song1Queues[3].Count > 0 ? song1Queues[3].Peek() : -1;
+			bool hasUpNote = songUpQueue.Count > 0;
+			bool hasDownNote = songDownQueue.Count > 0;
+			bool hasLeftNote = songLeftQueue.Count > 0;
+			bool hasRightNote = songRightQueue.Count > 0;
+
+			float nextUpNote = hasUpNote ? songUpQueue.Peek() : -1;
+			float nextDownNote = hasDownNote ? songDownQueue.Peek() : -1;
+			float nextLeftNote = hasLeftNote ? songLeftQueue.Peek() : -1;
+			float nextRightNote = hasRightNote ? songRightQueue.Peek() : -1;
 
 			float nextUpBeat = (nextUpNote / song1.length) * totalBeats;
 			float nextDownBeat = (nextDownNote / song1.length) * totalBeats;
@@ -81,7 +92,8 @@ public class EnemyManager : MonoBehaviour
 			float nextRightBeat = (nextRightNote / song1.length) * totalBeats;
 
 			//Debug.Log(AudioSettings.dspTime - startTime + ": " + nextUpNote + " / " + nextDownNote + " / " + nextLeftNote + " / " + nextRightNote);
-			if (beatsPosition >= nextUpBeat - 2.2f)
+
+			if (hasUpNote && beatsPosition >= nextUpBeat - 2.2f)
 			{
 				GameObject enemy = GetEnemy();
 				float distance = beatsPerSec * (songPosition - nextUpNote + 2.2f / beatsPerSec);
@@ -90,9 +102,9 @@ public class EnemyManager : MonoBehaviour
 				enemy.SetActive(true);
 				enemy.GetComponent<Enemy>().Initialize(upSweetSpot.position, beatsPosition, beatsPerSec);
 
-				song1Queues[0].Dequeue();
+				songUpQueue.Dequeue();
 			}
-			if (beatsPosition >= nextDownBeat - 2.2f)
+			if (hasDownNote && beatsPosition >= nextDownBeat - 2.2f)
 			{
 				GameObject enemy = GetEnemy();
 				float distance = beatsPerSec * (songPosition - nextDownNote + 2.2f / beatsPerSec);
@@ -101,9 +113,9 @@ public class EnemyManager : MonoBehaviour
 				enemy.SetActive(true);
 				enemy.GetComponent<Enemy>().Initialize(downSweetSpot.position, beatsPosition, beatsPerSec);
 
-				song1Queues[1].Dequeue();
+				songDownQueue.Dequeue();
 			}
-			if (beatsPosition >= nextLeftBeat - 2.2f)
+			if (hasLeftNote && beatsPosition >= nextLeftBeat - 2.2f)
 			{
 				GameObject enemy = GetEnemy();
 				float distance = beatsPerSec * (songPosition - nextLeftNote + 2.2f / beatsPerSec);
@@ -112,9 +124,9 @@ public class EnemyManager : MonoBehaviour
 				enemy.SetActive(true);
 				enemy.GetComponent<Enemy>().Initialize(leftSweetSpot.position, beatsPosition, beatsPerSec);
 
-				song1Queues[2].Dequeue();
+				songLeftQueue.Dequeue();
 			}
-			if (beatsPosition >= nextRightBeat - 2.2f)
+			if (hasRightNote && beatsPosition >= nextRightBeat - 2.2f)
 			{
 				GameObject enemy = GetEnemy();
 				float distance = beatsPerSec * (songPosition - nextRightNote + 2.2f / beatsPerSec);
@@ -123,7 +135,7 @@ public class EnemyManager : MonoBehaviour
 				enemy.SetActive(true);
 				enemy.GetComponent<Enemy>().Initialize(rightSweetSpot.position, beatsPosition, beatsPerSec);
 
-				song1Queues[3].Dequeue();
+				songRightQueue.Dequeue();
 			}
 		}
 	}
@@ -133,12 +145,13 @@ public class EnemyManager : MonoBehaviour
 		playerVisualLatency = PlayerPrefs.GetFloat(Constants.Game.PlayerVisualLatency);
 		playerInputLatency = PlayerPrefs.GetFloat(Constants.Game.PlayerInputLatency);
 
-		startTime = AudioSettings.dspTime;
-
 		switch (inEvent.Payload.Song)
 		{
 			case Constants.Songs.Song.Song1:
-				//StartCoroutine(ParseSongData(song1Queues[0], song1Queues[1], song1Queues[2], song1Queues[3]));
+				songUpQueue = new Queue<float>(song1Queues[0]);
+				songDownQueue = new Queue<float>(song1Queues[1]);
+				songLeftQueue = new Queue<float>(song1Queues[2]);
+				songRightQueue = new Queue<float>(song1Queues[3]);
 				break;
 		}
 
@@ -171,6 +184,11 @@ public class EnemyManager : MonoBehaviour
 			// Bad
 			eventBroker.Publish(this, new ScoreEvents.BadHit());
 		}
+	}
+
+	private void SongEndedHandler(BrokerEvent<SongEvents.SongEnded> inEvent)
+	{
+		playing = false;
 	}
 
 	private IEnumerator PlaySongAudio(Constants.Songs.Song song)
@@ -213,11 +231,13 @@ public class EnemyManager : MonoBehaviour
 	{
 		eventBroker.Subscribe<SongEvents.PlaySong>(PlaySongHandler);
 		eventBroker.Subscribe<SongEvents.HitNote>(HitNoteHandler);
+		eventBroker.Subscribe<SongEvents.SongEnded>(SongEndedHandler);
 	}
 
 	private void OnDisable()
 	{
 		eventBroker.Unsubscribe<SongEvents.PlaySong>(PlaySongHandler);
 		eventBroker.Unsubscribe<SongEvents.HitNote>(HitNoteHandler);
+		eventBroker.Unsubscribe<SongEvents.SongEnded>(SongEndedHandler);
 	}
 }
