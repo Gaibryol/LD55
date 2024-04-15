@@ -1,3 +1,5 @@
+using System;
+
 public class ScoreEvents
 {
     public class PerfectHit
@@ -25,6 +27,17 @@ public class ScoreEvents
         {
 
         }
+    }
+    public class TotalNotes
+    {
+        public TotalNotes(Constants.Songs.Song song, Action<int> processData)
+        {
+			Song = song;
+            ProcessData = processData;
+        }
+
+		public readonly Constants.Songs.Song Song;
+        public readonly Action<int> ProcessData;
     }
 
     public class Final

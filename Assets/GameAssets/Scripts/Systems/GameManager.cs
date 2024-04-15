@@ -47,9 +47,24 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
+	private void TotalNotesHandler(BrokerEvent<ScoreEvents.TotalNotes> inEvent)
+	{
+		int total = 0;
+
+		switch (inEvent.Payload.Song)
+		{
+			case Constants.Songs.Song.Song1:
+				total += song1Queues[0].Count + song1Queues[1].Count + song1Queues[2].Count + song1Queues[3].Count;
+				break;
+		}
+
+		inEvent.Payload.ProcessData.DynamicInvoke(total);
+	}
+
 	private void OnEnable()
 	{
 		eventBroker.Subscribe<SongEvents.GetSongData>(GetSongDataHandler);
+		eventBroker.Subscribe<ScoreEvents.TotalNotes>(TotalNotesHandler);
 
 		song1Button.onClick.AddListener(() => SelectSong(Constants.Songs.Song.Song1));
 	}
@@ -57,6 +72,7 @@ public class GameManager : MonoBehaviour
 	private void OnDisable()
 	{
 		eventBroker.Unsubscribe<SongEvents.GetSongData>(GetSongDataHandler);
+		eventBroker.Unsubscribe<ScoreEvents.TotalNotes>(TotalNotesHandler);
 
 		song1Button.onClick.RemoveListener(() => SelectSong(Constants.Songs.Song.Song1));
 	}

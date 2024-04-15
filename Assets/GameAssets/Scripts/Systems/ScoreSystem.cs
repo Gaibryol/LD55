@@ -19,6 +19,10 @@ public class ScoreSystem : MonoBehaviour
 	private int okayHit;
 	private int badHit;
 	private int miss;
+	private int totalNotes;
+
+	// Currently playing song
+	private Constants.Songs.Song currentSong;
 
 	//Text Showing Score & Combo
 	[SerializeField] private GameObject scoreUI;
@@ -34,16 +38,21 @@ public class ScoreSystem : MonoBehaviour
 		badHit = 0;
 		miss = 0;
 
-		combo = 49;
+		combo = 0;
 		score = 0;
 		multiplier = 1f;
+
+		currentSong = inEvent.Payload.Song;
+		eventBroker.Publish(this, new ScoreEvents.TotalNotes(currentSong, (data) =>
+		{
+			totalNotes = data;
+		}));
 
 		scoreText.SetText(score.ToString());
 		comboText.SetText(combo.ToString());
 		multiplierText.SetText(multiplier.ToString() + "x");
 
 		scoreUI.SetActive(true);
-		eventBroker.Publish(this, new ScoreEvents.PerfectHit());
 	}
 
 	//Event Listener When Song Ends
@@ -59,12 +68,13 @@ public class ScoreSystem : MonoBehaviour
 		perfectHit += 1;
 		CheckCombo();
 		AddScore(Constants.Game.PerfectHit);
-		if(combo == 50)
-        {
+		if (combo == 50)
+		{
 			Debug.Log("Hello");
 			eventBroker.Publish(this, new ScoreEvents.Ascended(true));
-        }
+		}
 	}
+
 	private void OkayHit(BrokerEvent<ScoreEvents.OkayHit> inEvent)
 	{
 		okayHit += 1;
@@ -77,6 +87,7 @@ public class ScoreSystem : MonoBehaviour
 		CheckCombo();
 		AddScore(Constants.Game.BadHit);
 	}
+
 	private void Miss(BrokerEvent<ScoreEvents.Miss> inEvent)
 	{
 		if (combo >= 50)
@@ -89,12 +100,13 @@ public class ScoreSystem : MonoBehaviour
 	}
 
 	private void AddScore(int Amount)
-    {
+	{
 		score += Mathf.CeilToInt(multiplier * Amount);
 		scoreText.SetText(score.ToString());
 	}
+
 	private void CheckCombo()
-    {
+	{
 		if (combo < 10)
 			multiplier = 1f;
 		else if (10 <= combo && combo < 20)
@@ -109,16 +121,16 @@ public class ScoreSystem : MonoBehaviour
 		comboText.SetText(combo.ToString());
 		multiplierText.SetText(multiplier.ToString() + "x");
 	}
+
 	private float CalculateAccuracy()
-    {
-		float accuracy;
-		accuracy = ((300f * perfectHit) + (200f * okayHit) + (100f * badHit)) / (300f * (perfectHit + okayHit + badHit + miss))*100;
+	{
+		float accuracy = ((300f * perfectHit) + (200f * okayHit) + (100f * badHit)) / (300f * totalNotes) * 100;
 		return accuracy;
-    }
+	}
 
 
-    private void OnEnable()
-    {
+	private void OnEnable()
+	{
 		eventBroker.Subscribe<ScoreEvents.PerfectHit>(PerfectHit);
 		eventBroker.Subscribe<ScoreEvents.OkayHit>(OkayHit);
 		eventBroker.Subscribe<ScoreEvents.BadHit>(BadHit);
@@ -127,14 +139,14 @@ public class ScoreSystem : MonoBehaviour
 		eventBroker.Subscribe<SongEvents.SongEnded>(SongEnded);
 
 	}
-    private void OnDisable()
-    {
+
+	private void OnDisable()
+	{
 		eventBroker.Unsubscribe<ScoreEvents.PerfectHit>(PerfectHit);
 		eventBroker.Unsubscribe<ScoreEvents.OkayHit>(OkayHit);
 		eventBroker.Unsubscribe<ScoreEvents.BadHit>(BadHit);
 		eventBroker.Unsubscribe<ScoreEvents.Miss>(Miss);
 		eventBroker.Unsubscribe<SongEvents.PlaySong>(PlaySong);
 		eventBroker.Unsubscribe<SongEvents.SongEnded>(SongEnded);
-
 	}
 }
