@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Splines;
 using UnityEngine.U2D;
+using static ScoreEvents;
 
 public class Enemy : MonoBehaviour
 {
@@ -41,6 +42,7 @@ public class Enemy : MonoBehaviour
 		splineAnimate.Play();
 
 		Direction = direction;
+		anim.SetInteger("Note", (int)Direction);
 	}
 
 	public void Hit()
@@ -51,12 +53,33 @@ public class Enemy : MonoBehaviour
 
 		// Play animation
 		// anim.SetBool("Hit", true);
-		gameObject.SetActive(false);
+		// gameObject.SetActive(false);
 	}
 
-	private void setActiveFalse()
+	public void PlayHitAnimation(string name)
 	{
+		spawned = false;
+		anim.SetTrigger(name);
+        splineAnimate.Pause();
+        Invoke("setActiveFalse", .3f);
+
+    }
+
+    private void setActiveFalse()
+    {
+		anim.ResetTrigger("Miss");
+        anim.SetInteger("Note", -1);
+
         gameObject.SetActive(false);
+    }
+
+	private void HandleMiss()
+	{
+        spawned = false;
+        eventBroker.Publish(this, new ScoreEvents.Miss(Direction));
+        anim.SetTrigger("Miss");
+        splineAnimate.Pause();
+        Invoke("setActiveFalse", .3f);
     }
 
     private void FixedUpdate()
@@ -81,46 +104,28 @@ public class Enemy : MonoBehaviour
 				case Constants.Game.Directions.Up:
 					if (transform.position.y <= target.y + Constants.Game.UpExtraDistance)
 					{
-						spawned = false;
-						eventBroker.Publish(this, new ScoreEvents.Miss(Direction));
-						anim.SetTrigger("WMiss");
-						splineAnimate.Pause();
-                        Invoke("setActiveFalse", 0.4f);
+						HandleMiss();
 					}
 					break;
 
 				case Constants.Game.Directions.Down:
 					if (transform.position.y >= target.y + Constants.Game.DownExtraDistance)
 					{
-						spawned = false;
-						eventBroker.Publish(this, new ScoreEvents.Miss(Direction));
-						anim.SetTrigger("SMiss");
-                        splineAnimate.Pause();
-                        Invoke("setActiveFalse", 0.4f);
+                        HandleMiss();
                     }
                     break;
 
 				case Constants.Game.Directions.Left:
 					if (transform.position.x >= target.x + Constants.Game.LeftExtraDistance)
 					{
-						spawned = false;
-						eventBroker.Publish(this, new ScoreEvents.Miss(Direction));
-                        anim.SetTrigger("AMiss");
-                        splineAnimate.Pause();
-                        splineAnimate.MaxSpeed = 0;
-                        Invoke("setActiveFalse", 0.4f);
+                        HandleMiss();
                     }
                     break;
 
 				case Constants.Game.Directions.Right:
 					if (transform.position.x <= target.x + Constants.Game.RightExtraDistance)
 					{
-						spawned = false;
-						eventBroker.Publish(this, new ScoreEvents.Miss(Direction));
-                        anim.SetTrigger("DMiss");
-						splineAnimate.Pause();
-						splineAnimate.MaxSpeed = 0;
-                        Invoke("setActiveFalse", 0.4f);
+                        HandleMiss();
                     }
                     break;
 			}

@@ -165,26 +165,6 @@ public class PlayerController : MonoBehaviour
 		lowerCircleAnimator.SetBool("Ascended", false);
 	}
 
-    private void Missed(BrokerEvent<Miss> @event)
-    {
-		if (@event.Payload.Direction == Constants.Game.Directions.Right)
-		{
-			animator.SetTrigger("DMiss");
-		}
-		else if (@event.Payload.Direction == Constants.Game.Directions.Left)
-		{
-			animator.SetTrigger("AMiss");
-		}
-		else if (@event.Payload.Direction == Constants.Game.Directions.Up)
-		{
-			animator.SetTrigger("WMiss");
-		}
-		else
-		{
-			animator.SetTrigger("SMiss");
-		}
-    }
-
 	private void OnEnable()
 	{
 		up = playerInputs.Player.Up;
@@ -206,7 +186,6 @@ public class PlayerController : MonoBehaviour
 		eventBroker.Subscribe<ScoreEvents.Ascended>(Ascended);
 		eventBroker.Subscribe<SongEvents.PlaySong>(PlaySong);
 		eventBroker.Subscribe<SongEvents.SongEnded>(SongEnded);
-		eventBroker.Subscribe<ScoreEvents.Miss>(Missed);
 	}
 
 
@@ -227,7 +206,6 @@ public class PlayerController : MonoBehaviour
 		eventBroker.Unsubscribe<ScoreEvents.Ascended>(Ascended);
 		eventBroker.Unsubscribe<SongEvents.PlaySong>(PlaySong);
 		eventBroker.Unsubscribe<SongEvents.SongEnded>(SongEnded);
-        eventBroker.Unsubscribe<ScoreEvents.Miss>(Missed);
 
     }
 }
