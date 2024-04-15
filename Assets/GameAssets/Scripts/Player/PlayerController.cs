@@ -183,6 +183,9 @@ public class PlayerController : MonoBehaviour
 		animator.enabled = true;
 		upperCircleAnimator.enabled = true;
 		lowerCircleAnimator.enabled = true;
+
+		defaultBackground.color = new Color(defaultBackground.color.r, defaultBackground.color.g, defaultBackground.color.b, 1f);
+		ascendBackground.color = new Color(ascendBackground.color.r, ascendBackground.color.g, ascendBackground.color.b, 0f);
 	}
 	private void SongEnded(BrokerEvent<SongEvents.SongEnded> inEvent)
 	{
