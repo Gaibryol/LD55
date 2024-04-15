@@ -2904,7 +2904,7 @@ MonoBehaviour:
   song1Cut: {fileID: 8300000, guid: 33f3c82325348a542b7e3c52eb028d8f, type: 3}
   mainMenuTheme: {fileID: 8300000, guid: 23ccc92f81da99042b850c36aba7c472, type: 3}
   song2: {fileID: 8300000, guid: 7c9984b7b09cf0745a233a9cbb6ac175, type: 3}
-  song3: {fileID: 8300000, guid: c416d27da823f2846b0f1068e5de2c1d, type: 3}
+  song3: {fileID: 8300000, guid: fe1038271f0a7814d981cc3c9693310b, type: 3}
   testSound: {fileID: 8300000, guid: 7908e08ef3bc623478e28490899cad45, type: 3}
 --- !u!82 &189595438
 AudioSource:
@@ -5089,8 +5089,8 @@ MonoBehaviour:
   song1Hard: {fileID: 4900000, guid: 59ab1199d66ed424ca2067428b266e76, type: 3}
   song2Normal: {fileID: 4900000, guid: a5b9f3f308eb91c4995358c6e1642c37, type: 3}
   song2Hard: {fileID: 4900000, guid: ba70dea2d0446fa4aa9612985c8156c9, type: 3}
-  song3Normal: {fileID: 4900000, guid: 97ebdab2e1bf57d49ba989cd086d0664, type: 3}
-  song3Hard: {fileID: 4900000, guid: 59ab1199d66ed424ca2067428b266e76, type: 3}
+  song3Normal: {fileID: 4900000, guid: 074ce7d067019cc45aa5d6fdd4396726, type: 3}
+  song3Hard: {fileID: 4900000, guid: 90c8989343c279a458bfbb56d1b4acda, type: 3}
   mainMenuPanel: {fileID: 1737919444}
 --- !u!1 &329548228
 GameObject:
