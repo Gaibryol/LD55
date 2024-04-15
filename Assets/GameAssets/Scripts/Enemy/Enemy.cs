@@ -7,9 +7,8 @@ using static ScoreEvents;
 
 public class Enemy : MonoBehaviour
 {
-	private Rigidbody2D rbody;
 	private Animator anim;
-	private SplineContainer spline;
+	private Collider2D coll;
 	[SerializeField] private SplineAnimate splineAnimate;
 
 	private readonly EventBrokerComponent eventBroker = new EventBrokerComponent();
@@ -24,8 +23,8 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
-		rbody = GetComponent<Rigidbody2D>();
 		anim = GetComponent<Animator>();
+		coll = GetComponent<Collider2D>();
 		splineAnimate = GetComponent<SplineAnimate>();
 		spawned = false;
     }
@@ -40,7 +39,7 @@ public class Enemy : MonoBehaviour
 		splineAnimate.MaxSpeed = maxSpeed;
 		splineAnimate.NormalizedTime = beatOffset / pathToFollow.Spline.GetLength();
 		splineAnimate.Play();
-
+		coll.enabled = true;
 		Direction = direction;
 		anim.SetInteger("Note", (int)Direction);
 	}
@@ -49,8 +48,10 @@ public class Enemy : MonoBehaviour
 	{
 		// Stop movement and send logic for scoring
 		spawned = false;
-		eventBroker.Publish(this, new SongEvents.HitNote(Direction, gameObject));
+        splineAnimate.Pause();
 
+        eventBroker.Publish(this, new SongEvents.HitNote(Direction, gameObject));
+		coll.enabled = false;
 		// Play animation
 		// anim.SetBool("Hit", true);
 		// gameObject.SetActive(false);
@@ -60,7 +61,6 @@ public class Enemy : MonoBehaviour
 	{
 		spawned = false;
 		anim.SetTrigger(name);
-        splineAnimate.Pause();
         Invoke("setActiveFalse", .3f);
 
     }
@@ -76,6 +76,7 @@ public class Enemy : MonoBehaviour
 	private void HandleMiss()
 	{
         spawned = false;
+		coll.enabled = false;
         eventBroker.Publish(this, new ScoreEvents.Miss(Direction));
         anim.SetTrigger("Miss");
         splineAnimate.Pause();
@@ -87,11 +88,9 @@ public class Enemy : MonoBehaviour
 		transform.rotation = Quaternion.identity;
 		if (spawned)
 		{
-            if (splineAnimate.NormalizedTime == 1)
+            if (splineAnimate.NormalizedTime >= .9)
 			{
-                spawned = false;
-                eventBroker.Publish(this, new ScoreEvents.Miss(Direction));
-                gameObject.SetActive(false);
+				HandleMiss();
             }
 			else if (!splineAnimate.IsPlaying)
 			{

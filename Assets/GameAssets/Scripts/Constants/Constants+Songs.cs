@@ -12,8 +12,8 @@ public partial class Constants
 		public const float TimeToSweetSpot = 3f;
 		public const float SongStartDelay = 3f;
 
-		public const float BadThreshold = 0.35f;
-		public const float OkThreshold = 0.22f;
-		public const float PerfectThreshold = 0.10f;
+		public const float BadThreshold = 0.25f;
+		public const float OkThreshold = 0.15f;
+		public const float PerfectThreshold = 0.05f;
 	}
 }

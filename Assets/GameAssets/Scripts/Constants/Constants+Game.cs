@@ -13,7 +13,7 @@ public partial class Constants
 			Right
 		}
 
-		public const float PlayerHitRadius = 0.22f;
+		public const float PlayerHitRadius = 0.12f;
 
 		public const float UpExtraDistance = -0.5f;
 		public const float DownExtraDistance = 0.5f;

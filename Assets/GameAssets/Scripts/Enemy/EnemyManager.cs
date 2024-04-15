@@ -68,7 +68,7 @@ public class EnemyManager : MonoBehaviour
 			enemy.SetActive(false);
 		}
 
-		eventBroker.Publish(this, new SongEvents.GetSongData(Constants.Songs.Song.Song1, (data) => song1Queues = data));
+        eventBroker.Publish(this, new SongEvents.GetSongData(Constants.Songs.Song.Song1, (data) => song1Queues = data));
 		eventBroker.Publish(this, new AudioEvents.GetSongLength(Constants.Songs.Song.Song1.ToString(), (data) => song1Length = data));
 
 		eventBroker.Publish(this, new SongEvents.GetSongData(Constants.Songs.Song.Song2, (data) => song2Queues = data));
@@ -218,7 +218,7 @@ public class EnemyManager : MonoBehaviour
             inEvent.Payload.Enemy.GetComponent<Enemy>().PlayHitAnimation("Okay");
             eventBroker.Publish(this, new ScoreEvents.OkayHit());
 		}
-		else if (difference <= Constants.Songs.BadThreshold)
+		else
 		{
             // Bad
             inEvent.Payload.Enemy.GetComponent<Enemy>().PlayHitAnimation("Bad");
