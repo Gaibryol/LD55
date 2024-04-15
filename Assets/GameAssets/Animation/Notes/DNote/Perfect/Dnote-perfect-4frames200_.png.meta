@@ -1,0 +1,286 @@
+fileFormatVersion: 2
+guid: 5b4f035b4d929477188e853cafca6c9d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6794271168547996315
+    second: Dnote-perfect-4frames200__0
+  - first:
+      213: 8936213542167424019
+    second: Dnote-perfect-4frames200__1
+  - first:
+      213: -5375896483984705839
+    second: Dnote-perfect-4frames200__2
+  - first:
+      213: 7858339612829579720
+    second: Dnote-perfect-4frames200__3
+  - first:
+      213: -5387847888999284722
+    second: Dnote-perfect-4frames200__4
+  - first:
+      213: -6134633697516071715
+    second: Dnote-perfect-4frames200__5
+  - first:
+      213: 4369520700028039655
+    second: Dnote-perfect-4frames200__6
+  - first:
+      213: -1533268752898042628
+    second: Dnote-perfect-4frames200__7
+  - first:
+      213: 5031267052106269342
+    second: Dnote-perfect-4frames200__8
+  - first:
+      213: -1968334857783461255
+    second: Dnote-perfect-4frames200__9
+  - first:
+      213: 7939271949476282087
+    second: Dnote-perfect-4frames200__10
+  - first:
+      213: 4172226220564812560
+    second: Dnote-perfect-4frames200__11
+  - first:
+      213: 912908263993086724
+    second: Dnote-perfect-4frames200__12
+  - first:
+      213: 4419119965286420911
+    second: Dnote-perfect-4frames200__13
+  - first:
+      213: 589625029339351869
+    second: Dnote-perfect-4frames200__14
+  - first:
+      213: 4668239913561934371
+    second: Dnote-perfect-4frames200__15
+  - first:
+      213: 7777132919729517076
+    second: Dnote-perfect-4frames200__16
+  - first:
+      213: 2594894510941185204
+    second: Dnote-perfect-4frames200__17
+  - first:
+      213: 5351464795754442345
+    second: Dnote-perfect-4frames200__18
+  - first:
+      213: 889395441446322115
+    second: Dnote-perfect-4frames200__19
+  - first:
+      213: 4542974449756324295
+    second: Dnote-perfect-4frames200__20
+  - first:
+      213: 2936890869005203652
+    second: Dnote-perfect-4frames200__21
+  - first:
+      213: 905217653136623157
+    second: Dnote-perfect-4frames200__22
+  - first:
+      213: -3972023314685481799
+    second: Dnote-perfect-4frames200__23
+  - first:
+      213: -4612784481775752821
+    second: Dnote-perfect-4frames200__24
+  - first:
+      213: 2609744370224679223
+    second: Dnote-perfect-4frames200__25
+  - first:
+      213: 4518522912952815210
+    second: Dnote-perfect-4frames200__26
+  - first:
+      213: -7814471893245323413
+    second: Dnote-perfect-4frames200__27
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Dnote-perfect-4frames200__0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 202
+        height: 212
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b924bf451a91a4e50800000000000000
+      internalID: 6794271168547996315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dnote-perfect-4frames200__1
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 0
+        width: 202
+        height: 212
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31cace9dedec30c70800000000000000
+      internalID: 8936213542167424019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dnote-perfect-4frames200__2
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 0
+        width: 202
+        height: 212
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d6f1da61aaf465b0800000000000000
+      internalID: -5375896483984705839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dnote-perfect-4frames200__3
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 0
+        width: 202
+        height: 212
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c9761b1e3e6e0d60800000000000000
+      internalID: 7858339612829579720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 9c75bbc6298c04a8b985f8025c743be2
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Dnote-perfect-4frames200__0: 6794271168547996315
+      Dnote-perfect-4frames200__1: 8936213542167424019
+      Dnote-perfect-4frames200__2: -5375896483984705839
+      Dnote-perfect-4frames200__3: 7858339612829579720
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

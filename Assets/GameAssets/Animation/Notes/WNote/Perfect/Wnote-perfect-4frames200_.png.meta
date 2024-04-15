@@ -1,0 +1,286 @@
+fileFormatVersion: 2
+guid: 258a0c6c58c92472495fd8c9d2f28122
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4710296640663750986
+    second: Wnote-perfect-4frames200__0
+  - first:
+      213: -4732351221302108155
+    second: Wnote-perfect-4frames200__1
+  - first:
+      213: -3438362669927471
+    second: Wnote-perfect-4frames200__2
+  - first:
+      213: 1838753797272085078
+    second: Wnote-perfect-4frames200__3
+  - first:
+      213: -5960724186969695203
+    second: Wnote-perfect-4frames200__4
+  - first:
+      213: 2509479248478128666
+    second: Wnote-perfect-4frames200__5
+  - first:
+      213: -7274339554446585535
+    second: Wnote-perfect-4frames200__6
+  - first:
+      213: 931426736917585141
+    second: Wnote-perfect-4frames200__7
+  - first:
+      213: -6538975737003865720
+    second: Wnote-perfect-4frames200__8
+  - first:
+      213: -1742387237231664776
+    second: Wnote-perfect-4frames200__9
+  - first:
+      213: 3073663530151134498
+    second: Wnote-perfect-4frames200__10
+  - first:
+      213: 8724787762047101188
+    second: Wnote-perfect-4frames200__11
+  - first:
+      213: -1752575524404755957
+    second: Wnote-perfect-4frames200__12
+  - first:
+      213: 5894541696577691513
+    second: Wnote-perfect-4frames200__13
+  - first:
+      213: -297900849106666106
+    second: Wnote-perfect-4frames200__14
+  - first:
+      213: -8842988160183095185
+    second: Wnote-perfect-4frames200__15
+  - first:
+      213: -4815034474497222433
+    second: Wnote-perfect-4frames200__16
+  - first:
+      213: -1709827652354851345
+    second: Wnote-perfect-4frames200__17
+  - first:
+      213: -2495344097257028804
+    second: Wnote-perfect-4frames200__18
+  - first:
+      213: -9123483732667916372
+    second: Wnote-perfect-4frames200__19
+  - first:
+      213: 7747200722628245305
+    second: Wnote-perfect-4frames200__20
+  - first:
+      213: -4217464351054767801
+    second: Wnote-perfect-4frames200__21
+  - first:
+      213: -5997634256895030372
+    second: Wnote-perfect-4frames200__22
+  - first:
+      213: 3130714517871486628
+    second: Wnote-perfect-4frames200__23
+  - first:
+      213: 7943212650701332010
+    second: Wnote-perfect-4frames200__24
+  - first:
+      213: -6158598417091429647
+    second: Wnote-perfect-4frames200__25
+  - first:
+      213: -6280494781660468280
+    second: Wnote-perfect-4frames200__26
+  - first:
+      213: 8206659122338336596
+    second: Wnote-perfect-4frames200__27
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Wnote-perfect-4frames200__0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 202
+        height: 212
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a498a75a6d55e5140800000000000000
+      internalID: 4710296640663750986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wnote-perfect-4frames200__1
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 0
+        width: 202
+        height: 212
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 500e6e523af435eb0800000000000000
+      internalID: -4732351221302108155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wnote-perfect-4frames200__2
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 0
+        width: 202
+        height: 212
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d3337ec3d8c3fff0800000000000000
+      internalID: -3438362669927471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wnote-perfect-4frames200__3
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 0
+        width: 202
+        height: 212
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 652adc326d0948910800000000000000
+      internalID: 1838753797272085078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 34a485acf56994b848a727d72812c66e
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Wnote-perfect-4frames200__0: 4710296640663750986
+      Wnote-perfect-4frames200__1: -4732351221302108155
+      Wnote-perfect-4frames200__2: -3438362669927471
+      Wnote-perfect-4frames200__3: 1838753797272085078
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
