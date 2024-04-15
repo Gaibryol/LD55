@@ -59,7 +59,23 @@ public class ScoreSystem : MonoBehaviour
 	public void SongEnded(BrokerEvent<SongEvents.SongEnded> inEvent)
 	{
 		scoreUI.SetActive(false);
-		eventBroker.Publish(this, new ScoreEvents.Final(score, CalculateAccuracy()));
+		int highscore;
+		if (PlayerPrefs.HasKey(Constants.Game.HighscorePP))
+		{
+			highscore = PlayerPrefs.GetInt(Constants.Game.HighscorePP);
+			if (score > highscore)
+			{
+				PlayerPrefs.SetInt(Constants.Game.HighscorePP, score);
+				highscore = score;
+			}
+		}
+        else
+        {
+			PlayerPrefs.SetInt(Constants.Game.HighscorePP, score);
+			highscore = score;
+
+        }
+		eventBroker.Publish(this, new ScoreEvents.Final(score, CalculateAccuracy(), highscore, perfectHit, okayHit,badHit, miss));
 	}
 
 	private void PerfectHit(BrokerEvent<ScoreEvents.PerfectHit> inEvent)
@@ -123,18 +139,6 @@ public class ScoreSystem : MonoBehaviour
 
 	private float CalculateAccuracy()
 	{
-		int highscore;
-		if (PlayerPrefs.HasKey(Constants.Game.HighscorePP))
-		{
-			highscore = PlayerPrefs.GetInt(Constants.Game.HighscorePP);
-			if(score > highscore)
-            {
-
-            }
-        }
-
-
-
 		float accuracy = ((300f * perfectHit) + (200f * okayHit) + (100f * badHit)) / (300f * totalNotes) * 100;
 		return accuracy;
 	}
