@@ -29,6 +29,7 @@ public class ScoreSystem : MonoBehaviour
 	[SerializeField] private TMP_Text scoreText;
 	[SerializeField] private TMP_Text comboText;
 	[SerializeField] private TMP_Text multiplierText;
+	[SerializeField] private TMP_Text accuracyText;
 
 
 	public void PlaySong(BrokerEvent<SongEvents.PlaySong> inEvent)
@@ -49,8 +50,9 @@ public class ScoreSystem : MonoBehaviour
 		}));
 
 		scoreText.SetText(score.ToString());
-		comboText.SetText(combo.ToString());
-		multiplierText.SetText(multiplier.ToString() + "x");
+		comboText.SetText(combo.ToString() + " Combo");
+		multiplierText.SetText(multiplier.ToString() + "X");
+		accuracyText.SetText(CalculateAccuracy().ToString("F2") + "%");
 
 		scoreUI.SetActive(true);
 	}
@@ -115,9 +117,10 @@ public class ScoreSystem : MonoBehaviour
 	}
 
 	private void AddScore(int Amount)
-	{
-		score += Mathf.CeilToInt(multiplier * Amount);
+    {
+        score += Mathf.CeilToInt(multiplier * Amount);
 		scoreText.SetText(score.ToString());
+		accuracyText.SetText(CalculateAccuracy().ToString("F2")+"%");
 	}
 
 	private void CheckCombo()
@@ -133,8 +136,8 @@ public class ScoreSystem : MonoBehaviour
 		else
 			multiplier = 6f;
 
-		comboText.SetText(combo.ToString());
-		multiplierText.SetText(multiplier.ToString() + "x");
+		comboText.SetText(combo.ToString() + " Combo!");
+		multiplierText.SetText(multiplier.ToString() + "X");
 	}
 
 	private float CalculateAccuracy()
