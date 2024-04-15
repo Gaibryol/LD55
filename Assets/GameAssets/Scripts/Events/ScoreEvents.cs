@@ -25,9 +25,10 @@ public class ScoreEvents
 
     public class Miss
     {
-        public Miss()
+        public readonly Constants.Game.Directions Direction;
+        public Miss(Constants.Game.Directions direction)
         {
-
+            Direction = direction;
         }
     }
 
