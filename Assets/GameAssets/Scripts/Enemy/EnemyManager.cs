@@ -24,9 +24,10 @@ public class EnemyManager : MonoBehaviour
 	[SerializeField] private SplineContainer splineEast;
 	[SerializeField] private SplineContainer splineWest;
 
-	private List<Queue<float>> song1Queues;
-	private List<Queue<float>> song2Queues;
-	private List<Queue<float>> song3Queues;
+	private List<Queue<float>> song1NormalQueues;
+	private List<Queue<float>> song1HardQueues;
+	private List<Queue<float>> song2NormalQueues;
+	private List<Queue<float>> song2HardQueues;
 	private double startTime;
 
 	private readonly EventBrokerComponent eventBroker = new EventBrokerComponent();
@@ -53,8 +54,6 @@ public class EnemyManager : MonoBehaviour
 	private Queue<float> songLeftQueue;
 	private Queue<float> songRightQueue;
 
-	[SerializeField] private AudioClip song1;
-
 	// Start is called before the first frame update
 	private void Start()
     {
@@ -68,10 +67,12 @@ public class EnemyManager : MonoBehaviour
 			enemy.SetActive(false);
 		}
 
-        eventBroker.Publish(this, new SongEvents.GetSongData(Constants.Songs.Song.Song1, (data) => song1Queues = data));
+		eventBroker.Publish(this, new SongEvents.GetSongData(Constants.Songs.Song.Song1, Constants.Songs.Difficulties.Normal, (data) => song1NormalQueues = data));
+		eventBroker.Publish(this, new SongEvents.GetSongData(Constants.Songs.Song.Song1, Constants.Songs.Difficulties.Hard, (data) => song1HardQueues = data));
 		eventBroker.Publish(this, new AudioEvents.GetSongLength(Constants.Songs.Song.Song1.ToString(), (data) => song1Length = data));
 
-		eventBroker.Publish(this, new SongEvents.GetSongData(Constants.Songs.Song.Song2, (data) => song2Queues = data));
+		eventBroker.Publish(this, new SongEvents.GetSongData(Constants.Songs.Song.Song2, Constants.Songs.Difficulties.Normal, (data) => song2NormalQueues = data));
+		eventBroker.Publish(this, new SongEvents.GetSongData(Constants.Songs.Song.Song2, Constants.Songs.Difficulties.Hard, (data) => song2HardQueues = data));
 		eventBroker.Publish(this, new AudioEvents.GetSongLength(Constants.Songs.Song.Song2.ToString(), (data) => song2Length = data));
 	}
 
@@ -152,10 +153,21 @@ public class EnemyManager : MonoBehaviour
 		switch (inEvent.Payload.Song)
 		{
 			case Constants.Songs.Song.Song1:
-				songUpQueue = new Queue<float>(song1Queues[0]);
-				songDownQueue = new Queue<float>(song1Queues[1]);
-				songLeftQueue = new Queue<float>(song1Queues[2]);
-				songRightQueue = new Queue<float>(song1Queues[3]);
+
+				if (inEvent.Payload.Difficulty == Constants.Songs.Difficulties.Normal)
+				{
+					songUpQueue = new Queue<float>(song1NormalQueues[0]);
+					songDownQueue = new Queue<float>(song1NormalQueues[1]);
+					songLeftQueue = new Queue<float>(song1NormalQueues[2]);
+					songRightQueue = new Queue<float>(song1NormalQueues[3]);
+				}
+				else if (inEvent.Payload.Difficulty == Constants.Songs.Difficulties.Hard)
+				{
+					songUpQueue = new Queue<float>(song1HardQueues[0]);
+					songDownQueue = new Queue<float>(song1HardQueues[1]);
+					songLeftQueue = new Queue<float>(song1HardQueues[2]);
+					songRightQueue = new Queue<float>(song1HardQueues[3]);
+				}
 
 				beatsPerSec = song1BPM / 60f;
 				totalBeats = song1Length * beatsPerSec;
@@ -163,10 +175,20 @@ public class EnemyManager : MonoBehaviour
 				break;
 
 			case Constants.Songs.Song.Song2:
-				songUpQueue = new Queue<float>(song2Queues[0]);
-				songDownQueue = new Queue<float>(song2Queues[1]);
-				songLeftQueue = new Queue<float>(song2Queues[2]);
-				songRightQueue = new Queue<float>(song2Queues[3]);
+				if (inEvent.Payload.Difficulty == Constants.Songs.Difficulties.Normal)
+				{
+					songUpQueue = new Queue<float>(song2NormalQueues[0]);
+					songDownQueue = new Queue<float>(song2NormalQueues[1]);
+					songLeftQueue = new Queue<float>(song2NormalQueues[2]);
+					songRightQueue = new Queue<float>(song2NormalQueues[3]);
+				}
+				else if (inEvent.Payload.Difficulty == Constants.Songs.Difficulties.Hard)
+				{
+					songUpQueue = new Queue<float>(song2HardQueues[0]);
+					songDownQueue = new Queue<float>(song2HardQueues[1]);
+					songLeftQueue = new Queue<float>(song2HardQueues[2]);
+					songRightQueue = new Queue<float>(song2HardQueues[3]);
+				}
 
 				beatsPerSec = song2BPM / 60f;
 				totalBeats = song2Length * beatsPerSec;

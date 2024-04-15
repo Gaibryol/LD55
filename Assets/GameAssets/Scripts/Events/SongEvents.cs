@@ -7,12 +7,14 @@ public class SongEvents
 {
     public class PlaySong
 	{
-		public PlaySong(Constants.Songs.Song song)
+		public PlaySong(Constants.Songs.Song song, Constants.Songs.Difficulties difficulty)
 		{
 			Song = song;
+			Difficulty = difficulty;
 		}
 
 		public readonly Constants.Songs.Song Song;
+		public readonly Constants.Songs.Difficulties Difficulty;
 	}
 
 	public class HitNote
@@ -29,13 +31,15 @@ public class SongEvents
 
 	public class GetSongData
 	{
-		public GetSongData(Constants.Songs.Song song, Action<List<Queue<float>>> processData)
+		public GetSongData(Constants.Songs.Song song, Constants.Songs.Difficulties difficulty, Action<List<Queue<float>>> processData)
 		{
 			Song = song;
+			Difficulty = difficulty;
 			ProcessData = processData;
 		}
 
 		public readonly Constants.Songs.Song Song;
+		public readonly Constants.Songs.Difficulties Difficulty;
 		public readonly Action<List<Queue<float>>> ProcessData;
 	}
 

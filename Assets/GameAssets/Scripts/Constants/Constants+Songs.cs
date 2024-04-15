@@ -9,6 +9,12 @@ public partial class Constants
 			Song2,
 		}
 
+		public enum Difficulties
+		{
+			Normal,
+			Hard
+		}
+
 		public const float TimeToSweetSpot = 3f;
 		public const float SongStartDelay = 3f;
 

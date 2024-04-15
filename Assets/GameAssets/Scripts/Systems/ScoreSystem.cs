@@ -43,7 +43,7 @@ public class ScoreSystem : MonoBehaviour
 		multiplier = 1f;
 
 		currentSong = inEvent.Payload.Song;
-		eventBroker.Publish(this, new ScoreEvents.TotalNotes(currentSong, (data) =>
+		eventBroker.Publish(this, new ScoreEvents.TotalNotes(currentSong, inEvent.Payload.Difficulty, (data) =>
 		{
 			totalNotes = data;
 		}));
