@@ -31,6 +31,7 @@ public class Enemy : MonoBehaviour
 
 	public void Initialize(Vector3 _target, double _spawnTime, float maxSpeed, SplineContainer pathToFollow, float beatOffset, Constants.Game.Directions direction)
 	{
+		CancelInvoke();
 		target = _target;
 		SpawnTime = _spawnTime;
 		spawned = true;
