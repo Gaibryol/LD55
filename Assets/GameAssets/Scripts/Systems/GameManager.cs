@@ -23,10 +23,14 @@ public class GameManager : MonoBehaviour
 	private List<Queue<float>> song2NormalQueues;
 	private List<Queue<float>> song2HardQueues;
 
+	private bool playing;
+
 	private readonly EventBrokerComponent eventBroker = new EventBrokerComponent();
 
 	private void Awake()
 	{
+		playing = false;
+
 		midiConverter.JsonConvert(song1Normal, out Queue<float> song1NormalLeft, out Queue<float> song1NormalUp, out Queue<float> song1NormalRight, out Queue<float> song1NormalDown);
 		song1NormalQueues = new List<Queue<float>>() { song1NormalUp, song1NormalDown, song1NormalLeft, song1NormalRight };
 
@@ -42,13 +46,24 @@ public class GameManager : MonoBehaviour
 
 	public void SelectSong(Constants.Songs.Song song, Constants.Songs.Difficulties difficulty)
 	{
-		eventBroker.Publish(this, new AudioEvents.GetSongLength(song.ToString(), (length) => { StartCoroutine(OnSongEnd(length)); }));
+		eventBroker.Publish(this, new AudioEvents.GetSongLength(song.ToString(), (length) => 
+		{
+			StartCoroutine(OnSongEnd(length));
+			playing = true;
+		}));
 		eventBroker.Publish(this, new SongEvents.PlaySong(song, difficulty));
 		mainMenuPanel.SetActive(false);
 	}
 
+	private void FinalHandler(BrokerEvent<ScoreEvents.Final> inEvent)
+	{
+		playing = false;
+	}
+
 	private IEnumerator OnSongEnd(float length)
 	{
+		if (!playing) yield break;
+
 		yield return new WaitForSeconds(length);
 
 		// Song ended
@@ -118,6 +133,7 @@ public class GameManager : MonoBehaviour
 	{
 		eventBroker.Subscribe<SongEvents.GetSongData>(GetSongDataHandler);
 		eventBroker.Subscribe<ScoreEvents.TotalNotes>(TotalNotesHandler);
+		eventBroker.Subscribe<ScoreEvents.Final>(FinalHandler);
 
 		song1NormalButton.onClick.AddListener(() => SelectSong(Constants.Songs.Song.Song1, Constants.Songs.Difficulties.Normal));
 		song1HardButton.onClick.AddListener(() => SelectSong(Constants.Songs.Song.Song1, Constants.Songs.Difficulties.Hard));
@@ -129,6 +145,7 @@ public class GameManager : MonoBehaviour
 	{
 		eventBroker.Unsubscribe<SongEvents.GetSongData>(GetSongDataHandler);
 		eventBroker.Unsubscribe<ScoreEvents.TotalNotes>(TotalNotesHandler);
+		eventBroker.Subscribe<ScoreEvents.Final>(FinalHandler);
 
 		song1NormalButton.onClick.RemoveListener(() => SelectSong(Constants.Songs.Song.Song1, Constants.Songs.Difficulties.Normal));
 		song1HardButton.onClick.RemoveListener(() => SelectSong(Constants.Songs.Song.Song1, Constants.Songs.Difficulties.Hard));
