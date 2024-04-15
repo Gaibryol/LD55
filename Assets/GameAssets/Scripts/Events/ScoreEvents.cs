@@ -8,6 +8,7 @@ public class ScoreEvents
         {
         }
     }
+
     public class OkayHit
     {
         public OkayHit()
@@ -21,6 +22,7 @@ public class ScoreEvents
         {
         }
     }
+
     public class Miss
     {
         public Miss()
@@ -28,6 +30,7 @@ public class ScoreEvents
 
         }
     }
+
     public class TotalNotes
     {
         public TotalNotes(Constants.Songs.Song song, Action<int> processData)

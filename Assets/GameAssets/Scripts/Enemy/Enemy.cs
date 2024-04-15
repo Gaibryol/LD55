@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
 
 	private float BPS;
 
-	private Vector3 direction;
+	private Constants.Game.Directions Direction;
 
     private void Awake()
     {
@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour
 		spawned = false;
     }
 
-	public void Initialize(Vector3 _target, double _spawnTime, float maxSpeed, SplineContainer pathToFollow, float beatOffset)
+	public void Initialize(Vector3 _target, double _spawnTime, float maxSpeed, SplineContainer pathToFollow, float beatOffset, Constants.Game.Directions direction)
 	{
 		target = _target;
 		SpawnTime = _spawnTime;
@@ -40,14 +40,14 @@ public class Enemy : MonoBehaviour
 		splineAnimate.NormalizedTime = beatOffset / pathToFollow.Spline.GetLength();
 		splineAnimate.Play();
 
-		direction = (target - transform.position).normalized;
+		Direction = direction;
 	}
 
 	public void Hit()
 	{
 		// Stop movement and send logic for scoring
 		spawned = false;
-		eventBroker.Publish(this, new SongEvents.HitNote(gameObject));
+		eventBroker.Publish(this, new SongEvents.HitNote(Direction, gameObject));
 
 		// Play animation
 		// anim.SetBool("Hit", true);
@@ -67,54 +67,47 @@ public class Enemy : MonoBehaviour
             }
 			else if (!splineAnimate.IsPlaying)
 			{
-				Debug.Log("I'm not playing!");
+				//Debug.Log("I'm not playing!");
 				splineAnimate.Play();
-
 			}
-			return;
 
-            transform.position = transform.position + (direction * 3.4691f * Time.fixedDeltaTime);
+			switch (Direction)
+			{
+				case Constants.Game.Directions.Up:
+					if (transform.position.y <= target.y + Constants.Game.UpExtraDistance)
+					{
+						spawned = false;
+						eventBroker.Publish(this, new ScoreEvents.Miss());
+						gameObject.SetActive(false);
+					}
+					break;
 
-			if (direction.x < 0)
-			{
-				// Right
-				if (transform.position.x <= target.x + Constants.Game.RightExtraDistance)
-				{
-					spawned = false;
-					eventBroker.Publish(this, new ScoreEvents.Miss());
-					gameObject.SetActive(false);
-				}
-			}
-			else if (direction.x > 0)
-			{
-				// Left
-				if (transform.position.x >= target.x + Constants.Game.LeftExtraDistance)
-				{
-					spawned = false;
-					eventBroker.Publish(this, new ScoreEvents.Miss());
-					gameObject.SetActive(false);
-				}
-			}
-			else if (direction.y < 0)
-			{
-				// Up
-				if (transform.position.y <= target.y + Constants.Game.UpExtraDistance)
-				{
-					spawned = false;
-					eventBroker.Publish(this, new ScoreEvents.Miss());
-					gameObject.SetActive(false);
-				}
+				case Constants.Game.Directions.Down:
+					if (transform.position.y >= target.y + Constants.Game.DownExtraDistance)
+					{
+						spawned = false;
+						eventBroker.Publish(this, new ScoreEvents.Miss());
+						gameObject.SetActive(false);
+					}
+					break;
 
-			}
-			else if (direction.y > 0)
-			{
-				// Down
-				if (transform.position.y >= target.y + Constants.Game.DownExtraDistance)
-				{
-					spawned = false;
-					eventBroker.Publish(this, new ScoreEvents.Miss());
-					gameObject.SetActive(false);
-				}
+				case Constants.Game.Directions.Left:
+					if (transform.position.x >= target.x + Constants.Game.LeftExtraDistance)
+					{
+						spawned = false;
+						eventBroker.Publish(this, new ScoreEvents.Miss());
+						gameObject.SetActive(false);
+					}
+					break;
+
+				case Constants.Game.Directions.Right:
+					if (transform.position.x <= target.x + Constants.Game.RightExtraDistance)
+					{
+						spawned = false;
+						eventBroker.Publish(this, new ScoreEvents.Miss());
+						gameObject.SetActive(false);
+					}
+					break;
 			}
 		}
 	}

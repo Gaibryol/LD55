@@ -108,7 +108,7 @@ public class EnemyManager : MonoBehaviour
 				float distance = beatsPerSec * (songPosition - nextUpNote + lookaheadBeats / beatsPerSec);
 
 				enemy.SetActive(true);
-				enemy.GetComponent<Enemy>().Initialize(upSweetSpot.position, beatsPosition, maxSpeed, splineNorth, distance);
+				enemy.GetComponent<Enemy>().Initialize(upSweetSpot.position, beatsPosition, maxSpeed, splineNorth, distance, Constants.Game.Directions.Up);
 
 				songUpQueue.Dequeue();
 			}
@@ -118,7 +118,7 @@ public class EnemyManager : MonoBehaviour
 				float distance = beatsPerSec * (songPosition - nextDownNote + lookaheadBeats / beatsPerSec);
 
 				enemy.SetActive(true);
-				enemy.GetComponent<Enemy>().Initialize(downSweetSpot.position, beatsPosition, maxSpeed, splineSouth, distance);
+				enemy.GetComponent<Enemy>().Initialize(downSweetSpot.position, beatsPosition, maxSpeed, splineSouth, distance, Constants.Game.Directions.Down);
 
 				songDownQueue.Dequeue();
 			}
@@ -128,7 +128,7 @@ public class EnemyManager : MonoBehaviour
 				float distance = beatsPerSec * (songPosition - nextLeftNote + lookaheadBeats / beatsPerSec);
 
 				enemy.SetActive(true);
-				enemy.GetComponent<Enemy>().Initialize(leftSweetSpot.position, beatsPosition, maxSpeed, splineWest, distance);
+				enemy.GetComponent<Enemy>().Initialize(leftSweetSpot.position, beatsPosition, maxSpeed, splineWest, distance, Constants.Game.Directions.Left);
 
 				songLeftQueue.Dequeue();
 			}
@@ -138,7 +138,7 @@ public class EnemyManager : MonoBehaviour
 				float distance = beatsPerSec * (songPosition - nextRightNote + lookaheadBeats / beatsPerSec);
 
 				enemy.SetActive(true);
-				enemy.GetComponent<Enemy>().Initialize(rightSweetSpot.position, beatsPosition, maxSpeed, splineEast, distance);
+				enemy.GetComponent<Enemy>().Initialize(rightSweetSpot.position, beatsPosition, maxSpeed, splineEast, distance, Constants.Game.Directions.Right);
 
 				songRightQueue.Dequeue();
 			}
@@ -167,12 +167,29 @@ public class EnemyManager : MonoBehaviour
 
 	private void HitNoteHandler(BrokerEvent<SongEvents.HitNote> inEvent)
 	{
-		Enemy enemy = inEvent.Payload.Enemy.GetComponent<Enemy>();
-		double beatsSinceSpawn = beatsPosition - enemy.SpawnTime;
+		Vector3 notePosition = inEvent.Payload.Enemy.transform.position;
+		float difference = 0f;
 
-		// Calculate difference and factor in player input latency
-		double difference = beatsSinceSpawn - 3 - playerInputLatency;
-		difference = (difference > 0) ? difference : difference * -1;
+		switch (inEvent.Payload.Direction)
+		{
+			case Constants.Game.Directions.Up:
+				difference = Vector3.Distance(notePosition, upSweetSpot.position);
+				break;
+
+			case Constants.Game.Directions.Down:
+				difference = Vector3.Distance(notePosition, downSweetSpot.position);
+				break;
+
+			case Constants.Game.Directions.Left:
+				difference = Vector3.Distance(notePosition, leftSweetSpot.position);
+				break;
+
+			case Constants.Game.Directions.Right:
+				difference = Vector3.Distance(notePosition, rightSweetSpot.position);
+				break;
+		}
+
+		difference = difference > 0 ? difference : difference * -1;
 
 		if (difference <= Constants.Songs.PerfectThreshold)
 		{
