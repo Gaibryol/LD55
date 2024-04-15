@@ -86,8 +86,14 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
 	{
-		transform.rotation = Quaternion.identity;
-		if (spawned)
+        Vector3 currentPosition = splineAnimate.Container.Spline.EvaluatePosition(splineAnimate.NormalizedTime);
+
+        Vector3 nextPosition = splineAnimate.Container.Spline.EvaluatePosition(splineAnimate.NormalizedTime - 0.05f);
+        Vector3 direction = currentPosition - nextPosition;
+		
+		transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 180);
+
+        if (spawned)
 		{
             if (splineAnimate.NormalizedTime >= .9)
 			{
