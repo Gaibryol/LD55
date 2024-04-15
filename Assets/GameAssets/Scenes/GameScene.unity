@@ -2150,7 +2150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 189595439}
   sfxSource: {fileID: 189595438}
-  song1: {fileID: 8300000, guid: e8296e716fca84449acc3616ac53678a, type: 3}
+  song1: {fileID: 8300000, guid: c416d27da823f2846b0f1068e5de2c1d, type: 3}
   song1Cut: {fileID: 0}
   mainMenuTheme: {fileID: 8300000, guid: 23ccc92f81da99042b850c36aba7c472, type: 3}
   testSound: {fileID: 8300000, guid: 7908e08ef3bc623478e28490899cad45, type: 3}
@@ -3730,7 +3730,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   midiConverter: {fileID: 192254082}
-  song1: {fileID: 4900000, guid: 926940b810f8c0b4491e3d1b49e9fce4, type: 3}
+  song1: {fileID: 4900000, guid: 14e66e2ab30df5f44af957b0eb9381b2, type: 3}
   mainMenuPanel: {fileID: 1737919444}
   song1Button: {fileID: 1599367659}
 --- !u!1 &325038950
