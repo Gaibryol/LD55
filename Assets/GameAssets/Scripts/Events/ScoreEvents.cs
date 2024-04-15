@@ -34,13 +34,15 @@ public class ScoreEvents
 
     public class TotalNotes
     {
-        public TotalNotes(Constants.Songs.Song song, Action<int> processData)
+        public TotalNotes(Constants.Songs.Song song, Constants.Songs.Difficulties difficulty, Action<int> processData)
         {
 			Song = song;
+			Difficulty = difficulty;
             ProcessData = processData;
         }
 
 		public readonly Constants.Songs.Song Song;
+		public readonly Constants.Songs.Difficulties Difficulty;
         public readonly Action<int> ProcessData;
     }
 
