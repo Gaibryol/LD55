@@ -47,8 +47,9 @@ public class SongSelectionUI : MonoBehaviour
 
 			if (PlayerPrefs.HasKey((Constants.Game.HighscorePP + Constants.Songs.Song.Song2 + Constants.Songs.Difficulties.Normal).ToString()))
 			{
-				normalHighscore.text = PlayerPrefs.GetFloat((Constants.Game.HighscorePP + Constants.Songs.Song.Song2 + Constants.Songs.Difficulties.Normal).ToString()).ToString();
+				normalHighscore.text = PlayerPrefs.GetInt((Constants.Game.HighscorePP + Constants.Songs.Song.Song2 + Constants.Songs.Difficulties.Normal).ToString()).ToString();
 				normalHighscore.gameObject.SetActive(true);
+				Debug.Log(PlayerPrefs.GetInt((Constants.Game.HighscorePP + Constants.Songs.Song.Song2 + Constants.Songs.Difficulties.Normal).ToString()).ToString());
 			}
 			else
 			{
@@ -57,7 +58,7 @@ public class SongSelectionUI : MonoBehaviour
 
 			if (PlayerPrefs.HasKey((Constants.Game.HighscorePP + Constants.Songs.Song.Song2 + Constants.Songs.Difficulties.Hard).ToString()))
 			{
-				hardHighscore.text = PlayerPrefs.GetFloat((Constants.Game.HighscorePP + Constants.Songs.Song.Song2 + Constants.Songs.Difficulties.Hard).ToString()).ToString();
+				hardHighscore.text = PlayerPrefs.GetInt((Constants.Game.HighscorePP + Constants.Songs.Song.Song2 + Constants.Songs.Difficulties.Hard).ToString()).ToString();
 				hardHighscore.gameObject.SetActive(true);
 			}
 			else
@@ -81,7 +82,7 @@ public class SongSelectionUI : MonoBehaviour
 
 			if (PlayerPrefs.HasKey((Constants.Game.HighscorePP + Constants.Songs.Song.Song3 + Constants.Songs.Difficulties.Normal).ToString()))
 			{
-				normalHighscore.text = PlayerPrefs.GetFloat((Constants.Game.HighscorePP + Constants.Songs.Song.Song3 + Constants.Songs.Difficulties.Normal).ToString()).ToString();
+				normalHighscore.text = PlayerPrefs.GetInt((Constants.Game.HighscorePP + Constants.Songs.Song.Song3 + Constants.Songs.Difficulties.Normal).ToString()).ToString();
 				normalHighscore.gameObject.SetActive(true);
 			}
 			else
@@ -91,7 +92,7 @@ public class SongSelectionUI : MonoBehaviour
 
 			if (PlayerPrefs.HasKey((Constants.Game.HighscorePP + Constants.Songs.Song.Song3 + Constants.Songs.Difficulties.Hard).ToString()))
 			{
-				hardHighscore.text = PlayerPrefs.GetFloat((Constants.Game.HighscorePP + Constants.Songs.Song.Song3 + Constants.Songs.Difficulties.Hard).ToString()).ToString();
+				hardHighscore.text = PlayerPrefs.GetInt((Constants.Game.HighscorePP + Constants.Songs.Song.Song3 + Constants.Songs.Difficulties.Hard).ToString()).ToString();
 				hardHighscore.gameObject.SetActive(true);
 			}
 			else
@@ -116,7 +117,7 @@ public class SongSelectionUI : MonoBehaviour
 
 			if (PlayerPrefs.HasKey((Constants.Game.HighscorePP + Constants.Songs.Song.Song1 + Constants.Songs.Difficulties.Normal).ToString()))
 			{
-				normalHighscore.text = PlayerPrefs.GetFloat((Constants.Game.HighscorePP + Constants.Songs.Song.Song1 + Constants.Songs.Difficulties.Normal).ToString()).ToString();
+				normalHighscore.text = PlayerPrefs.GetInt((Constants.Game.HighscorePP + Constants.Songs.Song.Song1 + Constants.Songs.Difficulties.Normal).ToString()).ToString();
 				normalHighscore.gameObject.SetActive(true);
 			}
 			else
@@ -126,7 +127,7 @@ public class SongSelectionUI : MonoBehaviour
 
 			if (PlayerPrefs.HasKey((Constants.Game.HighscorePP + Constants.Songs.Song.Song1 + Constants.Songs.Difficulties.Hard).ToString()))
 			{
-				hardHighscore.text = PlayerPrefs.GetFloat((Constants.Game.HighscorePP + Constants.Songs.Song.Song1 + Constants.Songs.Difficulties.Hard).ToString()).ToString();
+				hardHighscore.text = PlayerPrefs.GetInt((Constants.Game.HighscorePP + Constants.Songs.Song.Song1 + Constants.Songs.Difficulties.Hard).ToString()).ToString();
 				hardHighscore.gameObject.SetActive(true);
 			}
 			else

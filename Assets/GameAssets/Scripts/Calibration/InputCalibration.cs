@@ -11,14 +11,12 @@ public class InputCalibration : MonoBehaviour
 {
     [SerializeField] private GameObject inputHitIndicatorPrefab;
     [SerializeField] private TMP_Text delayText;
-    [SerializeField] private Image beatGraphic;
     private PlayerInputs inputs;
     [SerializeField] private List<float> inputTimes = new List<float>();
 
     void Start()
     {
         UpdateDelayText();
-
     }
 
     public void ResetCalibration()
@@ -32,7 +30,6 @@ public class InputCalibration : MonoBehaviour
     private void Update()
     {
         float beat = Calibration.Instance.calibrationPositionInBeats % 1;
-        beatGraphic.enabled = beat < .1f || beat > .9f;
     }
 
     public void HandleKeyPress(InputAction.CallbackContext context)
