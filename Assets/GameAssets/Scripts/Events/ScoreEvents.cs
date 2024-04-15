@@ -48,14 +48,23 @@ public class ScoreEvents
 
     public class Final
     {
-        public Final(int score, float accuracy)
+        public Final(int score, float accuracy, int highscore, int perfectHit, int okayHit, int badHit, int misses)
         {
             Score = score;
             Accuracy = accuracy;
-
+            Highscore = highscore;
+            PerfectHit = perfectHit;
+            OkayHit = okayHit;
+            BadHit = badHit;
+            Misses = misses;
         }
         public readonly int Score;
         public readonly float Accuracy;
+        public readonly int Highscore;
+        public readonly int PerfectHit;
+        public readonly int OkayHit;
+        public readonly int BadHit;
+        public readonly int Misses;
 
     }
 

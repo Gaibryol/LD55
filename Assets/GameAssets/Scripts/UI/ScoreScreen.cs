@@ -16,15 +16,29 @@ public class ScoreScreen : MonoBehaviour
 
     private string score;
     private string accuracy;
+    private string highscore;
+    private string perfects;
+    private string okays;
+    private string bads;
+    private string misses;
 
     public void Final(BrokerEvent<ScoreEvents.Final> inEvent)
     {
         score = "Score: " + inEvent.Payload.Score.ToString();
         accuracy = "Accuracy: " + inEvent.Payload.Accuracy.ToString("F2") + "%";
-
+        highscore = "HighScore: " + inEvent.Payload.Highscore.ToString();
+        perfects = "Perfects: " + inEvent.Payload.PerfectHit.ToString();
+        okays = "Okays: " + inEvent.Payload.OkayHit.ToString();
+        bads = "Bads: " + inEvent.Payload.BadHit.ToString();
+        misses = "Misses: " + inEvent.Payload.BadHit.ToString();
 
         scoreText.SetText(score);
         accuracyText.SetText(accuracy);
+        highscoreText.SetText(highscore);
+        perfectsText.SetText(perfects);
+        okaysText.SetText(okays);
+        badsText.SetText(bads);
+        missesText.SetText(misses);
 
         endScorePanel.SetActive(true);
     }
