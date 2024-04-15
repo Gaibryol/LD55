@@ -49,6 +49,7 @@ public class AudioSystem : MonoBehaviour
 		eventBrokerComponent.Subscribe<AudioEvents.PlayTemporaryMusic>(PlayTemporaryMusicHandler);
 		eventBrokerComponent.Subscribe<AudioEvents.StopTemporaryMusic>(StopTemporaryMusicHandler);
 		eventBrokerComponent.Subscribe<AudioEvents.GetSongLength>(GetSongLengthHandler);
+		eventBrokerComponent.Subscribe<SongEvents.SongEnded>(SongEnded);
 
 		float musicLevel = PlayerPrefs.GetFloat(Constants.Audio.MusicVolumePP, Constants.Audio.DefaultMusicVolume);
 		float sfxLevel = PlayerPrefs.GetFloat(Constants.Audio.SFXVolumePP, Constants.Audio.DefaultSFXVolume);
@@ -68,6 +69,7 @@ public class AudioSystem : MonoBehaviour
 		eventBrokerComponent.Unsubscribe<AudioEvents.PlayTemporaryMusic>(PlayTemporaryMusicHandler);
 		eventBrokerComponent.Unsubscribe<AudioEvents.StopTemporaryMusic>(StopTemporaryMusicHandler);
 		eventBrokerComponent.Unsubscribe<AudioEvents.GetSongLength>(GetSongLengthHandler);
+		eventBrokerComponent.Unsubscribe<SongEvents.SongEnded>(SongEnded);
 	}
 
 	private void ChangeMusicVolumeHandler(BrokerEvent<AudioEvents.ChangeMusicVolume> inEvent)
@@ -132,6 +134,10 @@ public class AudioSystem : MonoBehaviour
 		{
 			Debug.LogError("Cannot find music named " + inEvent.Payload.Title);
 		}
+	}
+	private void SongEnded(BrokerEvent<SongEvents.SongEnded> inEvent)
+	{
+		musicSource.Stop();
 	}
 
 	private void PlayMusic(string song, float time = 0f)

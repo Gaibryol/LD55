@@ -31,8 +31,10 @@ public class PlayerController : MonoBehaviour
 	// Start is called before the first frame update
 	private void Start()
     {
-        
-    }
+		animator.enabled = false;
+		upperCircleAnimator.enabled = false;
+		lowerCircleAnimator.enabled = false;
+	}
 
     // Update is called once per frame
     private void Update()
@@ -145,6 +147,22 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
+	private void PlaySong(BrokerEvent<SongEvents.PlaySong> inEvent)
+	{
+		animator.enabled = true;
+		upperCircleAnimator.enabled = true;
+		lowerCircleAnimator.enabled = true;
+	}
+	private void SongEnded(BrokerEvent<SongEvents.SongEnded> inEvent)
+	{
+		animator.enabled = false;
+		upperCircleAnimator.enabled = false;
+		lowerCircleAnimator.enabled = false;
+		animator.SetBool("Ascended", false);
+		upperCircleAnimator.SetBool("Ascended", false);
+		lowerCircleAnimator.SetBool("Ascended", false);
+	}
+
 	private void OnEnable()
 	{
 		up = playerInputs.Player.Up;
@@ -164,6 +182,8 @@ public class PlayerController : MonoBehaviour
 		right.Enable();
 
 		eventBroker.Subscribe<ScoreEvents.Ascended>(Ascended);
+		eventBroker.Subscribe<SongEvents.PlaySong>(PlaySong);
+		eventBroker.Subscribe<SongEvents.SongEnded>(SongEnded);
 	}
 
 	private void OnDisable()
@@ -181,5 +201,7 @@ public class PlayerController : MonoBehaviour
 		right.Disable();
 
 		eventBroker.Unsubscribe<ScoreEvents.Ascended>(Ascended);
+		eventBroker.Subscribe<SongEvents.PlaySong>(PlaySong);
+		eventBroker.Subscribe<SongEvents.SongEnded>(SongEnded);
 	}
 }
