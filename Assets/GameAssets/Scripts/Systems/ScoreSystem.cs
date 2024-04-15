@@ -70,7 +70,6 @@ public class ScoreSystem : MonoBehaviour
 		AddScore(Constants.Game.PerfectHit);
 		if (combo == 50)
 		{
-			Debug.Log("Hello");
 			eventBroker.Publish(this, new ScoreEvents.Ascended(true));
 		}
 	}

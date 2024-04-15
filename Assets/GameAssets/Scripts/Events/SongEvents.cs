@@ -39,6 +39,16 @@ public class SongEvents
 		public readonly Action<List<Queue<float>>> ProcessData;
 	}
 
+	public class GetSongLength
+	{
+		public GetSongLength(Constants.Songs.Song song, Action<float> processData)
+		{
+			ProcessData = processData;
+		}
+
+		public readonly Action<float> ProcessData;
+	}
+
 	public class SongEnded
 	{
 		public SongEnded() { }

@@ -35,6 +35,9 @@ public class EnemyManager : MonoBehaviour
 	private float playerInputLatency;
 
 	private float song1BPM = 132f;
+	private float song1Length;
+
+	private float bpm;
 	private float beatsPerSec;
 	private float songPosition;
 	private float beatsPosition;
@@ -56,10 +59,6 @@ public class EnemyManager : MonoBehaviour
 		playerVisualLatency = 0f;
 		playerInputLatency = 0f;
 
-		beatsPerSec = song1BPM / 60f;
-
-		totalBeats = song1.length * beatsPerSec;
-
 		enemies = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
 		foreach (GameObject enemy in enemies)
 		{
@@ -67,12 +66,7 @@ public class EnemyManager : MonoBehaviour
 		}
 
 		eventBroker.Publish(this, new SongEvents.GetSongData(Constants.Songs.Song.Song1, (data) => song1Queues = data));
-
-		
-		Debug.Log(splineEast.Spline.GetLength());
-		Debug.Log(splineWest.Spline.GetLength());
-		Debug.Log(splineNorth.Spline.GetLength());
-		Debug.Log(splineSouth.Spline.GetLength());
+		eventBroker.Publish(this, new AudioEvents.GetSongLength(Constants.Songs.Song.Song1.ToString(), (data) => song1Length = data));
 	}
 
 	private void FixedUpdate()
@@ -98,10 +92,9 @@ public class EnemyManager : MonoBehaviour
 			float nextLeftBeat = (nextLeftNote * beatsPerSec);
 			float nextRightBeat = (nextRightNote * beatsPerSec);
 
-			float maxSpeed = Constants.Game.MetersAwayToSweetSpot / ((60 / song1BPM) * 8f);
+			float maxSpeed = Constants.Game.MetersAwayToSweetSpot / ((60 / bpm) * 8f);
 
 			float lookaheadBeats = 8f;
-			//Debug.Log(AudioSettings.dspTime - startTime + ": " + nextUpNote + " / " + nextDownNote + " / " + nextLeftNote + " / " + nextRightNote);
 			if (hasUpNote && beatsPosition >= nextUpBeat - lookaheadBeats)
 			{
 				GameObject enemy = GetEnemy();
@@ -157,6 +150,10 @@ public class EnemyManager : MonoBehaviour
 				songDownQueue = new Queue<float>(song1Queues[1]);
 				songLeftQueue = new Queue<float>(song1Queues[2]);
 				songRightQueue = new Queue<float>(song1Queues[3]);
+
+				beatsPerSec = song1BPM / 60f;
+				totalBeats = song1Length * beatsPerSec;
+				bpm = song1BPM;
 				break;
 		}
 
@@ -189,14 +186,15 @@ public class EnemyManager : MonoBehaviour
 				break;
 		}
 
+		difference -= playerInputLatency;
 		difference = difference > 0 ? difference : difference * -1;
 
-		if (difference <= Constants.Songs.PerfectThreshold)
+		if (difference <= Constants.Songs.PerfectThreshold + playerInputLatency)
 		{
 			// Perfect
 			eventBroker.Publish(this, new ScoreEvents.PerfectHit());
 		}
-		else if (difference <= Constants.Songs.OkThreshold)
+		else if (difference <= Constants.Songs.OkThreshold + playerInputLatency)
 		{
 			// OK
 			eventBroker.Publish(this, new ScoreEvents.OkayHit());
@@ -211,6 +209,11 @@ public class EnemyManager : MonoBehaviour
 	private void SongEndedHandler(BrokerEvent<SongEvents.SongEnded> inEvent)
 	{
 		playing = false;
+
+		foreach (GameObject enemy in enemies)
+		{
+			enemy.SetActive(false);
+		}
 	}
 
 	private IEnumerator PlaySongAudio(Constants.Songs.Song song)
