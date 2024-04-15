@@ -192,17 +192,20 @@ public class EnemyManager : MonoBehaviour
 		if (difference <= Constants.Songs.PerfectThreshold + playerInputLatency)
 		{
 			// Perfect
+			inEvent.Payload.Enemy.GetComponent<Enemy>().PlayHitAnimation("Perfect");
 			eventBroker.Publish(this, new ScoreEvents.PerfectHit());
 		}
 		else if (difference <= Constants.Songs.OkThreshold + playerInputLatency)
 		{
-			// OK
-			eventBroker.Publish(this, new ScoreEvents.OkayHit());
+            // OK
+            inEvent.Payload.Enemy.GetComponent<Enemy>().PlayHitAnimation("Okay");
+            eventBroker.Publish(this, new ScoreEvents.OkayHit());
 		}
 		else if (difference <= Constants.Songs.BadThreshold)
 		{
-			// Bad
-			eventBroker.Publish(this, new ScoreEvents.BadHit());
+            // Bad
+            inEvent.Payload.Enemy.GetComponent<Enemy>().PlayHitAnimation("Bad");
+            eventBroker.Publish(this, new ScoreEvents.BadHit());
 		}
 	}
 

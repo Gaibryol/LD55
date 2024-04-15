@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 200
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -157,7 +157,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 244
+        width: 122
         height: 122
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -172,10 +172,31 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Anote-2frames200__1
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 0
+        width: 122
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2017b89e6c8c17741aa9d2b008039bd7
+      internalID: -510859991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 4bcd2110fe400bd499ce6468bd1f1343
     internalID: 0
     vertices: []
     indices: 
@@ -184,6 +205,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Anote-2frames200__0: 3175088632940046921
+      Anote-2frames200__1: -510859991
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
