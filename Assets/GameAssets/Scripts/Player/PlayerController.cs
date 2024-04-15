@@ -22,6 +22,9 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] Animator lowerCircleAnimator;
 	private Animator animator;
 
+	[SerializeField, Header("Background")] private SpriteRenderer defaultBackground;
+	[SerializeField] private SpriteRenderer ascendBackground;
+
 	private readonly EventBrokerComponent eventBroker = new EventBrokerComponent();
 
 	private void Awake()
@@ -136,16 +139,42 @@ public class PlayerController : MonoBehaviour
 			animator.SetBool("Ascended",true);
 			upperCircleAnimator.SetBool("Ascended", true);
 			lowerCircleAnimator.SetBool("Ascended", true);
+
+			// Lerp to default
+			StartCoroutine(LerpToAscend());
 		}
 		else if (!ascended)
 		{
 			animator.SetBool("Ascended", false);
 			upperCircleAnimator.SetBool("Ascended", false);
 			lowerCircleAnimator.SetBool("Ascended", false);
+
+			// Lerp to background
+			StartCoroutine(LerpToDefault());
 		}
 		else
 		{
 			Debug.Log("Ascended Variable Is Null");
+		}
+	}
+
+	private IEnumerator LerpToDefault()
+	{
+		while (defaultBackground.color.a < 1)
+		{
+			defaultBackground.color = new Color(defaultBackground.color.r, defaultBackground.color.g, defaultBackground.color.b, defaultBackground.color.a + Time.deltaTime/2f);
+			ascendBackground.color = new Color(ascendBackground.color.r, ascendBackground.color.g, ascendBackground.color.b, ascendBackground.color.a - Time.deltaTime/2f);
+			yield return null;
+		}
+	}
+
+	private IEnumerator LerpToAscend()
+	{
+		while (ascendBackground.color.a < 1)
+		{
+			defaultBackground.color = new Color(defaultBackground.color.r, defaultBackground.color.g, defaultBackground.color.b, defaultBackground.color.a - Time.deltaTime/2f);
+			ascendBackground.color = new Color(ascendBackground.color.r, ascendBackground.color.g, ascendBackground.color.b, ascendBackground.color.a + Time.deltaTime/2f);
+			yield return null;
 		}
 	}
 

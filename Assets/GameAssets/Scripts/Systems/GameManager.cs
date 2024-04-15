@@ -54,11 +54,12 @@ public class GameManager : MonoBehaviour
 	{
 		eventBroker.Publish(this, new AudioEvents.GetSongLength(song.ToString(), (length) => 
 		{
-			StartCoroutine(OnSongEnd(length));
+			eventBroker.Publish(this, new SongEvents.PlaySong(song, difficulty));
+			mainMenuPanel.SetActive(false);
+
 			playing = true;
+			StartCoroutine(OnSongEnd(length));
 		}));
-		eventBroker.Publish(this, new SongEvents.PlaySong(song, difficulty));
-		mainMenuPanel.SetActive(false);
 	}
 
 	private void FinalHandler(BrokerEvent<ScoreEvents.Final> inEvent)
@@ -68,7 +69,11 @@ public class GameManager : MonoBehaviour
 
 	private IEnumerator OnSongEnd(float length)
 	{
-		if (!playing) yield break;
+		if (!playing)
+		{
+			Debug.Log("Length: " + length + " break");
+			yield break;
+		}
 
 		yield return new WaitForSeconds(length);
 

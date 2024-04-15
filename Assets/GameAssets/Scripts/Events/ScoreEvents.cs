@@ -48,8 +48,11 @@ public class ScoreEvents
 
     public class Final
     {
-        public Final(int score, float accuracy, int highscore, int perfectHit, int okayHit, int badHit, int misses)
+        public Final(string title, Constants.Songs.Difficulties difficulty, Constants.Songs.Song song, int score, float accuracy, int highscore, int perfectHit, int okayHit, int badHit, int misses, int maxCombo, bool newRecord, bool allPerfect)
         {
+			Title = title;
+			Difficulty = difficulty;
+			Song = song;
             Score = score;
             Accuracy = accuracy;
             Highscore = highscore;
@@ -57,7 +60,14 @@ public class ScoreEvents
             OkayHit = okayHit;
             BadHit = badHit;
             Misses = misses;
+			MaxCombo = maxCombo;
+			NewRecord = newRecord;
+			AllPerfect = allPerfect;
         }
+
+		public readonly string Title;
+		public readonly Constants.Songs.Difficulties Difficulty;
+		public readonly Constants.Songs.Song Song;
         public readonly int Score;
         public readonly float Accuracy;
         public readonly int Highscore;
@@ -65,6 +75,9 @@ public class ScoreEvents
         public readonly int OkayHit;
         public readonly int BadHit;
         public readonly int Misses;
+		public readonly int MaxCombo;
+		public readonly bool NewRecord;
+		public readonly bool AllPerfect;
 
     }
 

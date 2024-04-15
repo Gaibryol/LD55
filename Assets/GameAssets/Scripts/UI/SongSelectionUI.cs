@@ -40,8 +40,6 @@ public class SongSelectionUI : MonoBehaviour
 		if (index == 0)
 		{
 			// Song 2
-			prevButton.gameObject.SetActive(false);
-
 			songName.text = Constants.Songs.Song2.Title.ToString();
 			eventBroker.Publish(this, new AudioEvents.GetSongLength(Constants.Songs.Song.Song2.ToString(), (length) => { songLength.text = TimeSpan.FromSeconds(length).ToString("mm':'ss"); }));
 
@@ -49,7 +47,6 @@ public class SongSelectionUI : MonoBehaviour
 			{
 				normalHighscore.text = PlayerPrefs.GetInt((Constants.Game.HighscorePP + Constants.Songs.Song.Song2 + Constants.Songs.Difficulties.Normal).ToString()).ToString();
 				normalHighscore.gameObject.SetActive(true);
-				Debug.Log(PlayerPrefs.GetInt((Constants.Game.HighscorePP + Constants.Songs.Song.Song2 + Constants.Songs.Difficulties.Normal).ToString()).ToString());
 			}
 			else
 			{
@@ -75,8 +72,6 @@ public class SongSelectionUI : MonoBehaviour
 		else if (index == 2)
 		{
 			// Song 3
-			nextButton.gameObject.SetActive(false);
-
 			songName.text = Constants.Songs.Song3.Title.ToString();
 			eventBroker.Publish(this, new AudioEvents.GetSongLength(Constants.Songs.Song.Song3.ToString(), (length) => { songLength.text = TimeSpan.FromSeconds(length).ToString("mm':'ss"); }));
 
@@ -109,9 +104,6 @@ public class SongSelectionUI : MonoBehaviour
 		else
 		{
 			// Song 1
-			prevButton.gameObject.SetActive(true);
-			nextButton.gameObject.SetActive(true);
-
 			songName.text = Constants.Songs.Song1.Title.ToString();
 			eventBroker.Publish(this, new AudioEvents.GetSongLength(Constants.Songs.Song.Song1.ToString(), (length) => { songLength.text = TimeSpan.FromSeconds(length).ToString("mm':'ss"); }));
 
@@ -146,12 +138,22 @@ public class SongSelectionUI : MonoBehaviour
 	private void OnPrevButtonClick()
 	{
 		index -= 1;
+		if (index < 0)
+		{
+			index = 2;
+		}
+
 		UpdateUI();
 	}
 
 	private void OnNextButtonClick()
 	{
 		index += 1;
+		if (index > 2)
+		{
+			index = 0;
+		}
+
 		UpdateUI();
 	}
 

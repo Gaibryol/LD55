@@ -13,6 +13,7 @@ public class ScoreSystem : MonoBehaviour
 	private int combo;
 	//Multiplier
 	private float multiplier;
+	private int noteCombo;
 
 	//Keep Track of Hits
 	private int perfectHit;
@@ -20,6 +21,7 @@ public class ScoreSystem : MonoBehaviour
 	private int badHit;
 	private int miss;
 	private int totalNotes;
+	private int maxCombo;
 
 	// Currently playing song
 	private Constants.Songs.Song currentSong;
@@ -41,6 +43,8 @@ public class ScoreSystem : MonoBehaviour
 		okayHit = 0;
 		badHit = 0;
 		miss = 0;
+		maxCombo = 0;
+		noteCombo = 0;
 
 		combo = 0;
 		score = 0;
@@ -54,7 +58,7 @@ public class ScoreSystem : MonoBehaviour
 		}));
 
 		scoreText.SetText(score.ToString());
-		comboText.SetText(combo.ToString() + " Combo");
+		comboText.SetText(noteCombo.ToString() + " Combo");
 		multiplierText.SetText(multiplier.ToString() + "X");
 		accuracyText.SetText(CalculateAccuracy().ToString("F2") + "%");
 
@@ -66,6 +70,7 @@ public class ScoreSystem : MonoBehaviour
 	{
 		scoreUI.SetActive(false);
 		int highscore;
+		bool newRecord = false;
 		if (PlayerPrefs.HasKey((Constants.Game.HighscorePP + currentSong + currentDifficulty).ToString()))
 		{
 			highscore = PlayerPrefs.GetInt((Constants.Game.HighscorePP + currentSong + currentDifficulty).ToString());
@@ -73,22 +78,42 @@ public class ScoreSystem : MonoBehaviour
 			{
 				PlayerPrefs.SetInt((Constants.Game.HighscorePP + currentSong + currentDifficulty).ToString(), score);
 				highscore = score;
+				newRecord = true;
 			}
 		}
         else
         {
 			PlayerPrefs.SetInt((Constants.Game.HighscorePP + currentSong + currentDifficulty).ToString(), score);
 			highscore = score;
+			newRecord = true;
 
         }
 		PlayerPrefs.Save();
-		eventBroker.Publish(this, new ScoreEvents.Final(score, CalculateAccuracy(), highscore, perfectHit, okayHit,badHit, miss));
+
+		string songTitle = "";
+		switch (currentSong)
+		{
+			case Constants.Songs.Song.Song1:
+				songTitle = Constants.Songs.Song1.Title;
+				break;
+
+			case Constants.Songs.Song.Song2:
+				songTitle = Constants.Songs.Song2.Title;
+				break;
+
+			case Constants.Songs.Song.Song3:
+				songTitle = Constants.Songs.Song3.Title;
+				break;
+		}
+
+		eventBroker.Publish(this, new ScoreEvents.Final(songTitle, currentDifficulty, currentSong, score, CalculateAccuracy(), highscore, perfectHit, okayHit,badHit, miss, maxCombo, newRecord, perfectHit == totalNotes));
 	}
 
 	private void PerfectHit(BrokerEvent<ScoreEvents.PerfectHit> inEvent)
 	{
 		combo += 1;
 		perfectHit += 1;
+		noteCombo += 1;
 		CheckCombo();
 		AddScore(Constants.Game.PerfectHit);
 		if (combo == 50)
@@ -100,12 +125,14 @@ public class ScoreSystem : MonoBehaviour
 	private void OkayHit(BrokerEvent<ScoreEvents.OkayHit> inEvent)
 	{
 		okayHit += 1;
+		noteCombo += 1;
 		CheckCombo();
 		AddScore(Constants.Game.OkayHit);
 	}
 	private void BadHit(BrokerEvent<ScoreEvents.BadHit> inEvent)
 	{
 		badHit += 1;
+		noteCombo += 1;
 		CheckCombo();
 		AddScore(Constants.Game.BadHit);
 	}
@@ -118,6 +145,7 @@ public class ScoreSystem : MonoBehaviour
 		}
 		combo = 0;
 		miss += 1;
+		noteCombo = 0;
 		CheckCombo();
 	}
 
@@ -141,8 +169,13 @@ public class ScoreSystem : MonoBehaviour
 		else
 			multiplier = 6f;
 
-		comboText.SetText(combo.ToString() + " Combo!");
+		comboText.SetText(noteCombo.ToString() + " Combo");
 		multiplierText.SetText(multiplier.ToString() + "X");
+
+		if (noteCombo > maxCombo)
+		{
+			maxCombo = noteCombo;
+		}
 	}
 
 	private float CalculateAccuracy()
