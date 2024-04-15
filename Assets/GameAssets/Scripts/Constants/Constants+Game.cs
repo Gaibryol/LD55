@@ -24,9 +24,9 @@ public partial class Constants
 		public static string PlayerInputLatency = "PlayerInputLatency";
 
 		//Points for hits
-		public static int PerfectHit = 100;
-		public static int OkayHit = 50;
-		public static int BadHit = 25;
+		public static int PerfectHit = 200;
+		public static int OkayHit = 100;
+		public static int BadHit = 50;
 
 		public static int MissDamage = -20;
 		public static int PerfectHitHeal = 10;

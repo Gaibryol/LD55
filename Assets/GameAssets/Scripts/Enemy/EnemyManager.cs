@@ -37,6 +37,9 @@ public class EnemyManager : MonoBehaviour
 	private float song1BPM = 132f;
 	private float song1Length;
 
+	private float song2BPM = 120f;
+	private float song2Length;
+
 	private float bpm;
 	private float beatsPerSec;
 	private float songPosition;
@@ -67,6 +70,9 @@ public class EnemyManager : MonoBehaviour
 
 		eventBroker.Publish(this, new SongEvents.GetSongData(Constants.Songs.Song.Song1, (data) => song1Queues = data));
 		eventBroker.Publish(this, new AudioEvents.GetSongLength(Constants.Songs.Song.Song1.ToString(), (data) => song1Length = data));
+
+		eventBroker.Publish(this, new SongEvents.GetSongData(Constants.Songs.Song.Song2, (data) => song2Queues = data));
+		eventBroker.Publish(this, new AudioEvents.GetSongLength(Constants.Songs.Song.Song2.ToString(), (data) => song2Length = data));
 	}
 
 	private void FixedUpdate()
@@ -155,6 +161,17 @@ public class EnemyManager : MonoBehaviour
 				totalBeats = song1Length * beatsPerSec;
 				bpm = song1BPM;
 				break;
+
+			case Constants.Songs.Song.Song2:
+				songUpQueue = new Queue<float>(song2Queues[0]);
+				songDownQueue = new Queue<float>(song2Queues[1]);
+				songLeftQueue = new Queue<float>(song2Queues[2]);
+				songRightQueue = new Queue<float>(song2Queues[3]);
+
+				beatsPerSec = song2BPM / 60f;
+				totalBeats = song2Length * beatsPerSec;
+				bpm = song1BPM;
+				break;
 		}
 
 		StartCoroutine(PlaySongAudio(inEvent.Payload.Song));
@@ -229,6 +246,10 @@ public class EnemyManager : MonoBehaviour
 			case Constants.Songs.Song.Song1:
 				// Play song
 				eventBroker.Publish(this, new AudioEvents.PlayMusic(Constants.Audio.Music.Song1));
+				break;
+
+			case Constants.Songs.Song.Song2:
+				eventBroker.Publish(this, new AudioEvents.PlayMusic(Constants.Audio.Music.Song2));
 				break;
 		}
 
