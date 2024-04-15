@@ -81,6 +81,7 @@ public class ScoreSystem : MonoBehaviour
 			highscore = score;
 
         }
+		PlayerPrefs.Save();
 		eventBroker.Publish(this, new ScoreEvents.Final(score, CalculateAccuracy(), highscore, perfectHit, okayHit,badHit, miss));
 	}
 

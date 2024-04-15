@@ -26,8 +26,7 @@ public class VisualCalibration : MonoBehaviour
     {
         for (int i = 0; i < activeImages.Length; i++)
         {
-            activeImages[i].enabled = (i) == (Mathf.FloorToInt(Calibration.Instance.calibrationPositionInBeats) % 4);
-            
+            activeImages[i].gameObject.SetActive((i) == (Mathf.FloorToInt(Calibration.Instance.calibrationPositionInBeats) % 4));
         }
     }
 }
