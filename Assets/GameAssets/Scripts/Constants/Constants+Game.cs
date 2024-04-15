@@ -23,6 +23,8 @@ public partial class Constants
 		public static string PlayerVisualLatency = "PlayerVisualLatency";
 		public static string PlayerInputLatency = "PlayerInputLatency";
 
+		public static string HighscorePP = "HighScorePP";
+
 		//Points for hits
 		public static int PerfectHit = 200;
 		public static int OkayHit = 100;

@@ -7,6 +7,11 @@ public class ScoreScreen : MonoBehaviour
 
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private TMP_Text accuracyText;
+    [SerializeField] private TMP_Text highscoreText;
+    [SerializeField] private TMP_Text perfectsText;
+    [SerializeField] private TMP_Text okaysText;
+    [SerializeField] private TMP_Text badsText;
+    [SerializeField] private TMP_Text missesText;
 	[SerializeField] private GameObject endScorePanel;
 
     private string score;
@@ -16,6 +21,8 @@ public class ScoreScreen : MonoBehaviour
     {
         score = "Score: " + inEvent.Payload.Score.ToString();
         accuracy = "Accuracy: " + inEvent.Payload.Accuracy.ToString("F2") + "%";
+
+
         scoreText.SetText(score);
         accuracyText.SetText(accuracy);
 

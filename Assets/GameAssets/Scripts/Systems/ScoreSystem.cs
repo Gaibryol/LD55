@@ -123,6 +123,18 @@ public class ScoreSystem : MonoBehaviour
 
 	private float CalculateAccuracy()
 	{
+		int highscore;
+		if (PlayerPrefs.HasKey(Constants.Game.HighscorePP))
+		{
+			highscore = PlayerPrefs.GetInt(Constants.Game.HighscorePP);
+			if(score > highscore)
+            {
+
+            }
+        }
+
+
+
 		float accuracy = ((300f * perfectHit) + (200f * okayHit) + (100f * badHit)) / (300f * totalNotes) * 100;
 		return accuracy;
 	}
