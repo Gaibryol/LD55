@@ -24,6 +24,9 @@ public class ScoreSystem : MonoBehaviour
 	// Currently playing song
 	private Constants.Songs.Song currentSong;
 
+	// Difficulty
+	private Constants.Songs.Difficulties currentDifficulty;
+
 	//Text Showing Score & Combo
 	[SerializeField] private GameObject scoreUI;
 	[SerializeField] private TMP_Text scoreText;
@@ -44,6 +47,7 @@ public class ScoreSystem : MonoBehaviour
 		multiplier = 1f;
 
 		currentSong = inEvent.Payload.Song;
+		currentDifficulty = inEvent.Payload.Difficulty;
 		eventBroker.Publish(this, new ScoreEvents.TotalNotes(currentSong, inEvent.Payload.Difficulty, (data) =>
 		{
 			totalNotes = data;
@@ -62,18 +66,18 @@ public class ScoreSystem : MonoBehaviour
 	{
 		scoreUI.SetActive(false);
 		int highscore;
-		if (PlayerPrefs.HasKey(Constants.Game.HighscorePP))
+		if (PlayerPrefs.HasKey((Constants.Game.HighscorePP + currentSong + currentDifficulty).ToString()))
 		{
-			highscore = PlayerPrefs.GetInt(Constants.Game.HighscorePP);
+			highscore = PlayerPrefs.GetInt((Constants.Game.HighscorePP + currentSong + currentDifficulty).ToString());
 			if (score > highscore)
 			{
-				PlayerPrefs.SetInt(Constants.Game.HighscorePP, score);
+				PlayerPrefs.SetInt((Constants.Game.HighscorePP + currentSong + currentDifficulty).ToString(), score);
 				highscore = score;
 			}
 		}
         else
         {
-			PlayerPrefs.SetInt(Constants.Game.HighscorePP, score);
+			PlayerPrefs.SetInt((Constants.Game.HighscorePP + currentSong + currentDifficulty).ToString(), score);
 			highscore = score;
 
         }

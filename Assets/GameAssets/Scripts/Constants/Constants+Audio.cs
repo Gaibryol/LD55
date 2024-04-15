@@ -20,6 +20,7 @@ public partial class Constants
 			public const string Song1 = "Song1";
 			public const string Song1Cut = "Song1Cut";
 			public const string Song2 = "Song2";
+			public const string Song3 = "Song3";
 		}
 
 		public class SFX

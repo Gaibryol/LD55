@@ -11,17 +11,17 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private TextAsset song1Hard;
 	[SerializeField] private TextAsset song2Normal;
 	[SerializeField] private TextAsset song2Hard;
+	[SerializeField] private TextAsset song3Normal;
+	[SerializeField] private TextAsset song3Hard;
 
 	[SerializeField, Header("UI")] private GameObject mainMenuPanel;
-	[SerializeField] private Button song1NormalButton;
-	[SerializeField] private Button song1HardButton;
-	[SerializeField] private Button song2NormalButton;
-	[SerializeField] private Button song2HardButton;
 
 	private List<Queue<float>> song1NormalQueues;
 	private List<Queue<float>> song1HardQueues;
 	private List<Queue<float>> song2NormalQueues;
 	private List<Queue<float>> song2HardQueues;
+	private List<Queue<float>> song3NormalQueues;
+	private List<Queue<float>> song3HardQueues;
 
 	private bool playing;
 
@@ -42,6 +42,12 @@ public class GameManager : MonoBehaviour
 
 		midiConverter.JsonConvert(song2Hard, out Queue<float> song2DifficultLeft, out Queue<float> song2DifficultUp, out Queue<float> song2DifficultRight, out Queue<float> song2DifficultDown);
 		song2HardQueues = new List<Queue<float>>() { song2DifficultUp, song2DifficultDown, song2DifficultLeft, song2DifficultRight };
+
+		midiConverter.JsonConvert(song3Normal, out Queue<float> song3NormalLeft, out Queue<float> song3NormalUp, out Queue<float> song3NormalRight, out Queue<float> song3NormalDown);
+		song3NormalQueues = new List<Queue<float>>() { song3NormalUp, song3NormalDown, song3NormalLeft, song3NormalRight };
+
+		midiConverter.JsonConvert(song3Hard, out Queue<float> song3DifficultLeft, out Queue<float> song3DifficultUp, out Queue<float> song3DifficultRight, out Queue<float> song3DifficultDown);
+		song3HardQueues = new List<Queue<float>>() { song3DifficultUp, song3DifficultDown, song3DifficultLeft, song3DifficultRight };
 	}
 
 	public void SelectSong(Constants.Songs.Song song, Constants.Songs.Difficulties difficulty)
@@ -95,6 +101,17 @@ public class GameManager : MonoBehaviour
 					inEvent.Payload.ProcessData.DynamicInvoke(song2HardQueues);
 				}
 				break;
+
+			case Constants.Songs.Song.Song3:
+				if (inEvent.Payload.Difficulty == Constants.Songs.Difficulties.Normal)
+				{
+					inEvent.Payload.ProcessData.DynamicInvoke(song3NormalQueues);
+				}
+				else if (inEvent.Payload.Difficulty == Constants.Songs.Difficulties.Hard)
+				{
+					inEvent.Payload.ProcessData.DynamicInvoke(song3HardQueues);
+				}
+				break;
 		}
 	}
 
@@ -114,6 +131,7 @@ public class GameManager : MonoBehaviour
 					total += song1HardQueues[0].Count + song1HardQueues[1].Count + song1HardQueues[2].Count + song1HardQueues[3].Count;
 				}
 				break;
+
 			case Constants.Songs.Song.Song2:
 				if (inEvent.Payload.Difficulty == Constants.Songs.Difficulties.Normal)
 				{
@@ -122,6 +140,17 @@ public class GameManager : MonoBehaviour
 				else if (inEvent.Payload.Difficulty == Constants.Songs.Difficulties.Hard)
 				{
 					total += song2HardQueues[0].Count + song2HardQueues[1].Count + song2HardQueues[2].Count + song2HardQueues[3].Count;
+				}
+				break;
+
+			case Constants.Songs.Song.Song3:
+				if (inEvent.Payload.Difficulty == Constants.Songs.Difficulties.Normal)
+				{
+					total += song3NormalQueues[0].Count + song3NormalQueues[1].Count + song3NormalQueues[2].Count + song3NormalQueues[3].Count;
+				}
+				else if (inEvent.Payload.Difficulty == Constants.Songs.Difficulties.Hard)
+				{
+					total += song3HardQueues[0].Count + song3HardQueues[1].Count + song3HardQueues[2].Count + song3HardQueues[3].Count;
 				}
 				break;
 		}
@@ -134,22 +163,12 @@ public class GameManager : MonoBehaviour
 		eventBroker.Subscribe<SongEvents.GetSongData>(GetSongDataHandler);
 		eventBroker.Subscribe<ScoreEvents.TotalNotes>(TotalNotesHandler);
 		eventBroker.Subscribe<ScoreEvents.Final>(FinalHandler);
-
-		song1NormalButton.onClick.AddListener(() => SelectSong(Constants.Songs.Song.Song1, Constants.Songs.Difficulties.Normal));
-		song1HardButton.onClick.AddListener(() => SelectSong(Constants.Songs.Song.Song1, Constants.Songs.Difficulties.Hard));
-		song2NormalButton.onClick.AddListener(() => SelectSong(Constants.Songs.Song.Song2, Constants.Songs.Difficulties.Normal));
-		song2HardButton.onClick.AddListener(() => SelectSong(Constants.Songs.Song.Song2, Constants.Songs.Difficulties.Hard));
 	}
 
 	private void OnDisable()
 	{
 		eventBroker.Unsubscribe<SongEvents.GetSongData>(GetSongDataHandler);
 		eventBroker.Unsubscribe<ScoreEvents.TotalNotes>(TotalNotesHandler);
-		eventBroker.Subscribe<ScoreEvents.Final>(FinalHandler);
-
-		song1NormalButton.onClick.RemoveListener(() => SelectSong(Constants.Songs.Song.Song1, Constants.Songs.Difficulties.Normal));
-		song1HardButton.onClick.RemoveListener(() => SelectSong(Constants.Songs.Song.Song1, Constants.Songs.Difficulties.Hard));
-		song2NormalButton.onClick.RemoveListener(() => SelectSong(Constants.Songs.Song.Song2, Constants.Songs.Difficulties.Normal));
-		song2HardButton.onClick.RemoveListener(() => SelectSong(Constants.Songs.Song.Song2, Constants.Songs.Difficulties.Hard));
+		eventBroker.Unsubscribe<ScoreEvents.Final>(FinalHandler);
 	}
 }

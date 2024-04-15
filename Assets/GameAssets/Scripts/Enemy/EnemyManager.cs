@@ -28,6 +28,8 @@ public class EnemyManager : MonoBehaviour
 	private List<Queue<float>> song1HardQueues;
 	private List<Queue<float>> song2NormalQueues;
 	private List<Queue<float>> song2HardQueues;
+	private List<Queue<float>> song3NormalQueues;
+	private List<Queue<float>> song3HardQueues;
 	private double startTime;
 
 	private readonly EventBrokerComponent eventBroker = new EventBrokerComponent();
@@ -40,6 +42,9 @@ public class EnemyManager : MonoBehaviour
 
 	private float song2BPM = 120f;
 	private float song2Length;
+
+	private float song3BPM = 169f;
+	private float song3Length;
 
 	private float bpm;
 	private float beatsPerSec;
@@ -74,6 +79,10 @@ public class EnemyManager : MonoBehaviour
 		eventBroker.Publish(this, new SongEvents.GetSongData(Constants.Songs.Song.Song2, Constants.Songs.Difficulties.Normal, (data) => song2NormalQueues = data));
 		eventBroker.Publish(this, new SongEvents.GetSongData(Constants.Songs.Song.Song2, Constants.Songs.Difficulties.Hard, (data) => song2HardQueues = data));
 		eventBroker.Publish(this, new AudioEvents.GetSongLength(Constants.Songs.Song.Song2.ToString(), (data) => song2Length = data));
+
+		eventBroker.Publish(this, new SongEvents.GetSongData(Constants.Songs.Song.Song3, Constants.Songs.Difficulties.Normal, (data) => song3NormalQueues = data));
+		eventBroker.Publish(this, new SongEvents.GetSongData(Constants.Songs.Song.Song3, Constants.Songs.Difficulties.Hard, (data) => song3HardQueues = data));
+		eventBroker.Publish(this, new AudioEvents.GetSongLength(Constants.Songs.Song.Song3.ToString(), (data) => song3Length = data));
 	}
 
 	private void FixedUpdate()
@@ -194,6 +203,27 @@ public class EnemyManager : MonoBehaviour
 				totalBeats = song2Length * beatsPerSec;
 				bpm = song1BPM;
 				break;
+
+			case Constants.Songs.Song.Song3:
+				if (inEvent.Payload.Difficulty == Constants.Songs.Difficulties.Normal)
+				{
+					songUpQueue = new Queue<float>(song3NormalQueues[0]);
+					songDownQueue = new Queue<float>(song3NormalQueues[1]);
+					songLeftQueue = new Queue<float>(song3NormalQueues[2]);
+					songRightQueue = new Queue<float>(song3NormalQueues[3]);
+				}
+				else if (inEvent.Payload.Difficulty == Constants.Songs.Difficulties.Hard)
+				{
+					songUpQueue = new Queue<float>(song3HardQueues[0]);
+					songDownQueue = new Queue<float>(song3HardQueues[1]);
+					songLeftQueue = new Queue<float>(song3HardQueues[2]);
+					songRightQueue = new Queue<float>(song3HardQueues[3]);
+				}
+
+				beatsPerSec = song3BPM / 60f;
+				totalBeats = song3Length * beatsPerSec;
+				bpm = song1BPM;
+				break;
 		}
 
 		StartCoroutine(PlaySongAudio(inEvent.Payload.Song));
@@ -272,6 +302,10 @@ public class EnemyManager : MonoBehaviour
 
 			case Constants.Songs.Song.Song2:
 				eventBroker.Publish(this, new AudioEvents.PlayMusic(Constants.Audio.Music.Song2));
+				break;
+
+			case Constants.Songs.Song.Song3:
+				eventBroker.Publish(this, new AudioEvents.PlayMusic(Constants.Audio.Music.Song3));
 				break;
 		}
 
