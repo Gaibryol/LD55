@@ -28,6 +28,8 @@ public class Calibration : MonoBehaviour
 
     public float currentBeat;
     public bool calibrationActive = false;
+
+    private EventBrokerComponent eventBrokerComponent = new EventBrokerComponent();
     private void Awake()
     {
         Instance = this;
@@ -39,6 +41,9 @@ public class Calibration : MonoBehaviour
         UpdateVisualOffset(PlayerPrefs.GetFloat(Constants.Game.PlayerVisualLatency, 0f));
         UpdateInputOffset(PlayerPrefs.GetFloat(Constants.Game.PlayerInputLatency, 0f));
 
+        StartCalibration();
+        StopCalibration();
+        eventBrokerComponent.Publish(this, new AudioEvents.PlayMusic(Constants.Audio.Music.MainMenuTheme));
     }
 
     public void StartCalibration()
@@ -62,7 +67,7 @@ public class Calibration : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!audioSource.isPlaying || !calibrationActive) return;
+        if (!calibrationActive) return;
 
         calibrationPosition = (float)(AudioSettings.dspTime - dspCalibrationTime - firstBeatOffset + visualCalibrationOffset);
 

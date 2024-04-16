@@ -28,15 +28,11 @@ public class VisualCalibration : MonoBehaviour
         if (!Calibration.Instance.calibrationActive) return;
 
         int nextIndex = (Mathf.RoundToInt(Calibration.Instance.calibrationPositionInBeats + 1) % 4);
+
         if (nextIndex != index)
         {
             activeImages[nextIndex].SetTrigger("Tap");
             index = nextIndex;
         }
-    }
-
-    private void OnEnable()
-    {
-        index = -1;
     }
 }
