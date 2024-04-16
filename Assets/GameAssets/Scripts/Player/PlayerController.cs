@@ -33,6 +33,10 @@ public class PlayerController : MonoBehaviour
 	[SerializeField, Header("Background")] private SpriteRenderer defaultBackground;
 	[SerializeField] private SpriteRenderer ascendBackground;
 
+
+	private Coroutine defaultCoroutine;
+	private Coroutine ascendCoroutine;
+
 	private readonly EventBrokerComponent eventBroker = new EventBrokerComponent();
 
 	private void Awake()
@@ -48,6 +52,9 @@ public class PlayerController : MonoBehaviour
 		animator.enabled = false;
 		upperCircleAnimator.enabled = false;
 		lowerCircleAnimator.enabled = false;
+
+		defaultCoroutine = null;
+		ascendCoroutine = null;
 	}
 
     // Update is called once per frame
@@ -181,14 +188,32 @@ public class PlayerController : MonoBehaviour
 			upperCircleAnimator.SetBool("Ascended", true);
 			lowerCircleAnimator.SetBool("Ascended", true);
 
+			if (ascendCoroutine != null)
+			{
+				StopCoroutine(ascendCoroutine);
+			}
+			if (defaultCoroutine != null)
+			{
+				StopCoroutine(defaultCoroutine);
+			}
+
 			// Lerp to default
-			StartCoroutine(LerpToAscend());
+			ascendCoroutine = StartCoroutine(LerpToAscend());
 		}
 		else if (!ascended)
 		{
 			animator.SetBool("Ascended", false);
 			upperCircleAnimator.SetBool("Ascended", false);
 			lowerCircleAnimator.SetBool("Ascended", false);
+
+			if (ascendCoroutine != null)
+			{
+				StopCoroutine(ascendCoroutine);
+			}
+			if (defaultCoroutine != null)
+			{
+				StopCoroutine(defaultCoroutine);
+			}
 
 			// Lerp to background
 			StartCoroutine(LerpToDefault());
