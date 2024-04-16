@@ -184,7 +184,7 @@ public class PlayerController : MonoBehaviour
 
 	private void PlaySong(BrokerEvent<SongEvents.PlaySong> inEvent)
 	{
-		spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1);
+		spriteRenderer.enabled = true;
 
 		animator.enabled = true;
 		upperCircleAnimator.enabled = true;
@@ -195,7 +195,7 @@ public class PlayerController : MonoBehaviour
 	}
 	private void SongEnded(BrokerEvent<SongEvents.SongEnded> inEvent)
 	{
-		spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0);
+		//spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0);
 
 		if (inEvent.Payload.Success)
 		{
