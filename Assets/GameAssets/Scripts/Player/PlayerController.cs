@@ -12,7 +12,12 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private Transform leftSweetSpot;
 	[SerializeField] private Transform rightSweetSpot;
 
-	private PlayerInputs playerInputs;
+	private Coroutine upCoroutine;
+	private Coroutine downCoroutine;
+    private Coroutine rightCoroutine;
+    private Coroutine leftCoroutine;
+
+    private PlayerInputs playerInputs;
 	private InputAction up;
 	private InputAction down;
 	private InputAction left;
@@ -51,9 +56,16 @@ public class PlayerController : MonoBehaviour
 
     }
 
+	private IEnumerator HideSweetSpot(SpriteRenderer sweetSpot)
+	{
+		yield return new WaitForSeconds(0.1f);
+		sweetSpot.enabled = false;
+	}
+
 	public void OnUp(InputAction.CallbackContext context)
 	{
 		// Find note furthest along path
+		upSweetSpot.GetComponent<SpriteRenderer>().enabled = true;
 		Collider2D[] hits = Physics2D.OverlapCircleAll(upSweetSpot.position, Constants.Game.PlayerHitRadius);
 		if (hits.Length > 0)
 		{
@@ -69,13 +81,19 @@ public class PlayerController : MonoBehaviour
 			furthest.GetComponent<Enemy>().Hit();
 		}
 		animator.SetBool("isPlaying", true);
+		if (upCoroutine != null)
+		{
+			StopCoroutine(upCoroutine);
+		}
+		upCoroutine = StartCoroutine(HideSweetSpot(upSweetSpot.GetComponent<SpriteRenderer>()));
 	}
 
 	public void OnDown(InputAction.CallbackContext context)
 	{
 		// Find note furthest along path
-		
-		Collider2D[] hits = Physics2D.OverlapCircleAll(downSweetSpot.position, Constants.Game.PlayerHitRadius);
+		downSweetSpot.GetComponent<SpriteRenderer>().enabled = true;
+
+        Collider2D[] hits = Physics2D.OverlapCircleAll(downSweetSpot.position, Constants.Game.PlayerHitRadius);
 		if (hits.Length > 0)
 		{
 			Collider2D furthest = hits[0];
@@ -91,12 +109,19 @@ public class PlayerController : MonoBehaviour
 		}
 
         animator.SetBool("isPlaying", true);
-	}
+        if (downCoroutine != null)
+        {
+            StopCoroutine(downCoroutine);
+        }
+        downCoroutine = StartCoroutine(HideSweetSpot(downSweetSpot.GetComponent<SpriteRenderer>()));
+    }
 
     public void OnLeft(InputAction.CallbackContext context)
 	{
-		// Find note furthest along path
-		Collider2D[] hits = Physics2D.OverlapCircleAll(leftSweetSpot.position, Constants.Game.PlayerHitRadius);
+        leftSweetSpot.GetComponent<SpriteRenderer>().enabled = true;
+
+        // Find note furthest along path
+        Collider2D[] hits = Physics2D.OverlapCircleAll(leftSweetSpot.position, Constants.Game.PlayerHitRadius);
 		if (hits.Length > 0)
 		{
 			Collider2D furthest = hits[0];
@@ -112,12 +137,19 @@ public class PlayerController : MonoBehaviour
 		}
 
         animator.SetBool("isPlaying", true);
-	}
+        if (leftCoroutine != null)
+        {
+            StopCoroutine(leftCoroutine);
+        }
+        leftCoroutine = StartCoroutine(HideSweetSpot(leftSweetSpot.GetComponent<SpriteRenderer>()));
+    }
 
     public void OnRight(InputAction.CallbackContext context)
 	{
-		// Find note furthest along path
-		Collider2D[] hits = Physics2D.OverlapCircleAll(rightSweetSpot.position, Constants.Game.PlayerHitRadius);
+        rightSweetSpot.GetComponent<SpriteRenderer>().enabled = true;
+
+        // Find note furthest along path
+        Collider2D[] hits = Physics2D.OverlapCircleAll(rightSweetSpot.position, Constants.Game.PlayerHitRadius);
 		if (hits.Length > 0)
 		{
 			Collider2D furthest = hits[0];
@@ -133,7 +165,12 @@ public class PlayerController : MonoBehaviour
 		}
 
         animator.SetBool("isPlaying", true);
-	}
+        if (rightCoroutine != null)
+        {
+            StopCoroutine(rightCoroutine);
+        }
+        rightCoroutine = StartCoroutine(HideSweetSpot(rightSweetSpot.GetComponent<SpriteRenderer>()));
+    }
 
 	private void Ascended(BrokerEvent<ScoreEvents.Ascended> inEvent)
 	{
@@ -184,6 +221,7 @@ public class PlayerController : MonoBehaviour
 
 	private void PlaySong(BrokerEvent<SongEvents.PlaySong> inEvent)
 	{
+		fullCircleAnimator.SetBool("Summon", false);
 		spriteRenderer.enabled = true;
 
 		animator.enabled = true;
@@ -199,10 +237,11 @@ public class PlayerController : MonoBehaviour
 
 		if (inEvent.Payload.Success)
 		{
-			fullCircleAnimator.SetTrigger("Summon");
-		}
+            fullCircleAnimator.SetBool("Summon", true);
 
-		animator.enabled = false;
+        }
+
+        animator.enabled = false;
 		upperCircleAnimator.enabled = false;
 		lowerCircleAnimator.enabled = false;
 		animator.SetBool("Ascended", false);
