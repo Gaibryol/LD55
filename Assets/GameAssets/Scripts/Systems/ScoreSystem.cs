@@ -119,7 +119,7 @@ public class ScoreSystem : MonoBehaviour
 
 	private IEnumerator ScoreScreenOnDelay(string songTitle, int highscore, bool newRecord)
 	{
-		yield return new WaitForSeconds(3f);
+		yield return new WaitForSeconds(8f);
 		eventBroker.Publish(this, new ScoreEvents.Final(songTitle, currentDifficulty, currentSong, score, CalculateAccuracy(), highscore, perfectHit, okayHit, badHit, miss, maxCombo, newRecord, perfectHit == totalNotes));
 	}
 
