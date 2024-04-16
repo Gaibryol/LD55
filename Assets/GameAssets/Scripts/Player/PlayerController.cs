@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour
 	[SerializeField,Header("Animators")] Animator upperCircleAnimator;
 	[SerializeField] Animator lowerCircleAnimator;
 	[SerializeField] Animator fullCircleAnimator;
+	[SerializeField] private List<Sprite> summonItems;
+	[SerializeField] private SpriteRenderer summonItemSprite;
 	private Animator animator;
 
 	[SerializeField, Header("Background")] private SpriteRenderer defaultBackground;
@@ -237,6 +239,7 @@ public class PlayerController : MonoBehaviour
 
 		if (inEvent.Payload.Success)
 		{
+			summonItemSprite.sprite = summonItems[UnityEngine.Random.Range(0, summonItems.Count)];
             fullCircleAnimator.SetBool("Summon", true);
 
         }
