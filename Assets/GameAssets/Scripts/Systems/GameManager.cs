@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
 
 	private void Update()
 	{
-		summoningCircleUI.transform.Rotate(0f, 0f, Time.deltaTime * 5f);
+		summoningCircleUI.transform.Rotate(0f, 0f, -Time.deltaTime * 5f);
 	}
 
 	public void BackToMainMenu()
