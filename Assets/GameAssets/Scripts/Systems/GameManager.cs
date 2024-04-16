@@ -71,14 +71,13 @@ public class GameManager : MonoBehaviour
 	{
 		if (!playing)
 		{
-			Debug.Log("Length: " + length + " break");
 			yield break;
 		}
 
 		yield return new WaitForSeconds(length);
 
 		// Song ended
-		eventBroker.Publish(this, new SongEvents.SongEnded());
+		eventBroker.Publish(this, new SongEvents.SongEnded(true));
 	}
 
 	private void GetSongDataHandler(BrokerEvent<SongEvents.GetSongData> inEvent)

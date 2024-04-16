@@ -14,6 +14,9 @@ public class AudioSystem : MonoBehaviour
 	[SerializeField] private AudioClip mainMenuTheme;
 	[SerializeField] private AudioClip song2;
 	[SerializeField] private AudioClip song3;
+	[SerializeField] private AudioClip song1Preview;
+	[SerializeField] private AudioClip song2Preview;
+	[SerializeField] private AudioClip song3Preview;
 
 	[SerializeField, Header("SFX")]private AudioClip testSound;
 
@@ -38,6 +41,9 @@ public class AudioSystem : MonoBehaviour
 		music.Add(Constants.Audio.Music.MainMenuTheme, mainMenuTheme);
 		music.Add(Constants.Audio.Music.Song2, song2);
 		music.Add(Constants.Audio.Music.Song3, song3);
+		music.Add(Constants.Audio.Music.Song1Preview, song1Preview);
+		music.Add(Constants.Audio.Music.Song2Preview, song2Preview);
+		music.Add(Constants.Audio.Music.Song3Preview, song3Preview);
 
 		sfx.Add(Constants.Audio.SFX.TestSound, testSound);
 

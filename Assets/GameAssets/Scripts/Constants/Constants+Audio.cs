@@ -21,6 +21,9 @@ public partial class Constants
 			public const string Song1Cut = "Song1Cut";
 			public const string Song2 = "Song2";
 			public const string Song3 = "Song3";
+			public const string Song1Preview = "Song1Preview";
+			public const string Song2Preview = "Song2Preview";
+			public const string Song3Preview = "Song3Preview";
 		}
 
 		public class SFX

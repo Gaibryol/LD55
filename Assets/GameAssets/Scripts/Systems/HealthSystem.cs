@@ -43,7 +43,7 @@ public class HealthSystem : MonoBehaviour
         AnitmateHealthBar();
         if (currentHealth == 0 && !lostGame)
         {
-            eventBroker.Publish(this, new SongEvents.SongEnded());
+            eventBroker.Publish(this, new SongEvents.SongEnded(false));
             lostGame = true;
         }
     }

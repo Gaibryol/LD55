@@ -68,6 +68,8 @@ public class SongSelectionUI : MonoBehaviour
 
 			normalDifficultyButton.onClick.AddListener(() => gameManager.SelectSong(Constants.Songs.Song.Song2, Constants.Songs.Difficulties.Normal));
 			hardDifficultyButton.onClick.AddListener(() => gameManager.SelectSong(Constants.Songs.Song.Song2, Constants.Songs.Difficulties.Hard));
+
+			eventBroker.Publish(this, new AudioEvents.PlayMusic(Constants.Audio.Music.Song1Preview, true));
 		}
 		else if (index == 2)
 		{
@@ -100,6 +102,8 @@ public class SongSelectionUI : MonoBehaviour
 
 			normalDifficultyButton.onClick.AddListener(() => gameManager.SelectSong(Constants.Songs.Song.Song3, Constants.Songs.Difficulties.Normal));
 			hardDifficultyButton.onClick.AddListener(() => gameManager.SelectSong(Constants.Songs.Song.Song3, Constants.Songs.Difficulties.Hard));
+
+			eventBroker.Publish(this, new AudioEvents.PlayMusic(Constants.Audio.Music.Song2Preview, true));
 		}
 		else
 		{
@@ -132,6 +136,8 @@ public class SongSelectionUI : MonoBehaviour
 
 			normalDifficultyButton.onClick.AddListener(() => gameManager.SelectSong(Constants.Songs.Song.Song1, Constants.Songs.Difficulties.Normal));
 			hardDifficultyButton.onClick.AddListener(() => gameManager.SelectSong(Constants.Songs.Song.Song1, Constants.Songs.Difficulties.Hard));
+
+			eventBroker.Publish(this, new AudioEvents.PlayMusic(Constants.Audio.Music.Song3Preview, true));
 		}
 	}
 

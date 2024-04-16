@@ -55,6 +55,11 @@ public class SongEvents
 
 	public class SongEnded
 	{
-		public SongEnded() { }
+		public SongEnded(bool success) 
+		{
+			Success = success;
+		}
+
+		public readonly bool Success;
 	}
 }

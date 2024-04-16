@@ -18,8 +18,11 @@ public class PlayerController : MonoBehaviour
 	private InputAction left;
 	private InputAction right;
 
+	private SpriteRenderer spriteRenderer;
+
 	[SerializeField,Header("Animators")] Animator upperCircleAnimator;
 	[SerializeField] Animator lowerCircleAnimator;
+	[SerializeField] Animator fullCircleAnimator;
 	private Animator animator;
 
 	[SerializeField, Header("Background")] private SpriteRenderer defaultBackground;
@@ -31,6 +34,7 @@ public class PlayerController : MonoBehaviour
 	{
 		playerInputs = new PlayerInputs();
 		animator = GetComponent<Animator>();
+		spriteRenderer = GetComponent<SpriteRenderer>();
 	}
 
 	// Start is called before the first frame update
@@ -180,6 +184,8 @@ public class PlayerController : MonoBehaviour
 
 	private void PlaySong(BrokerEvent<SongEvents.PlaySong> inEvent)
 	{
+		spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1);
+
 		animator.enabled = true;
 		upperCircleAnimator.enabled = true;
 		lowerCircleAnimator.enabled = true;
@@ -189,6 +195,13 @@ public class PlayerController : MonoBehaviour
 	}
 	private void SongEnded(BrokerEvent<SongEvents.SongEnded> inEvent)
 	{
+		spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0);
+
+		if (inEvent.Payload.Success)
+		{
+			fullCircleAnimator.SetTrigger("Summon");
+		}
+
 		animator.enabled = false;
 		upperCircleAnimator.enabled = false;
 		lowerCircleAnimator.enabled = false;

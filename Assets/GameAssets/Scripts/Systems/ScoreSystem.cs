@@ -69,6 +69,7 @@ public class ScoreSystem : MonoBehaviour
 	public void SongEnded(BrokerEvent<SongEvents.SongEnded> inEvent)
 	{
 		scoreUI.SetActive(false);
+
 		int highscore;
 		bool newRecord = false;
 		if (PlayerPrefs.HasKey((Constants.Game.HighscorePP + currentSong + currentDifficulty).ToString()))
@@ -106,7 +107,20 @@ public class ScoreSystem : MonoBehaviour
 				break;
 		}
 
-		eventBroker.Publish(this, new ScoreEvents.Final(songTitle, currentDifficulty, currentSong, score, CalculateAccuracy(), highscore, perfectHit, okayHit,badHit, miss, maxCombo, newRecord, perfectHit == totalNotes));
+		if (!inEvent.Payload.Success)
+		{
+			eventBroker.Publish(this, new ScoreEvents.Final(songTitle, currentDifficulty, currentSong, score, CalculateAccuracy(), highscore, perfectHit, okayHit, badHit, miss, maxCombo, newRecord, perfectHit == totalNotes));
+		}
+		else
+		{
+			StartCoroutine(ScoreScreenOnDelay(songTitle, highscore, newRecord));
+		}
+	}
+
+	private IEnumerator ScoreScreenOnDelay(string songTitle, int highscore, bool newRecord)
+	{
+		yield return new WaitForSeconds(3f);
+		eventBroker.Publish(this, new ScoreEvents.Final(songTitle, currentDifficulty, currentSong, score, CalculateAccuracy(), highscore, perfectHit, okayHit, badHit, miss, maxCombo, newRecord, perfectHit == totalNotes));
 	}
 
 	private void PerfectHit(BrokerEvent<ScoreEvents.PerfectHit> inEvent)
