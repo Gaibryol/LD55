@@ -4775,6 +4775,7 @@ MonoBehaviour:
   inputHitIndicatorPrefab: {fileID: 6608810769471552256, guid: bd0c14e9dd203fa4b99852e194d19d8d, type: 3}
   delayText: {fileID: 610652305}
   inputTimes: []
+  anim: {fileID: 1234459654}
 --- !u!222 &291105847
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13430,7 +13431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d6222c3cf4d1c34386f96c14fabfd7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 189595438}
+  audioSource: {fileID: 189595439}
   calibrationClip: {fileID: 8300000, guid: 23ccc92f81da99042b850c36aba7c472, type: 3}
   bpm: 120
   secPerBeat: 2
@@ -13443,6 +13444,7 @@ MonoBehaviour:
   loopPositionInBeats: 0
   loopPositionInAnalog: 0
   currentBeat: 0
+  calibrationActive: 0
 --- !u!114 &874757265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18605,10 +18607,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeImages:
-  - {fileID: 6570703089531119380}
-  - {fileID: 3982278187385568246}
-  - {fileID: 4170510730088827230}
-  - {fileID: 2885573457238329425}
+  - {fileID: 4635901431384385118}
+  - {fileID: 3632625693494804527}
+  - {fileID: 8349691147221505789}
+  - {fileID: 3830444115300203695}
   calibrationSlider: {fileID: 977232596}
   valueText: {fileID: 1079032755}
 --- !u!222 &1269452084
