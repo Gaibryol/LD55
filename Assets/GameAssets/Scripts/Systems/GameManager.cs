@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
 
 	private bool playing;
 
+	private Coroutine songEndCheck;
+
 	private readonly EventBrokerComponent eventBroker = new EventBrokerComponent();
 
 	private void Awake()
@@ -58,13 +60,24 @@ public class GameManager : MonoBehaviour
 			mainMenuPanel.SetActive(false);
 
 			playing = true;
-			StartCoroutine(OnSongEnd(length));
+
+			if (songEndCheck != null)
+			{
+				StopCoroutine(songEndCheck);
+			}
+
+			songEndCheck = StartCoroutine(OnSongEnd(length));
 		}));
 	}
 
 	private void FinalHandler(BrokerEvent<ScoreEvents.Final> inEvent)
 	{
 		playing = false;
+		
+		if (songEndCheck != null)
+		{
+			StopCoroutine(songEndCheck);
+		}
 	}
 
 	private IEnumerator OnSongEnd(float length)

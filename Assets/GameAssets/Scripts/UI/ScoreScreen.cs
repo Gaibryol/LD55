@@ -49,9 +49,6 @@ public class ScoreScreen : MonoBehaviour
 		lastSong = inEvent.Payload.Song;
 		lastDifficulty = inEvent.Payload.Difficulty;
 
-		playAgainButton.onClick.RemoveAllListeners();
-		playAgainButton.onClick.AddListener(PlayAgain);
-
         endScorePanel.SetActive(true);
     }
 
@@ -65,11 +62,15 @@ public class ScoreScreen : MonoBehaviour
     private void OnEnable()
     {
         eventBroker.Subscribe<ScoreEvents.Final>(Final);
-    }
+
+		playAgainButton.onClick.AddListener(PlayAgain);
+	}
 
     private void OnDisable()
     {
         eventBroker.Unsubscribe<ScoreEvents.Final>(Final);
-    }
+
+		playAgainButton.onClick.RemoveListener(PlayAgain);
+	}
 
 }

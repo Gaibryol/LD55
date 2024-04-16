@@ -51,7 +51,7 @@ public class AudioSystem : MonoBehaviour
 
 		sfx.Add(Constants.Audio.SFX.TestSound, testSound);
 		sfx.Add(Constants.Audio.SFX.BookFlip, book);
-		sfx.Add(Constants.Audio.SFX.ButtonClick, testSound);
+		sfx.Add(Constants.Audio.SFX.ButtonClick, buttonClick);
 		sfx.Add(Constants.Audio.SFX.Death, testSound);
 
 	}
