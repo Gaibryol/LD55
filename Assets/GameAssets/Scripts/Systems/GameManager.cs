@@ -69,12 +69,17 @@ public class GameManager : MonoBehaviour
 
 	private IEnumerator OnSongEnd(float length)
 	{
-		if (!playing)
+		float timer = 0f;
+		while (playing)
 		{
-			yield break;
-		}
+			if (timer >= length)
+			{
+				playing = false;
+			}
 
-		yield return new WaitForSeconds(length);
+			timer += Time.deltaTime;
+			yield return null;
+		}
 
 		// Song ended
 		eventBroker.Publish(this, new SongEvents.SongEnded(true));
