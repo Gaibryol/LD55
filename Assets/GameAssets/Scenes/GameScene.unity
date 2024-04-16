@@ -10144,6 +10144,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1764388525}
     - target: {fileID: 5054084766843337497, guid: 40f0809c2d77e41a6a208831d22f37cb, type: 3}
+      propertyPath: summonItemSprite
+      value: 
+      objectReference: {fileID: 1984909298}
+    - target: {fileID: 5054084766843337497, guid: 40f0809c2d77e41a6a208831d22f37cb, type: 3}
       propertyPath: defaultBackground
       value: 
       objectReference: {fileID: 1764388525}
@@ -10171,6 +10175,30 @@ PrefabInstance:
       propertyPath: bottomSummonAnimator
       value: 
       objectReference: {fileID: 250836372}
+    - target: {fileID: 5054084766843337497, guid: 40f0809c2d77e41a6a208831d22f37cb, type: 3}
+      propertyPath: summonItems.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5054084766843337497, guid: 40f0809c2d77e41a6a208831d22f37cb, type: 3}
+      propertyPath: 'summonItems.Array.data[0]'
+      value: 
+      objectReference: {fileID: 21300000, guid: cbe221de1cd3a4a46b0f7d43710661fa, type: 3}
+    - target: {fileID: 5054084766843337497, guid: 40f0809c2d77e41a6a208831d22f37cb, type: 3}
+      propertyPath: 'summonItems.Array.data[1]'
+      value: 
+      objectReference: {fileID: 21300000, guid: a99c2e4ab6a2d6c43813dcae0d3497c9, type: 3}
+    - target: {fileID: 5054084766843337497, guid: 40f0809c2d77e41a6a208831d22f37cb, type: 3}
+      propertyPath: 'summonItems.Array.data[2]'
+      value: 
+      objectReference: {fileID: 21300000, guid: 8648aaf49e2461c43939d824e69b4d46, type: 3}
+    - target: {fileID: 5054084766843337497, guid: 40f0809c2d77e41a6a208831d22f37cb, type: 3}
+      propertyPath: 'summonItems.Array.data[3]'
+      value: 
+      objectReference: {fileID: 21300000, guid: 139bbb1eedcff484b91741fcfaf57e89, type: 3}
+    - target: {fileID: 5054084766843337497, guid: 40f0809c2d77e41a6a208831d22f37cb, type: 3}
+      propertyPath: 'summonItems.Array.data[4]'
+      value: 
+      objectReference: {fileID: 21300000, guid: 0d25dd2f42a534c45b7d5a2152e7f129, type: 3}
     - target: {fileID: 6581795773189064458, guid: 40f0809c2d77e41a6a208831d22f37cb, type: 3}
       propertyPath: m_Name
       value: Player
@@ -27791,7 +27819,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1984909297
 Transform:
   m_ObjectHideFlags: 0
