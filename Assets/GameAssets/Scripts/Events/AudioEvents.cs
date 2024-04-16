@@ -73,4 +73,9 @@ public class AudioEvents
 		public readonly string Title;
 		public readonly Action<float> ProcessData;
 	}
+
+	public class StopMusic
+	{
+		public StopMusic() { }
+	}
 }

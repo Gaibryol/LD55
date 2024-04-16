@@ -69,9 +69,9 @@ public class SongSelectionUI : MonoBehaviour
 			normalDifficultyButton.onClick.AddListener(() => gameManager.SelectSong(Constants.Songs.Song.Song2, Constants.Songs.Difficulties.Normal));
 			hardDifficultyButton.onClick.AddListener(() => gameManager.SelectSong(Constants.Songs.Song.Song2, Constants.Songs.Difficulties.Hard));
 
-			eventBroker.Publish(this, new AudioEvents.PlayMusic(Constants.Audio.Music.Song1Preview, true));
+			eventBroker.Publish(this, new AudioEvents.PlayMusic(Constants.Audio.Music.Song2Preview, true));
 		}
-		else if (index == 2)
+		else if (index == 1)
 		{
 			// Song 3
 			songName.text = Constants.Songs.Song3.Title.ToString();
@@ -103,7 +103,7 @@ public class SongSelectionUI : MonoBehaviour
 			normalDifficultyButton.onClick.AddListener(() => gameManager.SelectSong(Constants.Songs.Song.Song3, Constants.Songs.Difficulties.Normal));
 			hardDifficultyButton.onClick.AddListener(() => gameManager.SelectSong(Constants.Songs.Song.Song3, Constants.Songs.Difficulties.Hard));
 
-			eventBroker.Publish(this, new AudioEvents.PlayMusic(Constants.Audio.Music.Song2Preview, true));
+			eventBroker.Publish(this, new AudioEvents.PlayMusic(Constants.Audio.Music.Song3Preview, true));
 		}
 		else
 		{
@@ -137,7 +137,7 @@ public class SongSelectionUI : MonoBehaviour
 			normalDifficultyButton.onClick.AddListener(() => gameManager.SelectSong(Constants.Songs.Song.Song1, Constants.Songs.Difficulties.Normal));
 			hardDifficultyButton.onClick.AddListener(() => gameManager.SelectSong(Constants.Songs.Song.Song1, Constants.Songs.Difficulties.Hard));
 
-			eventBroker.Publish(this, new AudioEvents.PlayMusic(Constants.Audio.Music.Song3Preview, true));
+			eventBroker.Publish(this, new AudioEvents.PlayMusic(Constants.Audio.Music.Song1Preview, true));
 		}
 	}
 
@@ -167,6 +167,7 @@ public class SongSelectionUI : MonoBehaviour
 	{
 		// Back to main menu
 		screen.SetActive(false);
+		eventBroker.Publish(this, new AudioEvents.StopMusic());
 	}
 
 	private void OnEnable()
