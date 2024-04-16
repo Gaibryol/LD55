@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private TextAsset song3Hard;
 
 	[SerializeField, Header("UI")] private GameObject mainMenuPanel;
+	[SerializeField] private GameObject summoningCircleUI;
 
 	private List<Queue<float>> song1NormalQueues;
 	private List<Queue<float>> song1HardQueues;
@@ -55,6 +56,11 @@ public class GameManager : MonoBehaviour
 	private void Start()
 	{
 		eventBroker.Publish(this, new AudioEvents.PlayMusic(Constants.Audio.Music.MainMenuTheme));
+	}
+
+	private void Update()
+	{
+		summoningCircleUI.transform.Rotate(0f, 0f, Time.deltaTime * 5f);
 	}
 
 	public void BackToMainMenu()

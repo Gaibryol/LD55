@@ -5135,6 +5135,7 @@ MonoBehaviour:
   song3Normal: {fileID: 4900000, guid: 074ce7d067019cc45aa5d6fdd4396726, type: 3}
   song3Hard: {fileID: 4900000, guid: 90c8989343c279a458bfbb56d1b4acda, type: 3}
   mainMenuPanel: {fileID: 1737919444}
+  summoningCircleUI: {fileID: 1698367147}
 --- !u!1 &329548228
 GameObject:
   m_ObjectHideFlags: 0
@@ -23471,9 +23472,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -18}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -621, y: -22.158997}
+  m_AnchoredPosition: {x: -559.6422, y: -63.942078}
   m_SizeDelta: {x: 1006, y: 1006}
-  m_Pivot: {x: 0.4493989, y: 0.5147525}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1698367149
 MonoBehaviour:
   m_ObjectHideFlags: 0
