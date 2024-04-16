@@ -52,6 +52,16 @@ public class GameManager : MonoBehaviour
 		song3HardQueues = new List<Queue<float>>() { song3DifficultUp, song3DifficultDown, song3DifficultLeft, song3DifficultRight };
 	}
 
+	private void Start()
+	{
+		eventBroker.Publish(this, new AudioEvents.PlayMusic(Constants.Audio.Music.MainMenuTheme));
+	}
+
+	public void BackToMainMenu()
+	{
+		eventBroker.Publish(this, new AudioEvents.PlayMusic(Constants.Audio.Music.MainMenuTheme));
+	}
+
 	public void SelectSong(Constants.Songs.Song song, Constants.Songs.Difficulties difficulty)
 	{
 		eventBroker.Publish(this, new AudioEvents.GetSongLength(song.ToString(), (length) => 

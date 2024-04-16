@@ -2914,7 +2914,7 @@ MonoBehaviour:
   sfxSource: {fileID: 189595438}
   song1: {fileID: 8300000, guid: c416d27da823f2846b0f1068e5de2c1d, type: 3}
   song1Cut: {fileID: 8300000, guid: 33f3c82325348a542b7e3c52eb028d8f, type: 3}
-  mainMenuTheme: {fileID: 8300000, guid: 23ccc92f81da99042b850c36aba7c472, type: 3}
+  mainMenuTheme: {fileID: 8300000, guid: eb00db9f3474e4c42b767ae66fefe0b1, type: 3}
   song2: {fileID: 8300000, guid: 7c9984b7b09cf0745a233a9cbb6ac175, type: 3}
   song3: {fileID: 8300000, guid: fe1038271f0a7814d981cc3c9693310b, type: 3}
   song1Preview: {fileID: 8300000, guid: 11be0417221fb3749adbbc3228a83d28, type: 3}
@@ -4135,6 +4135,18 @@ MonoBehaviour:
       - m_Target: {fileID: 189595437}
         m_TargetAssemblyTypeName: AudioSystem, Assembly-CSharp
         m_MethodName: PlayButtonClickSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 312493411}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: BackToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12056,6 +12068,18 @@ MonoBehaviour:
       - m_Target: {fileID: 189595437}
         m_TargetAssemblyTypeName: AudioSystem, Assembly-CSharp
         m_MethodName: PlayButtonClickSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 312493411}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: BackToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -22349,6 +22373,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 312493411}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: BackToMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1620581038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26217,7 +26253,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1890764627}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 312493411}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: BackToMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1890764627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30801,6 +30849,18 @@ MonoBehaviour:
       - m_Target: {fileID: 189595437}
         m_TargetAssemblyTypeName: AudioSystem, Assembly-CSharp
         m_MethodName: PlayButtonClickSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 312493411}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: BackToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
