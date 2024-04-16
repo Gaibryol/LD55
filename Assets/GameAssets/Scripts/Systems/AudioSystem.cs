@@ -32,6 +32,7 @@ public class AudioSystem : MonoBehaviour
 	private EventBrokerComponent eventBrokerComponent = new EventBrokerComponent();
 
 	private Coroutine playPauseCo;
+	private Coroutine playMusicFadeCoroutine;
 
 	private void Awake()
 	{
@@ -101,9 +102,14 @@ public class AudioSystem : MonoBehaviour
 
 	private void PlayMusicHandler(BrokerEvent<AudioEvents.PlayMusic> inEvent)
 	{
+		if (playMusicFadeCoroutine != null)
+		{
+			StopCoroutine(playMusicFadeCoroutine);
+		}
+
 		if (inEvent.Payload.Transition)
 		{
-			StartCoroutine(FadeToSong(inEvent.Payload.MusicName));
+			playMusicFadeCoroutine = StartCoroutine(FadeToSong(inEvent.Payload.MusicName));
 		}
 		else
 		{
