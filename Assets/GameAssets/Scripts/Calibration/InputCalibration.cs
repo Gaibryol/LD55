@@ -13,7 +13,7 @@ public class InputCalibration : MonoBehaviour
     [SerializeField] private TMP_Text delayText;
     private PlayerInputs inputs;
     [SerializeField] private List<float> inputTimes = new List<float>();
-
+    [SerializeField] Animator anim;
     void Start()
     {
         UpdateDelayText();
@@ -34,8 +34,8 @@ public class InputCalibration : MonoBehaviour
 
     public void HandleKeyPress(InputAction.CallbackContext context)
     {
+        anim.SetTrigger("Tap");
         float beat = Calibration.Instance.calibrationPositionInBeats % 1;
-        Debug.Log(beat);
         float timeFromBeat = 0f;
         if (beat < .5f) // late or super early
         {

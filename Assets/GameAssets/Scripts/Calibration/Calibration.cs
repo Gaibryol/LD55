@@ -27,6 +27,7 @@ public class Calibration : MonoBehaviour
     public static float inputCalibrationOffset = 0f;
 
     public float currentBeat;
+    public bool calibrationActive = false;
     private void Awake()
     {
         Instance = this;
@@ -42,24 +43,30 @@ public class Calibration : MonoBehaviour
 
     public void StartCalibration()
     {
+        audioSource.Stop();
+
         audioSource.clip = calibrationClip;
         dspCalibrationTime = (float)AudioSettings.dspTime;
+        calibrationPosition = (float)(AudioSettings.dspTime - dspCalibrationTime - firstBeatOffset + visualCalibrationOffset);
+
+        calibrationPositionInBeats = calibrationPosition / secPerBeat + (1 / secPerBeat);
         audioSource.Play();
+        calibrationActive = true;
     }
 
     public void StopCalibration()
     {
         audioSource.Stop();
+        calibrationActive = false;
     }
 
     void FixedUpdate()
     {
-        if (!audioSource.isPlaying) return;
-
+        if (!audioSource.isPlaying || !calibrationActive) return;
 
         calibrationPosition = (float)(AudioSettings.dspTime - dspCalibrationTime - firstBeatOffset + visualCalibrationOffset);
 
-        calibrationPositionInBeats = calibrationPosition / secPerBeat;
+        calibrationPositionInBeats = calibrationPosition / secPerBeat + (1/secPerBeat) ;
         currentBeat = calibrationPositionInBeats % 4;
 
         if (calibrationPositionInBeats >= (completedLoops + 1) * beatsPerLoop)

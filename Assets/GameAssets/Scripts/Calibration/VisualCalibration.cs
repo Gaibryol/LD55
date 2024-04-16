@@ -6,9 +6,10 @@ using UnityEngine.UI;
 
 public class VisualCalibration : MonoBehaviour
 {
-    [SerializeField] private Image[] activeImages;
+    [SerializeField] private Animator[] activeImages;
     [SerializeField] private Slider calibrationSlider;
     [SerializeField] private TMP_Text valueText;
+    private int index = -1;
     void Start()
     {
         calibrationSlider.value = PlayerPrefs.GetFloat(Constants.Game.PlayerVisualLatency, 0f) * 1000f;
@@ -22,11 +23,20 @@ public class VisualCalibration : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        for (int i = 0; i < activeImages.Length; i++)
+        if (!Calibration.Instance.calibrationActive) return;
+
+        int nextIndex = (Mathf.RoundToInt(Calibration.Instance.calibrationPositionInBeats + 1) % 4);
+        if (nextIndex != index)
         {
-            activeImages[i].gameObject.SetActive((i) == (Mathf.FloorToInt(Calibration.Instance.calibrationPositionInBeats) % 4));
+            activeImages[nextIndex].SetTrigger("Tap");
+            index = nextIndex;
         }
+    }
+
+    private void OnEnable()
+    {
+        index = -1;
     }
 }
