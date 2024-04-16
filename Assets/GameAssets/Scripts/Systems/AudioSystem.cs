@@ -19,6 +19,9 @@ public class AudioSystem : MonoBehaviour
 	[SerializeField] private AudioClip song3Preview;
 
 	[SerializeField, Header("SFX")]private AudioClip testSound;
+	[SerializeField] private AudioClip book;
+	[SerializeField] private AudioClip buttonClick;
+	[SerializeField] private AudioClip death;
 
 	private float musicVolume;
 	private float sfxVolume;
@@ -47,6 +50,9 @@ public class AudioSystem : MonoBehaviour
 		music.Add(Constants.Audio.Music.Song3Preview, song3Preview);
 
 		sfx.Add(Constants.Audio.SFX.TestSound, testSound);
+		sfx.Add(Constants.Audio.SFX.BookFlip, book);
+		sfx.Add(Constants.Audio.SFX.ButtonClick, testSound);
+		sfx.Add(Constants.Audio.SFX.Death, testSound);
 
 	}
 
@@ -82,6 +88,18 @@ public class AudioSystem : MonoBehaviour
 		eventBrokerComponent.Unsubscribe<AudioEvents.GetSongLength>(GetSongLengthHandler);
 		eventBrokerComponent.Unsubscribe<AudioEvents.StopMusic>(StopMusicHandler);
 		eventBrokerComponent.Unsubscribe<SongEvents.SongEnded>(SongEnded);
+	}
+
+	public void PlayButtonClickSFX()
+	{
+		if (sfx.ContainsKey(Constants.Audio.SFX.ButtonClick))
+		{
+			sfxSource.PlayOneShot(sfx[Constants.Audio.SFX.ButtonClick]);
+		}
+		else
+		{
+			Debug.LogError("Cannot find sfx named " + Constants.Audio.SFX.ButtonClick);
+		}
 	}
 
 	private void ChangeMusicVolumeHandler(BrokerEvent<AudioEvents.ChangeMusicVolume> inEvent)

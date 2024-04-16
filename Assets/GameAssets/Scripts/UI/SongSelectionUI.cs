@@ -149,6 +149,7 @@ public class SongSelectionUI : MonoBehaviour
 			index = 2;
 		}
 
+		eventBroker.Publish(this, new AudioEvents.PlaySFX(Constants.Audio.SFX.BookFlip));
 		UpdateUI();
 	}
 
@@ -160,6 +161,7 @@ public class SongSelectionUI : MonoBehaviour
 			index = 0;
 		}
 
+		eventBroker.Publish(this, new AudioEvents.PlaySFX(Constants.Audio.SFX.BookFlip));
 		UpdateUI();
 	}
 
@@ -168,6 +170,8 @@ public class SongSelectionUI : MonoBehaviour
 		// Back to main menu
 		screen.SetActive(false);
 		eventBroker.Publish(this, new AudioEvents.StopMusic());
+
+		eventBroker.Publish(this, new AudioEvents.PlaySFX(Constants.Audio.SFX.ButtonClick));
 	}
 
 	private void OnEnable()

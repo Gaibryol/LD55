@@ -29,6 +29,9 @@ public partial class Constants
 		public class SFX
 		{
 			public const string TestSound = "TestSound";
+			public const string BookFlip = "BookFlip";
+			public const string ButtonClick = "ButtonClick";
+			public const string Death = "Death";
 		}
 	}
 }
