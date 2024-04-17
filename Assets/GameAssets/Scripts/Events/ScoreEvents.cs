@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public class ScoreEvents
 {
@@ -48,7 +49,7 @@ public class ScoreEvents
 
     public class Final
     {
-        public Final(string title, Constants.Songs.Difficulties difficulty, Constants.Songs.Song song, int score, float accuracy, int highscore, int perfectHit, int okayHit, int badHit, int misses, int maxCombo, bool newRecord, bool allPerfect)
+        public Final(string title, Constants.Songs.Difficulties difficulty, Constants.Songs.Song song, int score, float accuracy, int highscore, int perfectHit, int okayHit, int badHit, int misses, int maxCombo, bool newRecord, bool allPerfect, Sprite summon)
         {
 			Title = title;
 			Difficulty = difficulty;
@@ -63,6 +64,7 @@ public class ScoreEvents
 			MaxCombo = maxCombo;
 			NewRecord = newRecord;
 			AllPerfect = allPerfect;
+			Summon = summon;
         }
 
 		public readonly string Title;
@@ -78,6 +80,7 @@ public class ScoreEvents
 		public readonly int MaxCombo;
 		public readonly bool NewRecord;
 		public readonly bool AllPerfect;
+		public readonly Sprite Summon;
 
     }
 

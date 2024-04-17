@@ -27,9 +27,6 @@ public class PlayerController : MonoBehaviour
 
 	[SerializeField,Header("Animators")] Animator upperCircleAnimator;
 	[SerializeField] Animator lowerCircleAnimator;
-	[SerializeField] Animator fullCircleAnimator;
-	[SerializeField] private List<Sprite> summonItems;
-	[SerializeField] private SpriteRenderer summonItemSprite;
 	private Animator animator;
 
 	[SerializeField, Header("Background")] private SpriteRenderer defaultBackground;
@@ -248,7 +245,6 @@ public class PlayerController : MonoBehaviour
 
 	private void PlaySong(BrokerEvent<SongEvents.PlaySong> inEvent)
 	{
-		fullCircleAnimator.SetBool("Summon", false);
 		spriteRenderer.enabled = true;
 
 		animator.enabled = true;
@@ -258,17 +254,9 @@ public class PlayerController : MonoBehaviour
 		defaultBackground.color = new Color(defaultBackground.color.r, defaultBackground.color.g, defaultBackground.color.b, 1f);
 		ascendBackground.color = new Color(ascendBackground.color.r, ascendBackground.color.g, ascendBackground.color.b, 0f);
 	}
+
 	private void SongEnded(BrokerEvent<SongEvents.SongEnded> inEvent)
 	{
-		//spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0);
-
-		if (inEvent.Payload.Success)
-		{
-			summonItemSprite.sprite = summonItems[UnityEngine.Random.Range(0, summonItems.Count)];
-            fullCircleAnimator.SetBool("Summon", true);
-
-        }
-
         animator.enabled = false;
 		upperCircleAnimator.enabled = false;
 		lowerCircleAnimator.enabled = false;

@@ -20,6 +20,8 @@ public class ScoreScreen : MonoBehaviour
 	[SerializeField] private GameObject newRecord;
 	[SerializeField] private GameObject allPerfect;
 	[SerializeField] private Button playAgainButton;
+	[SerializeField] private Image summon;
+	[SerializeField] private TMP_Text summonedText;
 
 	[SerializeField] private GameManager gameManager;
 
@@ -48,6 +50,19 @@ public class ScoreScreen : MonoBehaviour
 
 		lastSong = inEvent.Payload.Song;
 		lastDifficulty = inEvent.Payload.Difficulty;
+
+		if (inEvent.Payload.Summon != null)
+		{
+			summon.sprite = inEvent.Payload.Summon;
+			summon.gameObject.SetActive(true);
+
+			summonedText.text = "Summoned";
+		}
+		else
+		{
+			summon.gameObject.SetActive(false);
+			summonedText.text = "Summon failed...";
+		}
 
         endScorePanel.SetActive(true);
     }

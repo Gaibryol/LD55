@@ -36,6 +36,10 @@ public class ScoreSystem : MonoBehaviour
 	[SerializeField] private TMP_Text multiplierText;
 	[SerializeField] private TMP_Text accuracyText;
 
+	[SerializeField, Header("Summon")] private SpriteRenderer summonSprite;
+	[SerializeField] private List<Sprite> summonItems;
+	[SerializeField] Animator fullCircleAnimator;
+
 
 	public void PlaySong(BrokerEvent<SongEvents.PlaySong> inEvent)
 	{
@@ -49,6 +53,8 @@ public class ScoreSystem : MonoBehaviour
 		combo = 0;
 		score = 0;
 		multiplier = 1f;
+
+		fullCircleAnimator.SetBool("Summon", false);
 
 		currentSong = inEvent.Payload.Song;
 		currentDifficulty = inEvent.Payload.Difficulty;
@@ -107,20 +113,48 @@ public class ScoreSystem : MonoBehaviour
 				break;
 		}
 
+		if (inEvent.Payload.Success)
+		{
+			float accuracy = CalculateAccuracy();
+
+			if (accuracy >= 90f)
+			{
+				summonSprite.sprite = summonItems[0];
+			}
+			else if (accuracy >= 80f)
+			{
+				summonSprite.sprite = summonItems[1];
+			}
+			else if (accuracy >= 70f)
+			{
+				summonSprite.sprite = summonItems[2];
+			}
+			else if (accuracy >= 60f)
+			{
+				summonSprite.sprite = summonItems[3];
+			}
+			else
+			{
+				summonSprite.sprite = summonItems[4];
+			}
+
+			fullCircleAnimator.SetBool("Summon", true);
+		}
+
 		if (!inEvent.Payload.Success)
 		{
-			eventBroker.Publish(this, new ScoreEvents.Final(songTitle, currentDifficulty, currentSong, score, CalculateAccuracy(), highscore, perfectHit, okayHit, badHit, miss, maxCombo, newRecord, perfectHit == totalNotes));
+			eventBroker.Publish(this, new ScoreEvents.Final(songTitle, currentDifficulty, currentSong, score, CalculateAccuracy(), highscore, perfectHit, okayHit, badHit, miss, maxCombo, newRecord, perfectHit == totalNotes, null));
 		}
 		else
 		{
-			StartCoroutine(ScoreScreenOnDelay(songTitle, highscore, newRecord));
+			StartCoroutine(ScoreScreenOnDelay(songTitle, highscore, newRecord, summonSprite.sprite));
 		}
 	}
 
-	private IEnumerator ScoreScreenOnDelay(string songTitle, int highscore, bool newRecord)
+	private IEnumerator ScoreScreenOnDelay(string songTitle, int highscore, bool newRecord, Sprite summonSprite)
 	{
 		yield return new WaitForSeconds(8f);
-		eventBroker.Publish(this, new ScoreEvents.Final(songTitle, currentDifficulty, currentSong, score, CalculateAccuracy(), highscore, perfectHit, okayHit, badHit, miss, maxCombo, newRecord, perfectHit == totalNotes));
+		eventBroker.Publish(this, new ScoreEvents.Final(songTitle, currentDifficulty, currentSong, score, CalculateAccuracy(), highscore, perfectHit, okayHit, badHit, miss, maxCombo, newRecord, perfectHit == totalNotes, summonSprite));
 	}
 
 	private void PerfectHit(BrokerEvent<ScoreEvents.PerfectHit> inEvent)
